@@ -515,6 +515,204 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/30/cisco路由器恢复enable密码/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="孤独泪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="孤独泪个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/30/cisco路由器恢复enable密码/" itemprop="url">
+                  cisco路由器恢复enable密码
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-30T00:00:00+08:00">
+                2017-06-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络技术/" itemprop="url" rel="index">
+                    <span itemprop="name">网络技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/06/30/cisco路由器恢复enable密码/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/06/30/cisco路由器恢复enable密码/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>&emsp; &emsp; 在Cisco路由器忘记或丢失enable密码的情况时，一共有两种方法恢复，<br>取决于你使用的路由器是哪一系列产品。</p>
+<p>第一种方法：</p>
+<p>&emsp; &emsp;使用这种方法可恢复下列路由器：Cisco 2000系列、2500系列、3000系列、使用680x0<br>Motorol a CPU的Cisco 4000系列、运行10.0版本以上Cisco IOS系统的7000系列路由器。</p>
+<p><br><br>实现步骤： </p>
+<p>1.&emsp; &emsp;在路由器的console口接上一个终端或用安装仿真终端软件的PC机。</p>
+<p><br><br>2.&emsp; &emsp;输入show version命令，然后记下寄存器值，通常是0x2102 or 0x102。这个值显示在最后一行，注意寄存器的配置是否把Break设为enable或disable。 缺省配置寄存器值是0x2102。这个值从左数第三个数字如果是1，则是disable Break；如果为零，则Break为enabled。</p>
+<p>3.&emsp; &emsp;切断电源后再重启。</p>
+<p><br><br>4.&emsp; &emsp;在路由器启动的60秒内在终端机上按Break键。将显示rommon&gt; 提示符。如果提示符不是这样，则终端没有发出正确的中断信号，检查Break键是否正确或是否被设为disable。</p>
+<p><br><br>5.&emsp; &emsp;在提示符下输入o/r0x42或o/r0x41，o/r0x42意思是从Flash memory引导，o/r0x41意思是从ROMs引导(注意，第一个字符是字母o，不是数字0)。最好用0x42，在Flash memory没有装或erase的情况下，才用0x41，如果有0x41则只能view或erase配置，不能直接更改密码。</p>
+<p>6.&emsp; &emsp;在rommon&gt;提示符下输入初始化命令。 </p>
+<p><br></p>
+<p>7.&emsp; &emsp;输入系统配置对话提示符敲no,一直等提示信息显示：Press RETURN to get started! </p>
+<p><br></p>
+<p>8.&emsp; &emsp;敲回车，出现Router&gt;提示符。</p>
+<p><br></p>
+<p>9.&emsp; &emsp;输入enable命令，出现Router#提示符。</p>
+<p><br></p>
+<p>10.&emsp; &emsp;选择下面选项中的一项：</p>
+<p>&emsp; &emsp;如果password没有加密，直接用more nvram:startup-config命令可以看密码；在password加密的情况下，无法看，只能修改，输入命令如下：</p>
+<p>Router # configure memory</p>
+<p>Router # configure terminal</p>
+<p>Router(config)# enable secret 1234abcd </p>
+<p>Router(config)# ctrl-z</p>
+<p>Router # write memory</p>
+<p><br></p>
+<p>11.&emsp; &emsp;在EXEC提示符输入configure terminal进入配置模式。输入config-register命令，把在第二步中记录的寄存器值复原。</p>
+<p><br></p>
+<p>12.&emsp; &emsp;敲Ctrl-Z，退出配置状态。</p>
+<p><br></p>
+<p>13.&emsp;&emsp;在特权模式下用write memory命令保存配置，然后reboot重启。</p>
+<p><br></p>
+<p>第二种方法</p>
+<p><br></p>
+<p>&emsp; &emsp;使用这种方法可恢复下列路由器：Cisco 1003、1600系列、3600系列、4500系列、7200系列、7500系列和IDT Orion-Based路由器。</p>
+<p>实现步骤： </p>
+<p><br></p>
+<p>前四步与上一种方法一样。</p>
+<p><br></p>
+<p>5.&emsp; &emsp;在rommon&gt;提示符下输入confreg命令，显示如下：</p>
+<p>&emsp; &emsp; &emsp; &emsp;Do you wish to change configuration[y/n]?</p>
+<p>&emsp; &emsp;输入yes，然后回车。在回答后面的问题时一直选择no，直到出现“ignore system config info[y/n]?”时输入yes。</p>
+<p>&emsp; &emsp;接着继续敲no回答，一直到看到“change boot characteristics[y/n]?”时输入yes<br>显示如下：<br>enter to boot: </p>
+<p>&emsp; &emsp;在这个提示符下可以有1和2两种选择。如果Flash memory is<br>erased选择1，这样只能view or erase配置，不能直接修改password。最好选择2。出现如下提示：<br>Do you wish to change configuration[y/n]?</p>
+<p>回答no，然后回车，显示“rommon&gt;”。</p>
+<p>6.在特权EXEC下输入reload命令。</p>
+<p>  &emsp; &emsp;后面操作同第一种方法。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/30/cisco3550端口速率限制/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1047,218 +1245,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/27/华为S7706配置/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="孤独泪">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="孤独泪个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/27/华为S7706配置/" itemprop="url">
-                  华为S7706配置
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-27T23:18:09+08:00">
-                2017-04-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/网络技术/" itemprop="url" rel="index">
-                    <span itemprop="name">网络技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/04/27/华为S7706配置/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/27/华为S7706配置/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><br></p>
-<p>sysname Playcrab-Core &emsp; &emsp; &emsp; &emsp; &emsp;修改交换机默认名字</p>
-<p>super password level 3 cipher XXX &emsp; &emsp; &emsp; &emsp; &emsp;增加交换机超级密码</p>
-<p>vlan batch 10 20 30 40 50 52 60 70 72 76 &emsp; &emsp; &emsp; &emsp; &emsp;批量新建vlan</p>
-<p>undo telnet server enable &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 关闭交换机telnet访问</p>
-<p>observe-port 1 interface GigabitEthernet4/0/44 &emsp; &emsp; &emsp; &emsp;配置高速以太口4/0/44口为镜像口</p>
-<p>undo http server enable &emsp; &emsp; &emsp; &emsp;关闭web页面访问交换机</p>
-<p>radius-server template XXX &emsp; &emsp; &emsp;配置radius模版</p>
-<p>radius-server shared-key cipher XXX &emsp; &emsp; &emsp;&emsp; 配置radius共享密钥</p>
-<p>radius-server authentication 172.16.XX.XX 1812 &emsp; &emsp; &emsp;radius认证服务器地址及端口</p>
-<p>radius-server retransmit 2  &emsp; &emsp; &emsp; 配置Radius实时记帐包发送间隔时间为2分钟</p>
-<p>undo radius-server user-name domain-included radius &emsp; &emsp;认证不加域名</p>
-<p>acl number 3000             &emsp; &emsp; &emsp; &emsp; &emsp;&emsp; 创建访问控制列表</p>
-<p>description meeting &emsp; &emsp; &emsp; &emsp; 控制列表描述是会议</p>
-<p>rule 1000 deny ip source 172.16.X.X &emsp;0.0.0.X destination 172.16.X.X &emsp;</p>
-<p>0.0.X.X &emsp; &emsp; &emsp; &emsp; &emsp;拒绝源176.16.X.X，访问目标172.16.X.X</p>
- <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">定义流策略</div><div class="line"></div><div class="line">traffic classifier c_meeting operator or precedence 5</div><div class="line"></div><div class="line">if-match acl 3000</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">定义流动作</div><div class="line"></div><div class="line">traffic behavior b_permit </div><div class="line"></div><div class="line">permit</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">引用流策略和流动作</div><div class="line"></div><div class="line">traffic policy p_meeting</div><div class="line"></div><div class="line">classifier c_meeting behavior b_permit</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">访问控制列表在虚拟接口vlan76，进的方向策略生效</div><div class="line"></div><div class="line">vlan 76</div><div class="line"></div><div class="line">traffic-policy p_meeting inbound</div></pre></td></tr></table></figure>
-<p>#<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">创建dhcp中继服务组,并指定服务组的IP地址</div><div class="line"></div><div class="line">dhcp server group 1</div><div class="line"></div><div class="line">dhcp-server 172.16.X.X 0</div><div class="line">#</div><div class="line">dhcp server group 2</div><div class="line"></div><div class="line">dhcp-server 172.16.X.X 1</div></pre></td></tr></table></figure></p>
-<p>#<br>aaa&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 开启AAA服务</p>
-<p>authentication-scheme default&emsp; &emsp; &emsp; 默认使用本地认证</p>
-<p>authentication-scheme XX.com&emsp; &emsp; &emsp; 配置aaa认证域模版</p>
-<p>authentication-mode radius local&emsp; &emsp;&emsp; 配置使用radius认证</p>
-<p>authorization-scheme default&emsp; &emsp; &emsp; 默认授权方式</p>
-<p>accounting-scheme default &emsp; &emsp; &emsp; 默认计费方式</p>
-<p>domain default&emsp; &emsp; &emsp; 默认域</p>
-<p>domain XXX &emsp; &emsp; &emsp; 创建AAA默认域</p>
-<p>authentication-scheme XXX.com&emsp; &emsp; &emsp; 应用认证域</p>
-<p>radius-server  XXX.com&emsp; &emsp; &emsp; &emsp; radius认证模版</p>
-<p>local-user admin password cipher XXX&emsp; &emsp; &emsp; 配置admin密码</p>
-<p> local-user admin service-type telnet terminal ssh web 8021x http&emsp; 授权admin用登陆方式<br>#<br>ntp-service unicast-server 172.16.X.X &emsp; &emsp; 指向时间同步服务器<br>#<br>interface Vlanif10 &emsp; &emsp; &emsp; &emsp; 进入vlan10虚拟接口</p>
-<p> description to_chanpinfuwu&emsp; &emsp; &emsp; &emsp; 描述vlan10是产品服务</p>
-<p> ip address 172.16.X.X 255.255.X.0&emsp; &emsp; &emsp; &emsp; 配置IP地址及其掩码</p>
-<p> dhcp select relay&emsp; &emsp; &emsp; &emsp; 开启dhcp中继</p>
-<p> dhcp relay server-select 1 &emsp; &emsp; &emsp; &emsp; dhcp中继指向中继组1</p>
-<p>interface Eth-Trunk1 &emsp; &emsp; &emsp; &emsp; 创建聚合组Eth-Trunk1</p>
-<p> description To Playcrab-FireWall&emsp; &emsp; &emsp; &emsp; 描述Eth-Trunk1连接Playcrab-FireWall</p>
-<p> port link-type trunk&emsp; &emsp; &emsp; &emsp; 端口链路类型为中继链路</p>
-<p> port trunk pvid vlan 255&emsp; &emsp; &emsp; &emsp; 设置端口的默认vlan标签</p>
-<p> undo port trunk allow-pass vlan 1&emsp; &emsp; &emsp; &emsp; 禁止vlan1通过中继链路端口</p>
-<p> port trunk allow-pass vlan 255&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 允许vlan255通过中继链路端口</p>
-<p>#<br>interface GigabitEthernet4/0/47&emsp; &emsp; &emsp; &emsp; &emsp; &emsp;进入高速以太口</p>
-<p> description To Playcrab-FrieWall-G0/0/1&emsp; &emsp; &emsp; &emsp; &emsp; 描述连接防火墙的G0/0/1口</p>
-<p> eth-trunk 1 &emsp; &emsp; &emsp; &emsp; 加入聚合组1</p>
-<p>ip route-static 0.0.0.0 0.0.0.0 172.16.X.X&emsp; &emsp; &emsp; &emsp; 配置默认路由</p>
-<p>#<br>snmp-agent&emsp; &emsp; &emsp; &emsp;开启交换机snmp服务</p>
-<p>snmp-agent community read cipher XXX &emsp; &emsp; &emsp; &emsp; 配置snmp的团体名为XXX</p>
-<p>snmp-agent sys-info version all&emsp; &emsp; &emsp; &emsp; 设置系统启用的snmp的版本号<br>#<br>ssh authentication-type default password&emsp; &emsp; &emsp; &emsp; SSH认证类型，默认密码认证</p>
-<p>#<br>user-interface con 0&emsp; &emsp; &emsp; &emsp; 进入交换机console口</p>
-<p>authentication-mode password&emsp; &emsp; &emsp; &emsp; 密码认证模式</p>
-<p>set authentication password cipher XXX&emsp; &emsp; &emsp; &emsp;设置密码XXX为密文<br>#<br>user-interface vty 0 4 &emsp; &emsp; &emsp; &emsp; 创建vty虚拟终端</p>
-<p>authentication-mode aaa &emsp; &emsp; &emsp; &emsp; 认证模式为AAA</p>
-<p>protocol inbound ssh &emsp; &emsp; &emsp; &emsp; 接入类型使用ssh</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1303,7 +1294,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1325,7 +1316,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
