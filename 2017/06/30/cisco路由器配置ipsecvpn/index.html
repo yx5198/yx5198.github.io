@@ -102,7 +102,7 @@ r1(config)#crypto isakmp policy 1
 r1(config-isakmp)#encryption des    &amp;emsp; &amp;emsp; &amp;emsp; &amp;emsp; &amp;emsp; &amp;emsp; &amp;emsp;           （加密消息算法）
 r1(config-isakmp)#authe">
 <meta property="og:image" content="http://yoursite.com/img/cisco.png">
-<meta property="og:updated_time" content="2017-06-29T17:12:25.000Z">
+<meta property="og:updated_time" content="2017-06-29T17:34:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="cisco路由器配置ipsecvpn">
 <meta name="twitter:description" content="步骤1：基本配置保证在没有做vpn之前网络连通
@@ -452,33 +452,32 @@ r1(config-isakmp)#authe">
 <p>r1#show  crypto isakmp policy&emsp; &emsp; &emsp; &emsp; &emsp; &emsp;&emsp;&emsp;&emsp; &emsp;显示策略配置结果</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Protection suite of priority 1</div><div class="line">        encryption algorithm:   DES - Data Encryption Standard (56 bit keys).</div><div class="line">        hash algorithm:         Message Digest 5</div><div class="line">        authentication method:  Pre-Shared Key</div><div class="line">        Diffie-Hellman group:   #1 (768 bit)</div><div class="line">        lifetime:               86400 seconds, no volume limit</div><div class="line">Default protection suite</div><div class="line">        encryption algorithm:   DES - Data Encryption Standard (56 bit keys).</div><div class="line">        hash algorithm:         Secure Hash Standard</div><div class="line">        authentication method:  Rivest-Shamir-Adleman Signature</div><div class="line">        Diffie-Hellman group:   #1 (768 bit)</div><div class="line">        lifetime:               86400 seconds, no volume limit</div></pre></td></tr></table></figure>
 <p>B路由器配置同理，注意两端使用的各种方法要相同</p>
-<p><br></p>
 <p>步骤3：由于使用了共享密钥验证对等体，定义密钥。注意密钥和对等体要一起定义</p>
-<p><br></p>
 <p>r1(config)#crypto isakmp key cisco address 135.25.1.2</p>
-<p>r2(config)#crypto isakmp key cisco address 135.25.1.1<br><br></p>
+<p>r2(config)#crypto isakmp key cisco address 135.25.1.1</p>
 <p>步骤4：定义IPSEC变换集</p>
-<p><br><br>r1(config)#crypto ipsec transform-set future esp-des</p>
+<p>r1(config)#crypto ipsec transform-set future esp-des</p>
 <p>r2(config)#crypto ipsec transform-set future esp-des</p>
-<p><br><br>注意两端的参数要相同</p>
+<p>注意两端的参数要相同</p>
 <p>r1#show crypto ipsec transform-set</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Transform set future: &#123; esp-des  &#125; </div><div class="line">   will negotiate = &#123; Tunnel,  &#125;,</div><div class="line"></div><div class="line">```              </div><div class="line"></div><div class="line"></div><div class="line">步骤5：定义将要保护的数据流</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">r1(config)#access-list 101 permit ip 135.25.3.0 0.0.0.255 135.25.4.0 0.0.0.255</div><div class="line"></div><div class="line"></div><div class="line">r2(config)# access-list 101 permit ip 135.25.4.0 0.0.0.255 135.25.3.0 0.0.0.255</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">步骤6：配置加密映射：将加密策略和流量联系起来</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">r1(config)#crypto map zhangyu 10 ipsec-isakmp</div><div class="line"></div><div class="line">``` </div><div class="line">% NOTE: This new crypto map will remain disabled until a peer</div><div class="line">        and a valid access list have been configured.</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Transform set future: &#123; esp-des  &#125;</div><div class="line">   will negotiate = &#123; Tunnel,  &#125;</div></pre></td></tr></table></figure>
+<p>步骤5：定义将要保护的数据流</p>
+<p>r1(config)#access-list 101 permit ip 135.25.3.0 0.0.0.255 135.25.4.0 0.0.0.255</p>
+<p>r2(config)# access-list 101 permit ip 135.25.4.0 0.0.0.255 135.25.3.0 0.0.0.255</p>
+<p>步骤6：配置加密映射：将加密策略和流量联系起来</p>
+<p>r1(config)#crypto map zhangyu 10 ipsec-isakmp</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">% NOTE: This new crypto map will remain disabled until a peer</div><div class="line">        and a valid access list have been configured.</div></pre></td></tr></table></figure>
 <p>r1(config-crypto-map)#set peer 135.25.1.2</p>
 <p>r1(config-crypto-map)#set transform-set future</p>
 <p>r1(config-crypto-map)#match address 101</p>
-<p><br></p>
 <p>B路由器同理</p>
-<p><br></p>
 <p>步骤7：将加密映射应用到接口</p>
-<p><br></p>
 <p>r1(config)#int s 0</p>
 <p>r1(config-if)#crypto map zhangyu</p>
-<p><br></p>
 <p>步骤8：测试显示A路由器上IPSEC连接</p>
 <p>r1#show crypto engine connections active</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"> </div><div class="line">ID Interface       IP-Address      State  Algorithm         Encrypt  Decrypt</div></pre></td></tr></table></figure>
-<p>在PC1上ping 135.25.4.1 </p>
-<p><br></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"></div><div class="line">ID Interface       IP-Address      State  Algorithm         Encrypt  Decrypt</div></pre></td></tr></table></figure>
+<p>在PC1上ping 135.25.4.1</p>
 <p>r1#show crypto engine connections active</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"></div><div class="line">  ID Interface       IP-Address      State  Algorithm          Encrypt  Decrypt</div><div class="line">2000 Serial0         135.25.1.1      set    DES_56_CBC               0        5</div><div class="line">2001 Serial0         135.25.1.1      set    DES_56_CBC</div></pre></td></tr></table></figure>
 
