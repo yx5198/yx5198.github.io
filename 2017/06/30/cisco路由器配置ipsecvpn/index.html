@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hello," />
+  <meta name="keywords" content="cisco路由器配置ipsecvpn," />
 
 
 
@@ -87,19 +87,30 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="description" content="步骤1：基本配置保证在没有做vpn之前网络连通
+步骤2：创建IKE加密策略
+r1(config)#crypto isakmp policy 1
+r1(config-isakmp)#encryption des    &amp;emsp; &amp;emsp; &amp;emsp; &amp;emsp; &amp;emsp; &amp;emsp; &amp;emsp;           （加密消息算法）
+r1(config-isakmp)#authe">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2017/03/20/hello-world/index.html">
+<meta property="og:title" content="cisco路由器配置ipsecvpn">
+<meta property="og:url" content="http://yoursite.com/2017/06/30/cisco路由器配置ipsecvpn/index.html">
 <meta property="og:site_name" content="孤独泪个人博客">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
-<meta property="og:updated_time" content="2017-03-19T16:08:59.000Z">
+<meta property="og:description" content="步骤1：基本配置保证在没有做vpn之前网络连通
+步骤2：创建IKE加密策略
+r1(config)#crypto isakmp policy 1
+r1(config-isakmp)#encryption des    &amp;emsp; &amp;emsp; &amp;emsp; &amp;emsp; &amp;emsp; &amp;emsp; &amp;emsp;           （加密消息算法）
+r1(config-isakmp)#authe">
+<meta property="og:image" content="http://yoursite.com/img/cisco.png">
+<meta property="og:updated_time" content="2017-06-29T17:12:25.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="twitter:title" content="cisco路由器配置ipsecvpn">
+<meta name="twitter:description" content="步骤1：基本配置保证在没有做vpn之前网络连通
+步骤2：创建IKE加密策略
+r1(config)#crypto isakmp policy 1
+r1(config-isakmp)#encryption des    &amp;emsp; &amp;emsp; &amp;emsp; &amp;emsp; &amp;emsp; &amp;emsp; &amp;emsp;           （加密消息算法）
+r1(config-isakmp)#authe">
+<meta name="twitter:image" content="http://yoursite.com/img/cisco.png">
 
 
 
@@ -127,13 +138,13 @@ Quick">
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/03/20/hello-world/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/06/30/cisco路由器配置ipsecvpn/"/>
 
 
 
 
 
-  <title> Hello World | 孤独泪个人博客 </title>
+  <title> cisco路由器配置ipsecvpn | 孤独泪个人博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -326,7 +337,7 @@ Quick">
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/20/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/30/cisco路由器配置ipsecvpn/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="孤独泪">
@@ -347,7 +358,7 @@ Quick">
             
             
               
-                Hello World
+                cisco路由器配置ipsecvpn
               
             
           </h1>
@@ -362,8 +373,8 @@ Quick">
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-20T00:08:59+08:00">
-                2017-03-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-30T00:00:00+08:00">
+                2017-06-30
               </time>
             
 
@@ -385,8 +396,8 @@ Quick">
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hello-World/" itemprop="url" rel="index">
-                    <span itemprop="name">Hello World</span>
+                  <a href="/categories/网络技术/" itemprop="url" rel="index">
+                    <span itemprop="name">网络技术</span>
                   </a>
                 </span>
 
@@ -403,8 +414,8 @@ Quick">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/03/20/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/20/hello-world/" itemprop="commentCount"></span>
+                <a href="/2017/06/30/cisco路由器配置ipsecvpn/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/06/30/cisco路由器配置ipsecvpn/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -430,15 +441,46 @@ Quick">
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <p><img src="/img/cisco.png" alt=""></p>
+<p>步骤1：基本配置保证在没有做vpn之前网络连通</p>
+<p>步骤2：创建IKE加密策略</p>
+<p>r1(config)#crypto isakmp policy 1</p>
+<p>r1(config-isakmp)#encryption des    &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;           （加密消息算法）</p>
+<p>r1(config-isakmp)#authentication pre-share       &emsp; &emsp; &emsp;（对等体验证方法）</p>
+<p>r1(config-isakmp)#hash md5  &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;（消息完整性算法）</p>
+<p>r1(config-isakmp)#group 1 &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;&emsp;&emsp;&emsp;&emsp;（密钥交换参数）</p>
+<p>r1#show  crypto isakmp policy&emsp; &emsp; &emsp; &emsp; &emsp; &emsp;&emsp;&emsp;&emsp; &emsp;显示策略配置结果</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Protection suite of priority 1</div><div class="line">        encryption algorithm:   DES - Data Encryption Standard (56 bit keys).</div><div class="line">        hash algorithm:         Message Digest 5</div><div class="line">        authentication method:  Pre-Shared Key</div><div class="line">        Diffie-Hellman group:   #1 (768 bit)</div><div class="line">        lifetime:               86400 seconds, no volume limit</div><div class="line">Default protection suite</div><div class="line">        encryption algorithm:   DES - Data Encryption Standard (56 bit keys).</div><div class="line">        hash algorithm:         Secure Hash Standard</div><div class="line">        authentication method:  Rivest-Shamir-Adleman Signature</div><div class="line">        Diffie-Hellman group:   #1 (768 bit)</div><div class="line">        lifetime:               86400 seconds, no volume limit</div></pre></td></tr></table></figure>
+<p>B路由器配置同理，注意两端使用的各种方法要相同</p>
+<p><br></p>
+<p>步骤3：由于使用了共享密钥验证对等体，定义密钥。注意密钥和对等体要一起定义</p>
+<p><br></p>
+<p>r1(config)#crypto isakmp key cisco address 135.25.1.2</p>
+<p>r2(config)#crypto isakmp key cisco address 135.25.1.1<br><br></p>
+<p>步骤4：定义IPSEC变换集</p>
+<p><br><br>r1(config)#crypto ipsec transform-set future esp-des</p>
+<p>r2(config)#crypto ipsec transform-set future esp-des</p>
+<p><br><br>注意两端的参数要相同</p>
+<p>r1#show crypto ipsec transform-set</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Transform set future: &#123; esp-des  &#125; </div><div class="line">   will negotiate = &#123; Tunnel,  &#125;,</div><div class="line"></div><div class="line">```              </div><div class="line"></div><div class="line"></div><div class="line">步骤5：定义将要保护的数据流</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">r1(config)#access-list 101 permit ip 135.25.3.0 0.0.0.255 135.25.4.0 0.0.0.255</div><div class="line"></div><div class="line"></div><div class="line">r2(config)# access-list 101 permit ip 135.25.4.0 0.0.0.255 135.25.3.0 0.0.0.255</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">步骤6：配置加密映射：将加密策略和流量联系起来</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">r1(config)#crypto map zhangyu 10 ipsec-isakmp</div><div class="line"></div><div class="line">``` </div><div class="line">% NOTE: This new crypto map will remain disabled until a peer</div><div class="line">        and a valid access list have been configured.</div></pre></td></tr></table></figure>
+<p>r1(config-crypto-map)#set peer 135.25.1.2</p>
+<p>r1(config-crypto-map)#set transform-set future</p>
+<p>r1(config-crypto-map)#match address 101</p>
+<p><br></p>
+<p>B路由器同理</p>
+<p><br></p>
+<p>步骤7：将加密映射应用到接口</p>
+<p><br></p>
+<p>r1(config)#int s 0</p>
+<p>r1(config-if)#crypto map zhangyu</p>
+<p><br></p>
+<p>步骤8：测试显示A路由器上IPSEC连接</p>
+<p>r1#show crypto engine connections active</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"> </div><div class="line">ID Interface       IP-Address      State  Algorithm         Encrypt  Decrypt</div></pre></td></tr></table></figure>
+<p>在PC1上ping 135.25.4.1 </p>
+<p><br></p>
+<p>r1#show crypto engine connections active</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"></div><div class="line">  ID Interface       IP-Address      State  Algorithm          Encrypt  Decrypt</div><div class="line">2000 Serial0         135.25.1.1      set    DES_56_CBC               0        5</div><div class="line">2001 Serial0         135.25.1.1      set    DES_56_CBC</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -468,7 +510,7 @@ Quick">
       
         <div class="post-tags">
           
-            <a href="/tags/Hello/" rel="tag"># Hello</a>
+            <a href="/tags/cisco路由器配置ipsecvpn/" rel="tag"># cisco路由器配置ipsecvpn</a>
           
         </div>
       
@@ -481,15 +523,15 @@ Quick">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/05/30/cisco3550端口速率限制/" rel="next" title="cisco3550 端口速率限制实现方法">
+                <i class="fa fa-chevron-left"></i> cisco3550 端口速率限制实现方法
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/23/renleiyuhuanjing/" rel="prev" title="人类与环境">
-                人类与环境 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -504,10 +546,10 @@ Quick">
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2017/03/20/hello-world/"
-     data-title="Hello World"
+        <div class="ds-share flat" data-thread-key="2017/06/30/cisco路由器配置ipsecvpn/"
+     data-title="cisco路由器配置ipsecvpn"
      data-content=""
-     data-url="http://yoursite.com/2017/03/20/hello-world/">
+     data-url="http://yoursite.com/2017/06/30/cisco路由器配置ipsecvpn/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -534,8 +576,8 @@ Quick">
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/03/20/hello-world/"
-           data-title="Hello World" data-url="http://yoursite.com/2017/03/20/hello-world/">
+      <div class="ds-thread" data-thread-key="2017/06/30/cisco路由器配置ipsecvpn/"
+           data-title="cisco路由器配置ipsecvpn" data-url="http://yoursite.com/2017/06/30/cisco路由器配置ipsecvpn/">
       </div>
     
   </div>
@@ -559,17 +601,8 @@ Quick">
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/avatar.png"
@@ -693,22 +726,6 @@ Quick">
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
