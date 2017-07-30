@@ -324,6 +324,163 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/30/交换机VTP配置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="孤独泪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="孤独泪个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/05/30/交换机VTP配置/" itemprop="url">
+                  交换机VTP配置
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-30T00:00:00+08:00">
+                2017-05-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络技术/" itemprop="url" rel="index">
+                    <span itemprop="name">网络技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/30/交换机VTP配置/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/30/交换机VTP配置/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">switch&gt;                  进入用户模式 </div><div class="line">  </div><div class="line">switch&gt;enable              进入特权模式</div><div class="line"></div><div class="line"> </div><div class="line">switch#configure  terminal            进入全局配置模式 </div><div class="line"></div><div class="line"></div><div class="line">switch(config)# hostname  s1          设置交换机的主机名 </div><div class="line"></div><div class="line"></div><div class="line">s1(config)#enable passwd cisco               使能口令</div><div class="line"></div><div class="line">            </div><div class="line">s1(config)#enable secret cisco使能密码(加密的特权密码)</div><div class="line"></div><div class="line">s1(config)#service password-encryption         所有的密码全变成密文 </div><div class="line"></div><div class="line"></div><div class="line">S1(config)# no ip domain-lookup    关闭寻找域名服务</div><div class="line"></div><div class="line"></div><div class="line">S1(config)#alias exec a show running-configure    别名 </div><div class="line"> </div><div class="line">S1(config)# line console 0 </div><div class="line"></div><div class="line"></div><div class="line">S1(config-line)# password cisco</div><div class="line"></div><div class="line"></div><div class="line">S1(config-line)#login </div><div class="line"></div><div class="line"></div><div class="line">S1(config-line)#exec-timeout 0 0 (防止系统超时退出特权模式) 零代表无限制    0分0秒</div><div class="line"></div><div class="line"></div><div class="line">S1(config-line)#logging synchronous(避免被系统出现的控制信息打断命令) </div><div class="line"> </div><div class="line"></div><div class="line">s1(config)#interface  vlan 1   </div><div class="line"></div><div class="line">    </div><div class="line">s1(config-if)#ip address 192.168.10.1 255.255.255.0   配置管理IP</div><div class="line"></div><div class="line"></div><div class="line">s1(config-if)#speed 100 配置端口速度为100M  </div><div class="line"></div><div class="line"> </div><div class="line">s1(config-if)#duplex auto     自动</div><div class="line"></div><div class="line"></div><div class="line">                              full     全双工</div><div class="line">                              </div><div class="line">                              half     半双工 </div><div class="line"></div><div class="line">                              </div><div class="line">s1(config-if)#no shutdown   开启端口使配置生效</div><div class="line"></div><div class="line"></div><div class="line">s1(config)#ip default-gateway 192.168.10.254   配置交换机默认网关 </div><div class="line"></div><div class="line"></div><div class="line">S1#show running-configure   检查配置(保存在内存RAM中)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">中继模式</div><div class="line"></div><div class="line"></div><div class="line">S1(config-if)# switchport mode access      接入链路(swich--PC)</div><div class="line"></div><div class="line"></div><div class="line">S1(config-if)# switchport mode trunk  中继模式(swich--swich)</div><div class="line"></div><div class="line"></div><div class="line">S1(config-if)#switchport trunk allowed vlan remove 10</div><div class="line"></div><div class="line"></div><div class="line">将vlan 10从该中继链路删除                      add 增加</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">VLAN</div><div class="line"></div><div class="line"></div><div class="line">s1#vlan database </div><div class="line"></div><div class="line"></div><div class="line">s1(vlan)#vlan 10 name vlan10 </div><div class="line"></div><div class="line"></div><div class="line">s1(config)#vlan 10  建立vlan</div><div class="line"></div><div class="line"></div><div class="line">s1(config-vlan)#name caiwu  vlan命名</div><div class="line"></div><div class="line"></div><div class="line">s1(config)#no vlan  10  删除vlan 10</div><div class="line"></div><div class="line">s1#show vlan brief   验证</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">VTP</div><div class="line">s1(config)#vtp version 2 启用版本2</div><div class="line">s1(config)#vtp domain test  加入管理域</div><div class="line">s1(config)#vtp mode  server  配置成VTP服务器</div><div class="line">                                client         配置成VTP客户端</div><div class="line">                                transparent     配置成VTP透明模式</div><div class="line">s1(config)#vtp password cisco     vtp口令</div><div class="line">s1(config)#vtp pruning                   启用vtp修剪</div><div class="line">switch(config)#no vtp pruning     关闭VTP修剪</div><div class="line">S1(config-if)#switchport trunk pruning vlan remove  vlan-id </div><div class="line">                             从可修剪列表中去除某VLAN</div><div class="line">s1(config)#vtp domain test-a   脱离vtp域</div><div class="line">s1#show vtp status   检查配置</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">配置远程登陆</div><div class="line">S1(config)#line vty 0 15</div><div class="line">S1(config-line)#password cisco</div><div class="line">S1(config-line)#exec-timeout 0 0</div><div class="line">S1(config-line)#logging synchronous</div><div class="line">S1(config-line)#login</div><div class="line"> </div><div class="line"> </div><div class="line">S1#erase startup-config  清除配置</div><div class="line">S1#copy running-config startup-config 保存配置到（NVRAM中）</div><div class="line">S1#write  写入配置</div><div class="line">S1#show startup-config 检查保存的配置信息</div><div class="line">S1#reload  重启</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/28/利用squid代理-stunnel加密翻墙/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1223,411 +1380,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/26/Extmail/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="孤独泪">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="孤独泪个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/26/Extmail/" itemprop="url">
-                  Extmail
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-26T03:49:44+08:00">
-                2017-03-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/邮件系统/" itemprop="url" rel="index">
-                    <span itemprop="name">邮件系统</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/03/26/Extmail/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/26/Extmail/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>一、系统环境</p>
-<p>（1）编译环境</p>
-<p>&emsp;&emsp;[root@web_mail]# yum install gcc gcc-c++</p>
-<p>（2）依赖软件</p>
-<p>&emsp;&emsp;[root@web_mail]# yum install openssl openssl-devel cyrus-sasl libtool-ltdl libtool-ltdl-devel db4 db4-devel expect expect-devel pcre pcre-devel</p>
-<p>（3）LAMP环境</p>
-<p>&emsp;&emsp;[root@web_mail]# yum install httpd httpd-devel mysql mysql-server mysql-devel php php-mysql</p>
-<p>（4）设置mysql，apache开机启动</p>
-<p>&emsp;&emsp;[root@web_mail ~]# chkconfig mysqld on</p>
-<p>&emsp;&emsp;[root@web_mail ~]# chkconfig httpd on</p>
-<p>二、安装POSTFIX</p>
-<p>（1）安装</p>
-<p>&emsp;&emsp;[root@web_mail ~]# yum install postfix</p>
-<p>（2）配置</p>
-<p>&emsp;&emsp;[root@web_mail ~]# cd /etc/postfix/</p>
-<p>&emsp;&emsp;[root@web_mail postfix]# postconf -n &gt; /etc/postfix/main2.cf</p>
-<p>&emsp;&emsp;[root@web_mail postfix]# mv main.cf main.cf.old</p>
-<p>&emsp;&emsp;[root@web_mail postfix]# mv main2.cf main.cf</p>
-<p>&emsp;&emsp;[root@web_mail postfix]# vi main.cf</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">#inet_interfaces = localhost     注释掉下面这行，否则25端口只能本地连接</div><div class="line">#添加以下基本配置</div><div class="line">mynetworks = 127.0.0.1                </div><div class="line">myhostname = mail.xxx.com      主机设置      </div><div class="line">mydestination = $myhostname, localhost.$mydomain, localhost </div><div class="line">mail_name = Postfix - by playdod.com </div><div class="line">smtpd_banner = $myhostname ESMTP $mail_name</div><div class="line">smtpd_error_sleep_time = 0s</div><div class="line">message_size_limit = 10485760      邮件大小10M</div><div class="line">mailbox_size_limit = 2097152000    邮箱大小2G</div><div class="line">show_user_unknown_table_name = no </div><div class="line">bounce_queue_lifetime = 1d</div><div class="line">maximal_queue_lifetime = 1d</div></pre></td></tr></table></figure>
-<p>（3）启动</p>
-<p>&emsp;&emsp;[root@web_mail postfix]# service postfix start</p>
-<p>&emsp;&emsp;[root@web_mail postfix]# chkconfig postfix on</p>
-<p>&emsp;&emsp;[root@web_mail postfix]# ps aux|grep postfix</p>
-<p><img src="/img/24CA7BCF-E115-4DC5-8B6C-1B1080D4CA74.png" alt=""></p>
-<p>&emsp;&emsp;[root@web_mail postfix]# netstat -tlnp|grep 25</p>
-<p><img src="/img/C9959A89-07D6-4D5B-9090-856380FDE25D.png" alt=""></p>
-<p>（4）检查</p>
-<p>&emsp;&emsp;[root@web_mail postfix]# postfix check</p>
-<p>&emsp;&emsp;[root@web_mail postfix]# postconf –a  &emsp;&emsp;出现cyrus表示可以支持cyrus认证用户</p>
-<p>&emsp;&emsp;[root@web_mail postfix]# postconf -m  &emsp;&emsp;出现mysql表示可以支持mysql存储账号</p>
-<p>三、安装Courier-Authlib</p>
-<p>（1）安装</p>
-<p>&emsp;&emsp;[root@web_mail postfix]# groupadd vmail -g 1002</p>
-<p>&emsp;&emsp;[root@web_mail postfix]# useradd vmail -u 1002 -g 1002 -d /home/domains</p>
-<p>&emsp;&emsp;[root@web_mail postfix]# cd /usr/local/src</p>
-<p>&emsp;&emsp;[root@web_mail src]#wget <a href="http://cznic.dl.sourceforge.net/project/courier/authlib/0.66.1/" target="_blank" rel="external">http://cznic.dl.sourceforge.net/project/courier/authlib/0.66.1/</a><br>courier-authlib-0.66.1.tar.bz2</p>
-<p>&emsp;&emsp;[root@web_mail src]# tar -jxf courier-authlib-0.66.1.tar.bz2</p>
-<p>&emsp;&emsp;[root@web_mail src]# cd courier-authlib-0.66.1</p>
-<p>&emsp;&emsp;[root@web_mail courier-authlib-0.66.1]# ./configure –with-mysql-libs –with-mysql-includes &emsp;&emsp;–with-authmysql –with-authmysql=yes –with-mailuser=vmail –with-mailgroup=vmail</p>
-<p>&emsp;&emsp;[root@web_mail courier-authlib-0.66.1]# make &amp;&amp; make install</p>
-<p>&emsp;&emsp;[root@web_mail courier-authlib-0.66.1]# make install-configure</p>
-<p>（2）修改配置文件</p>
-<p>&emsp;&emsp;[root@web_mail courier-authlib-0.66.1]# cd /usr/local/etc/authlib</p>
-<p>&emsp;&emsp;[root@web_mail authlib]# vi authmysqlrc</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">MYSQL_SERVER            localhost</div><div class="line">MYSQL_USERNAME          extmail</div><div class="line">MYSQL_PASSWORD          extmail</div><div class="line">MYSQL_SOCKET            /var/lib/mysql/mysql.sock</div><div class="line">MYSQL_PORT              3306</div><div class="line">MYSQL_OPT               0</div><div class="line">MYSQL_DATABASE          extmail</div><div class="line">MYSQL_USER_TABLE        mailbox</div><div class="line">MYSQL_CRYPT_PWFIELD     password</div><div class="line"></div><div class="line">MYSQL_UID_FIELD         1002</div><div class="line">MYSQL_GID_FIELD         1002</div><div class="line">MYSQL_LOGIN_FIELD       username</div><div class="line">MYSQL_HOME_FIELD        homedir</div><div class="line">MYSQL_NAME_FIELD        name</div><div class="line">MYSQL_MAILDIR_FIELD     maildir</div><div class="line">MYSQL_QUOTA_FIELD       quota</div><div class="line">MYSQL_SELECT_CLAUSE     SELECT username,password,&quot;&quot;,uidnumber,gidnumber,\</div><div class="line">                        CONCAT(&apos;/home/domains/&apos;,homedir),               \</div><div class="line">                        CONCAT(&apos;/home/domains/&apos;,maildir),               \</div><div class="line">                        quota,                                          \</div><div class="line">                        name                                            \</div><div class="line">                        FROM mailbox                                    \</div><div class="line">                        WHERE username = &apos;$(local_part)@$(domain)&apos;</div></pre></td></tr></table></figure>
-<p>&emsp;&emsp;[root@web_mail authlib]# vi authdaemonrc<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">authmodulelist=&quot;authmysql&quot;</div><div class="line">authmodulelistorig=&quot;authmysql&quot;</div></pre></td></tr></table></figure></p>
-<p>&emsp;&emsp;[root@web_mail authlib]# ln -s /usr/local/etc/authlib /etc/authlib</p>
-<p>（3）启动</p>
-<p>&emsp;&emsp;[root@web_mail authlib]# /usr/local/sbin/authdaemond start</p>
-<p>&emsp;&emsp;[root@web_mail authlib]# ps aux|grep authdaemond</p>
-<p><img src="/img/6A6BB183-4CC7-4BF7-B395-D4DF618D23A8.png" alt=""></p>
-<p>&emsp;&emsp;[root@web_mail authlib]# echo “/usr/local/sbin/authdaemond start” &gt;&gt; /etc/rc.d/rc.local</p>
-<p>四、安装Maildrop</p>
-<p>（1）    安装Courier-Unicode</p>
-<p>&emsp;&emsp;[root@web_mail authlib]# cd /usr/local/src</p>
-<p>&emsp;&emsp;[root@web_mail src]# tar -jxf courier-unicode-1.1.tar.bz2</p>
-<p>&emsp;&emsp;[root@web_mail src]# cd courier-unicode-1.1</p>
-<p>&emsp;&emsp;[root@web_mail courier-unicode-1.1]# ./configure</p>
-<p>&emsp;&emsp;[root@web_mail courier-unicode-1.1]# make &amp;&amp; make install</p>
-<p>（2）    安装Maildrop</p>
-<p>&emsp;&emsp;[root@web_mail courier-unicode-1.1]# cd /usr/local/src</p>
-<p>&emsp;&emsp;[root@web_mail src]# tar -jxf maildrop-2.7.2.tar.bz2</p>
-<p>&emsp;&emsp;[root@web_mail src]# cd maildrop-2.7.2</p>
-<p>&emsp;&emsp;[root@web_mail maildrop-2.7.2]# ./configure<br>–enable-maildirquota –enable-maildrop-uid=1002 –enable-maildrop-gid=1002 –with-trashquota</p>
-<p>&emsp;&emsp;[root@web_mail maildrop-2.7.2]# make &amp;&amp; make install</p>
-<p>（3）    配置</p>
-<p>&emsp;&emsp;[root@web_mail maildrop-2.7.2]# vi /etc/postfix/master.cf</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">maildrop   unix        -       n        n        -        -        pipe</div><div class="line">  flags=DRhu user=vmail argv=/usr/local/bin/maildrop -w 90 -d $&#123;user&#125;@$&#123;nexthop&#125; $&#123;recipient&#125; $&#123;user&#125; $&#123;extension&#125; &#123;nexthop&#125;</div></pre></td></tr></table></figure>
-<p>[root@web_mail maildrop-2.7.2]# vi /etc/postfix/main.cf</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">maildrop_destination_recipient_limit = 1</div></pre></td></tr></table></figure>
-<p>五、安装Webmail前台</p>
-<p>（1）安装</p>
-<p>&emsp;&emsp;[root@web_mail src]# tar -zxvf extmail-1.2.tar.gz</p>
-<p>&emsp;&emsp;[root@web_mail src]# tar -zxvf extman-1.1.tar.gz</p>
-<p>&emsp;&emsp;[root@web_mail src]# mkdir /var/www/extsuite</p>
-<p>&emsp;&emsp;[root@web_mail src]# mv extman-1.1 /var/www/extsuite/extman</p>
-<p>&emsp;&emsp;[root@web_mail src]# mv extmail-1.2 /var/www/extsuite/extmail</p>
-<p>（2）配置extmail</p>
-<p>&emsp;&emsp;[root@web_mail src]# cd /var/www/extsuite</p>
-<p>&emsp;&emsp;[root@web_mail extsuite]# cp extmail/webmail.cf.default extmail/webmail.cf</p>
-<p>&emsp;&emsp;[root@web_mail extsuite]# vi extmail/webmail.cf</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">SYS_MYSQL_USER = extmail</div><div class="line">SYS_MYSQL_PASS = extmail</div></pre></td></tr></table></figure>
-<p>（3）配置extman</p>
-<p>&emsp;&emsp;[root@web_mail extsuite]# mkdir /var/www/extsuite/extman/session</p>
-<p>&emsp;&emsp;[root@web_mail extsuite]# cp extman/webman.cf.default extman/webman.cf</p>
-<p>&emsp;&emsp;[root@web_mail extsuite]# vi extman/webman.cf</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">SYS_SESS_DIR = /var/www/extsuite/extman/session/</div><div class="line">SYS_DEFAULT_UID = 1002</div><div class="line">SYS_DEFAULT_GID = 1002</div></pre></td></tr></table></figure>
-<p>（4）初始化数据库</p>
-<p>   [1] 给数据库root用户设置密码</p>
-<p>   &emsp;&emsp;[root@web_mail extsuite]# service mysqld restart</p>
-<p>   &emsp;&emsp;[root@web_mail extsuite]# mysql –uroot</p>
-<p>   &emsp;&emsp;mysql&gt; set password for root@localhost=password(‘123456’);</p>
-<p>   &emsp;&emsp;mysql&gt; quit</p>
-<p>   [2] 导入extmail数据库</p>
-<p>&emsp;&emsp;[root@web_mail extsuite]# mysql -uroot -p123456 &lt; extman/docs/extmail.sql</p>
-<p>   [3] 修改参数后导入数据</p>
-<p>   &emsp;&emsp;[root@web_mail extsuite]#sed –i ‘s/extmail.org/playdod.com/g’ extman/docs/init.sql</p>
-<p>&emsp;&emsp;[root@web_mail extsuite]# sed -i ‘s/1000/1002/g’ extman/docs/init.sql</p>
-<p>&emsp;&emsp;[root@web_mail extsuite]# mysql -uroot -p123456 &lt;/var/www/extsuite/extman/docs/init.sql</p>
-<p>  [4] 查看数据库</p>
-<p>&emsp;&emsp;[root@web_mail extsuite]# mysql -uroot -p123456</p>
-<p> &emsp;&emsp;mysql&gt; use extmail;</p>
-<p> &emsp;&emsp;&gt; show tables;</p>
-<p><img src="/img/8330725E-6643-4465-8ACA-59658B466018.png" alt=""></p>
-<p>  &emsp;&emsp;mysql&gt; select username,uidnumber,gidnumber from mailbox;</p>
-<p><img src="/img/62F97547-3CD6-4E37-AB83-75EC0379FFEB.png" alt=""></p>
-<p>（5）配置postfix</p>
-<p>&emsp;&emsp;[root@web<em>mail extsuite]# cp extman/docs/mysql</em>*.cf /etc/postfix/</p>
-<p>&emsp;&emsp;[root@web_mail extsuite]# vi /etc/postfix/main.cf</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">virtual_alias_maps = mysql:/etc/postfix/mysql_virtual_alias_maps.cf</div><div class="line">virtual_mailbox_domains = mysql:/etc/postfix/mysql_virtual_domains_maps.cf</div><div class="line">virtual_mailbox_maps = mysql:/etc/postfix/mysql_virtual_mailbox_maps.cf</div><div class="line">virtual_transport = maildrop</div><div class="line">virtual_uid_maps = static:1002</div><div class="line">virtual_gid_maps = static:1002</div></pre></td></tr></table></figure>
-<p>（6）设置权限和属主</p>
-<p>&emsp;&emsp;[root@web_mail extsuite]# chown root.root -R extmail extman</p>
-<p>&emsp;&emsp;[root@web_mail extsuite]# chown -R vmail:vmail extmail/cgi/ extman/cgi/ extman/session</p>
-<p>（7）配置Apache虚拟主机</p>
-<p>&emsp;&emsp;[root@web_mail extsuite]# vi /etc/httpd/conf.d/extmail.conf</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># VirtualHost for ExtMail Solution</div><div class="line">NameVirtualHost *:80</div><div class="line">&lt;VirtualHost *:80&gt;</div><div class="line">ServerName mail.xx.com    </div><div class="line">DocumentRoot /var/www/extsuite/extmail/html/ </div><div class="line">ScriptAlias /extmail/cgi/ /var/www/extsuite/extmail/cgi/</div><div class="line">Alias /extmail /var/www/extsuite/extmail/html/</div><div class="line">ScriptAlias /extman/cgi/ /var/www/extsuite/extman/cgi/</div><div class="line">Alias /extman /var/www/extsuite/extman/html/</div><div class="line"># Suexec config</div><div class="line">SuexecUserGroup vmail vmail</div><div class="line">&lt;/VirtualHost&gt;</div></pre></td></tr></table></figure>
-<p>（8）重启服务</p>
-<p>&emsp;&emsp;[root@web_mail extsuite]# service postfix restart</p>
-<p>&emsp;&emsp;[root@web_mail extsuite]# service httpd restart</p>
-<p>（9）建立Maildir</p>
-<p>[1] 手动建立Maildir</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">用于存放用户邮件的目录；在WEB上创建其他域名邮箱，会在此自动建立相应域</div><div class="line">名目录。</div></pre></td></tr></table></figure>
-<p>&emsp;&emsp;[root@web_mail extsuite]# cd extman/tools</p>
-<p>&emsp;&emsp;[root@web_mail tools]#<br> ./maildirmake.pl /home/domains/playdod.com/postmaster/Maildir</p>
-<p>&emsp;&emsp;[root@web_mail tools]# chown -R vmail:vmail /home/domains</p>
-<p>[2]测试authlib认证登录账号</p>
-<p>&emsp;&emsp;[root@web_mail tools]# /usr/local/sbin/authtest -s login postmaster@playdod.com extmail</p>
-<p><img src="/img/7D56BF0E-3BD4-41E3-98D0-E519DA6D7457.png" alt=""></p>
-<p>（10）安装其他依赖包 </p>
-<p>[1]安装绘图工具</p>
-<p>  &emsp;&emsp;[root@web_mail tools]# yum install -y rrdtool rrdtool-perl</p>
-<p>[2]安装依赖perl模块</p>
-<p>   &emsp;&emsp;[root@web_mail tools]# yum install -y cpan perl</p>
-<p>   &emsp;&emsp;[root@web_mail tools]# yum install -y perl-YAML perl-Test-Exception<br>perl-Crypt-PasswdMD5 perl-GD perl-CGI perl-Time-HiRes</p>
-<p>&emsp;&emsp;[root@web_mail tools]# perl -MCPAN -e ‘install Time::HiRes::Value’</p>
-<p>&emsp;&emsp;[root@web_mail tools]# perl -MCPAN -e ‘install File::Tail’</p>
-<p>&emsp;&emsp;[root@web_mail tools]# perl -MCPAN -e ‘install Unix::Syslog’</p>
-<p>&emsp;&emsp;[root@web_mail tools]# perl -MCPAN -e ‘install DB_File’</p>
-<p>&emsp;&emsp;[root@web_mail tools]# perl -MCPAN -e ‘install Encode::HanExtra’</p>
-<p>[3]启动进程</p>
-<p>&emsp;&emsp;[root@web_mail tools]# cd /var/www/extsuite/extman</p>
-<p>&emsp;&emsp;[root@web_mail extman]# cp -R addon/mailgraph_ext/ /usr/local/</p>
-<p>&emsp;&emsp;[root@web_mail extman]# /usr/local/mailgraph_ext/mailgraph-init start</p>
-<p>&emsp;&emsp;<img src="/img/48DA9AFB-51EE-48C0-A6A6-9173F381F31E.png" alt=""></p>
-<p>&emsp;&emsp;[root@web_mail extman]# ps aux|grep mailgraph_ext</p>
-<p>&emsp;&emsp;<img src="/img/AEBE645F-B37D-4AB9-A533-7FA86629F670.png" alt=""></p>
-<p>&emsp;&emsp;[root@web_mail extman]# /var/www/extsuite/extman/daemon/cmdserver -v -d</p>
-<p>&emsp;&emsp;[root@web_mail extman]# ps aux|grep cmdserver</p>
-<p>&emsp;&emsp;<img src="/img/789591D6-D8C8-4AFE-9FCC-C5B05F7E52AC.png" alt=""></p>
-<p>&emsp;&emsp;[root@web_mail extman]#echo “/usr/local/mailgraph_ext/mailgraph-init<br> start” &gt;&gt; /etc/rc.d/rc.local</p>
-<p>[root@web_mail extman]# echo “/var/www/extsuite/extman/daemon/cmdserver<br>-v -d” &gt;&gt; /etc/rc.d/rc.local</p>
-<p>[4]定时任务</p>
-<p>&emsp;&emsp;[root@web_mail extman]# crontab -e</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">0 4 * * * /var/www/extsuite/extman/tools/expireusers.pl -all postmaster@playdod.com</div><div class="line"></div><div class="line">30 4 * * * /var/www/extsuite/extman/tools/reportusage.pl -all /home/domains postmaster@playdod.com</div></pre></td></tr></table></figure>
-<p>&emsp;&emsp;[root@web_mail extman]# service crond restart</p>
-<p>&emsp;&emsp;[root@web_mail extsuite]# vi /var/www/extsuite/extman/webman.cf &emsp;&emsp;取消管理后台登陆验证码</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">SYS_CAPTCHA_ON = 0</div></pre></td></tr></table></figure>
-<p>(11)测试web访问</p>
-<p>[1]访问邮箱</p>
-<p><1>帐号:postmaster</1></p>
-<p><2>密码:extmail</2></p>
-<p><3>域名:xxx.com</3></p>
-<p>[2]访问邮箱后台</p>
-<p><1>帐号: root@xx.com</1></p>
-<p><2>密码: xxxx*</2></p>
-<p>（12）检查Maildrop</p>
-<p>[1]查看版本信息</p>
-<p>&emsp;&emsp;[root@web_mail extsuite]# maildrop –v</p>
-<p>&emsp;&emsp;<img src="/img/A832CA35-E4E4-400C-8E1E-4440F2069F62.png" alt=""></p>
-<p>[2]测试maildrop连接</p>
-<p>&emsp;&emsp;[root@web_mail extsuite]# echo “test” | maildrop -V 10 -d postmaster@playdod.com</p>
-<p>&emsp;&emsp;<img src="/img/C27B55A7-0988-4197-AB79-C3DA249B5689.png" alt=""></p>
-<p>六、安装Cyrus-SASL使Postfix支持SMTP认证</p>
-<p>（1）系统已默认安装Cyrus-SASL</p>
-<p>&emsp;&emsp;[root@mail ~]# rpm -aq|grep cyrus-sasl</p>
-<p>&emsp;&emsp;<img src="/img/5E4994D2-5554-46BE-B6B3-8934ED9F988C.png" alt=""></p>
-<p>（2）配置cyrus-sasl</p>
-<p> vi /etc/sasl2/smtpd.conf</p>
-<p>&emsp;&emsp;<img src="/img/33E98688-D3E5-4FDC-BD07-F658561C0C1B.png" alt=""></p>
-<p>&emsp;&emsp;[root@web_mail ~]# chmod 755 /usr/local/var/spool/authdaemon</p>
-<p>（3）配置postfix</p>
-<p>&emsp;&emsp;[root@web_mail ~]# vi /etc/postfix/main.cf</p>
-<p>&emsp;&emsp;<img src="/img/E8688ED6-030C-4DD6-9893-C11C2423FC33.png" alt=""></p>
-<p>&emsp;&emsp;<img src="/img/034EB0D7-F6F9-4718-A8EF-DE26A948BF59.png" alt=""></p>
-<p>&emsp;&emsp;<img src="/img/D45DA001-0648-450E-9DEE-EC99D3484870.png" alt=""></p>
-<p>&emsp;&emsp;<br><img src="/img/DB55DB99-FE44-420C-A8CE-563D0FFD7BBC.png" alt=""></p>
-<p>&emsp;&emsp;[root@web_mail ~]# service postfix restart</p>
-<p>（4）测试SMTP认证</p>
-<p> &emsp;&emsp;[root@web_mail ~]# perl -e ‘use MIME::Base64; print encode_base64</p>
-<p> (“postmaster\@playdod.com”)’</p>
-<p> &emsp;&emsp;[root@web_mail ~]# perl -e ‘use MIME::Base64; print encode_base64(“extmail”)’</p>
-<p> &emsp;&emsp;[root@web_mail ~]# yum install -y telnet</p>
-<p> &emsp;&emsp;[root@web_mail ~]# telnet localhost 25</p>
- <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"></div><div class="line">Connected to localhost.</div><div class="line">Escape character is &apos;^]&apos;.</div><div class="line">220 mail.playdod.com ESMTP Postfix - by playdod.com</div><div class="line">ehlo localhost</div><div class="line">250-mail.playdod.com</div><div class="line">250-PIPELINING</div><div class="line">250-SIZE 10485760</div><div class="line">250-VRFY</div><div class="line">250-ETRN</div><div class="line">250-STARTTLS</div><div class="line">250-AUTH LOGIN PLAIN</div><div class="line">250-AUTH=LOGIN PLAIN</div><div class="line">250-ENHANCEDSTATUSCODES</div><div class="line">250-8BITMIME</div><div class="line">250 DSN</div><div class="line"> auth  login</div><div class="line">334 VXNlcm5hbWU6</div><div class="line">cG9zdG1hc3RlckBwbGF5ZG9kLmNvbQ==</div><div class="line">334 UGFzc3dvcmQ6</div><div class="line">YWJjZC4xMjM0</div><div class="line">235 2.7.0 Authentication successful</div><div class="line"> quit</div><div class="line">221 2.0.0 Bye</div><div class="line">Connection closed by foreign host.</div></pre></td></tr></table></figure>
-<p> 七、实现POP3、IMAP基本功能</p>
-<p>（1）安装Courier-IMAP</p>
-<p> &emsp;&emsp;[root@web_mail ~]# cd /usr/local/src</p>
-<p> &emsp;&emsp;[root@web_mail ~]#=wget <a href="http://ncu.dl.sourceforge.net/project/courier/imap/" target="_blank" rel="external">http://ncu.dl.sourceforge.net/project/courier/imap/</a><br>4.15.1/courier-imap-4.15.1.tar.bz2</p>
-<p>&emsp;&emsp;[root@web_mail src]# tar -jxf courier-imap-4.15.1.tar.bz2</p>
-<p>&emsp;&emsp;[root@web_mail src]# cd courier-imap-4.15.1</p>
-<p>&emsp;&emsp;[root@web_mail courier-imap-4.15.1]# ./configure  –enable-workarounds-for-imap-client-bugs –with-authchangepwdir –enable-unicode –with-trashquota –disable-root-check</p>
-<p>&emsp;&emsp;[root@web_mail courier-imap-4.15.1]# make &amp;&amp; make install</p>
-<p>&emsp;&emsp;[root@web_mail courier-imap-4.15.1]# make install-configure</p>
-<p>（2）启动程序</p>
-<p>&emsp;&emsp;[root@web_mail courier-imap-4.15.1]# cd /usr/lib/courier-imap/</p>
-<p>&emsp;&emsp;[root@web_mail courier-imap]# /usr/lib/courier-imap/libexec/imapd.rc start</p>
-<p>&emsp;&emsp;[root@web_mail courier-imap]# echo “/usr/lib/courier-imap/libexec/imapd.rc<br>start” &gt;&gt; /etc/rc.local</p>
-<p>&emsp;&emsp;[root@web_mail courier-imap]# ps aux|grep imapd</p>
-<p>&emsp;&emsp;<img src="/img/2C12F7A4-313F-46F7-8D3E-4789253173B7.png" alt=""></p>
-<p>&emsp;&emsp;[root@web_mail courier-imap]# netstat -tnlp|grep 143</p>
-<p>&emsp;&emsp;<img src="/img/4CAC0457-BD8B-4855-B41D-931A8C6037D1.png" alt=""></p>
-<p>&emsp;&emsp;[root@web_mail courier-imap]# /usr/lib/courier-imap/libexec/pop3d.rc start</p>
-<p>&emsp;&emsp;[root@web_mail courier-imap]# echo “/usr/lib/courier-imap/libexec/pop3d.rc<br>start” &gt;&gt; /etc/rc.local</p>
-<p>&emsp;&emsp;[root@web_mail courier-imap]# ps aux|grep pop3d</p>
-<p>&emsp;&emsp;<img src="/img/9D194BBE-FEB3-48A3-B644-BDB1D19B88AC.png" alt=""></p>
-<p>&emsp;&emsp;[root@web_mail courier-imap]# netstat -tnlp|grep 110</p>
-<p>&emsp;&emsp;<img src="/img/55F05175-7F33-4BA7-98BC-61407DD3888E.png" alt=""></p>
-<p>（3）设置imapd、pop3为启用状态</p>
-<p>&emsp;&emsp;[root@web_mail courier-imap]# sed -i ‘s/IMAPDSTART=NO/IMAPDSTART=YES/g’ etc/imapd</p>
-<p>&emsp;&emsp;[root@web_mail courier-imap]# sed -i ‘s/POP3DSTART=NO/POP3DSTART=YES/g’ etc/pop3d</p>
-<p>（4）测试端口连接</p>
-<p>&emsp;&emsp;[root@web_mail courier-imap]# telnet localhost 110</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Connected to localhost.</div><div class="line"></div><div class="line">Escape character is &apos;^]&apos;.</div><div class="line"></div><div class="line">+OK Hello there.</div><div class="line"></div><div class="line">user postmaster@playdod.com </div><div class="line"></div><div class="line">+OK Password required.</div><div class="line"></div><div class="line">pass abcd.1234</div><div class="line">+OK logged in.</div><div class="line"></div><div class="line">list</div><div class="line"></div><div class="line">+OK POP3 clients that break here, they violate STD53</div><div class="line"></div><div class="line">1 665</div><div class="line">2 665</div><div class="line">3 871</div><div class="line">4 3245</div><div class="line">5 695</div><div class="line">6 3297</div><div class="line">quit</div><div class="line">+OK Bye-bye.</div><div class="line">Connection closed by foreign host</div></pre></td></tr></table></figure>
-<p>&emsp;&emsp;[root@web_mail courier-imap]# telnet localhost 143</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Connected to localhost.</div><div class="line">Escape character is &apos;^]&apos;.</div><div class="line">* OK [CAPABILITY IMAP4rev1 UIDPLUS CHILDREN NAMESPACE THREAD=ORDEREDSUBJECT THREAD=REFERENCES SORT QUOTA IDLE ACL ACL2=UNION STARTTLS] Courier-IMAP ready. Copyright 1998-2011 Double Precision, Inc.  See COPYING for distribution information.</div><div class="line">tag login postmaster@playdod.com abcd.1234</div><div class="line">tag OK LOGIN Ok.</div><div class="line">tag logout</div><div class="line">* BYE Courier-IMAP server shutting down</div><div class="line">tag OK LOGOUT completed</div><div class="line">Connection closed by foreign host.</div></pre></td></tr></table></figure>
-<p>八、Webmail支持FCGI</p>
-<p>（1）装apache的mod_fastcgi模块</p>
-<p> &emsp;&emsp;[root@web_mail ~]# yum install -y httpd-devel</p>
-<p> &emsp;&emsp;[root@web_mail ~]# cd /usr/local/src</p>
-<p> &emsp;&emsp;[root@web_mail src]# wget <a href="http://www.fastcgi.com/dist/mod_fastcgi-2.4.6.tar.gz" target="_blank" rel="external">http://www.fastcgi.com/dist/mod_fastcgi-2.4.6.tar.gz</a></p>
-<p> &emsp;&emsp;[root@web_mail src]# tar zxvf mod_fastcgi-2.4.6.tar.gz</p>
-<p> &emsp;&emsp;[root@web_mail src]# cd mod_fastcgi-2.4.6</p>
-<p> &emsp;&emsp;[root@web_mail mod_fastcgi-2.4.6]# cp Makefile.AP2 Makefile</p>
-<p> &emsp;&emsp;[root@web_mail mod_fastcgi-2.4.6]# find / -name “build” -type d</p>
-<p> &emsp;&emsp;[root@web_mail mod_fastcgi-2.4.6]# make top_dir=/usr/lib64/httpd/ install</p>
-<p>（2）查看模块是否生成</p>
-<p> &emsp;&emsp;[root@web_mail mod_fastcgi-2.4.6]# ls /etc/httpd/modules/mod_fastcgi.so</p>
-<p>（3）安装Extmail需要的perl-FCGI模块</p>
-<p> &emsp;&emsp;[root@web_mail mod_fastcgi-2.4.6]# yum install perl-FCGI</p>
-<p> &emsp;&emsp;[root@web_mail mod_fastcgi-2.4.6]# vi /etc/httpd/conf.d/extmail.conf</p>
-<p>（4）配置虚拟主机文件</p>
-<p>&emsp;&emsp;/Users/yx/blog/source/F6F44294-9C5F-40E1-B9C6-FB25DA663BB4.png</p>
-<p>（5）修改启动脚本，并启动</p>
-<p>&emsp;&emsp;[root@web_mail mod_fastcgi-2.4.6]# vi /var/www/extsuite/extmail/dispatch-init<br>SU_UID=vmail  </p>
-<p>SU_GID=vmail</p>
-<p>&emsp;&emsp;[root@web_mail mod_fastcgi-2.4.6]# /var/www/extsuite/extmail/dispatch-init start</p>
-<p>&emsp;&emsp;[root@web_mail mod_fastcgi-2.4.6]# echo “/var/www/extsuite/extmail<br>/dispatch-init start” &gt;&gt; /etc/rc.d/rc.local</p>
-<p>&emsp;&emsp;[root@web_mail mod_fastcgi-2.4.6]# service httpd restart</p>
-<p>&emsp;&emsp;[root@web_mail mod_fastcgi-2.4.6]# ps aux|grep dispatch.fcgi</p>
-<p>&emsp;&emsp;<img src="/img/50983E01-320E-4613-9340-09F5ABD0C7F5.png" alt=""></p>
-<p>&emsp;&emsp;[root@web_mail mod_fastcgi-2.4.6]# netstat -tnlp|grep 8888</p>
-<p>&emsp;&emsp;<img src="/img/57A9A934-7D38-4862-9990-0D14D04A172F.png" alt=""></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1677,7 +1429,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1699,7 +1451,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

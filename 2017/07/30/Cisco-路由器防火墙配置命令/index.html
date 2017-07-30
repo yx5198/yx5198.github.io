@@ -1,0 +1,1007 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Cisco 路由器防火墙配置命令," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="一、access-list 用于创建访问规则.
+　　　　access-list [ normal | special ] listnumber1 &amp;#123; permit | deny &amp;#125; 　　　　source-addr [ source-mask ] 　　　　（2）创建扩展访问列表 　　　　access-list [ normal | special ] listnumber2 &amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cisco 路由器防火墙配置命令">
+<meta property="og:url" content="http://yoursite.com/2017/07/30/Cisco-路由器防火墙配置命令/index.html">
+<meta property="og:site_name" content="孤独泪个人博客">
+<meta property="og:description" content="一、access-list 用于创建访问规则.
+　　　　access-list [ normal | special ] listnumber1 &amp;#123; permit | deny &amp;#125; 　　　　source-addr [ source-mask ] 　　　　（2）创建扩展访问列表 　　　　access-list [ normal | special ] listnumber2 &amp;#">
+<meta property="og:updated_time" content="2017-07-30T15:28:01.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cisco 路由器防火墙配置命令">
+<meta name="twitter:description" content="一、access-list 用于创建访问规则.
+　　　　access-list [ normal | special ] listnumber1 &amp;#123; permit | deny &amp;#125; 　　　　source-addr [ source-mask ] 　　　　（2）创建扩展访问列表 　　　　access-list [ normal | special ] listnumber2 &amp;#">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/30/Cisco-路由器防火墙配置命令/"/>
+
+
+
+
+
+  <title> Cisco 路由器防火墙配置命令 | 孤独泪个人博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a5b7aee50ce83e2bd927723d65971e59";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">孤独泪个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/30/Cisco-路由器防火墙配置命令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="孤独泪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="孤独泪个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Cisco 路由器防火墙配置命令
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-30T22:45:01+08:00">
+                2017-07-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络技术/" itemprop="url" rel="index">
+                    <span itemprop="name">网络技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/07/30/Cisco-路由器防火墙配置命令/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/07/30/Cisco-路由器防火墙配置命令/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>一、access-list 用于创建访问规则.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">　　</div><div class="line">　　access-list [ normal | special ] listnumber1 &#123; permit | deny &#125; </div><div class="line">　　</div><div class="line">　　source-addr [ source-mask ] </div><div class="line">　　</div><div class="line">　　（2）创建扩展访问列表 </div><div class="line">　　</div><div class="line">　　access-list [ normal | special ] listnumber2 &#123; permit | deny &#125; protocol source-addr source-mask [ operator port1 [ port2 ] ] dest-addr dest-mask [ operator port1 [ port2 ] | icmp-type [ icmp-code ] ] [ log ]</div><div class="line">　　 </div><div class="line">　　（3）删除访问列表 </div><div class="line">　　</div><div class="line">　　no access-list &#123; normal | special &#125; &#123; all | listnumber [ subitem ] &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">　【参数说明】</div><div class="line">　　 </div><div class="line">　　normal 指定规则加入普通时间段.</div><div class="line">　　 </div><div class="line">　　special 指定规则加入特殊时间段.</div><div class="line">　　 </div><div class="line">　　listnumber1 是1到99之间的一个数值,表示规则是标准访问列表规则.</div><div class="line">　　 </div><div class="line">　　listnumber2 是100到199之间的一个数值,表示规则是扩展访问列表规则. </div><div class="line">　　</div><div class="line">　　permit 表明允许满足条件的报文通过. </div><div class="line">　　</div><div class="line">　　deny 表明禁止满足条件的报文通过.</div><div class="line">　　 </div><div class="line">　　protocol 为协议类型,支持ICMP、TCP、UDP等,其它的协议也支持,此时没有端口比较的概念;为IP时有特殊含义,代表所有的IP协议.</div><div class="line">　　 </div><div class="line">　　source-addr 为源地址. </div><div class="line">　　</div><div class="line">　　source-mask 为源地址通配位,在标准访问列表中是可选项,不输入则代表通配位为0.0.0.0. </div><div class="line">　　</div><div class="line">　　dest-addr 为目的地址.</div><div class="line">　　 </div><div class="line">　　dest-mask 为目的地址通配位.</div><div class="line">　　 </div><div class="line">　　operator[可选] 端口操作符,在协议类型为TCP或UDP时支持端口比较,支持的比较操作有：等于（eq）、大于（gt）、小于（lt）、不等于（neq）或介于（range）;如果操作符为range,则后面需要跟两个端口. </div><div class="line">　　</div><div class="line">　　port1 在协议类型为TCP或UDP时出现,可以为关键字所设定的预设值（如telnet）或0~65535之间的一个数值.</div><div class="line">　　 </div><div class="line">　　port2 在协议类型为TCP或UDP且操作类型为range时出现;可以为关键字所设定的预设值（如telnet）或0~65535之间的一个数值. </div><div class="line">　　</div><div class="line">　　icmp-type[可选] 在协议为ICMP时出现,代表ICMP报文类型;可以是关键字所设定的预设值（如echo-reply）或者是0~255之间的一个数值.</div><div class="line">　　 </div><div class="line">　　icmp-code在协议为ICMP且没有选择所设定的预设值时出现;代表ICMP码,是0~255之间的一个数值. </div><div class="line">　　</div><div class="line">　　log [可选] 表示如果报文符合条件,需要做日志.</div><div class="line">　　 </div><div class="line">　　listnumber 为删除的规则序号,是1~199之间的一个数值. </div><div class="line">　　</div><div class="line">　　subitem[可选] 指定删除序号为listnumber的访问列表中规则的序号.</div></pre></td></tr></table></figure>
+<p>　　<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">　　 </div><div class="line">　　系统缺省不配置任何访问规则.</div><div class="line">```　　 </div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">```　</div><div class="line">　　【命令模式】</div><div class="line">　　 </div><div class="line">　　全局配置模式</div></pre></td></tr></table></figure></p>
+<p>　　　　
+　　　　</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">　　【使用指南】</div><div class="line">　　 </div><div class="line">　　同一个序号的规则可以看作一类规则;所定义的规则不仅可以用来在接口上过滤报文,也可以被如DDR等用来判断一个报文是否是感兴趣的报文,此时,permit与deny表示是感兴趣的还是不感兴趣的.</div><div class="line">　　 </div><div class="line">　　使用协议域为IP的扩展访问列表来表示所有的IP协议.</div><div class="line">　　 </div><div class="line">　　同一个序号之间的规则按照一定的原则进行排列和选择,这个顺序可以通过 show access-list 命令看到. </div><div class="line">　　</div><div class="line">　　【举例】 </div><div class="line">　　允许源地址为10.1.1.0 网络、目的地址为10.1.2.0网络的WWW访问,但不允许使用FTP. </div><div class="line">　　</div><div class="line">　　Quidway(config)#access-list 100 permit tcp 10.1.1.0 0.0.0.255 10.1.2.0 0.0.0.255 eq www </div><div class="line">　　</div><div class="line">　　Quidway(config)#access-list 100 deny tcp 10.1.1.0 0.0.0.255 10.1.2.0 0.0.0.255 eq ftp</div></pre></td></tr></table></figure>
+   <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">【相关命令】</div><div class="line"> </div><div class="line">　　ip access-group</div></pre></td></tr></table></figure>
+<p>二、clear access-list counters 清除访问列表规则的统计信息.</p>
+<p>　　clear access-list counters [ listnumber ]<br>　　<br>　　<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">　　【参数说明】 </div><div class="line">　　listnumber [可选] 要清除统计信息的规则的序号,如不指定,则清除所有的规则的</div><div class="line">　　统计信息.</div><div class="line">　　``` </div><div class="line">　　```【缺省情况】</div><div class="line">　　任何时候都不清除统计信息.</div><div class="line">　　```</div></pre></td></tr></table></figure></p>
+<p>　　【命令模式】<br>　　特权用户模式<br>　　 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">　</div></pre></td></tr></table></figure></p>
+<p>　　【使用指南】<br>　　使用此命令来清除当前所用规则的统计信息,不指定规则编号则清除所有规则的统计信息.<br>　　【举例】<br>　　<br>　　例1：清除当前所使用的序号为100的规则的统计信息.<br>　　<br>　　Quidway#clear access-list counters 100<br>　　<br>　　例2：清除当前所使用的所有规则的统计信息.<br>　　<br>　　Quidway#clear access-list counters<br>　　<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">　　```【相关命令】 </div><div class="line">　　access-list</div></pre></td></tr></table></figure></p>
+<p>　　<br>　　<br>　　<br>　　<br>　　<br>　　<br>　　三、firewall 启用或禁止防火墙.<br>　　<br>　　<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">　　firewall &#123; enable | disable &#125; </div><div class="line">　　</div><div class="line">　　</div><div class="line">　　【参数说明】 </div><div class="line">　　</div><div class="line">　　enable 表示启用防火墙. </div><div class="line">　　disable 表示禁止防火墙.</div><div class="line">　　 </div><div class="line">　　【缺省情况】 </div><div class="line">　　</div><div class="line">　　系统缺省为禁止防火墙. </div><div class="line">　　</div><div class="line">　　【命令模式】 </div><div class="line">　　</div><div class="line">　　全局配置模式 </div><div class="line">　　</div><div class="line">　　【使用指南】 </div><div class="line">　　</div><div class="line">　　使用此命令来启用或禁止防火墙,可以通过show firewall命令看到相应结果.如果采用了时间段包过滤,则在防火墙被关闭时也将被关闭;该命令控制防火墙的总开关.在使用 firewall disable 命令关闭防火墙时,防火墙本身的统计信息也将被清除. </div><div class="line">　　【举例】 </div><div class="line">　　启用防火墙. </div><div class="line">　　Quidway(config)#firewall enable </div><div class="line">　　【相关命令】 </div><div class="line">　　access-list,ip access-group</div></pre></td></tr></table></figure></p>
+<p>四、firewall default 配置防火墙在没有相应的访问规则匹配时,缺省的过滤方式. </p>
+<p>　　firewall default { permit | deny }<br>　　<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">　　【参数说明】 </div><div class="line">　　permit 表示缺省过滤属性设置为“允许”. </div><div class="line">　　deny 表示缺省过滤属性设置为“禁止”. </div><div class="line">　　【缺省情况】 </div><div class="line">　　在防火墙开启的情况下,报文被缺省允许通过. </div><div class="line">　　【命令模式】 </div><div class="line">　　全局配置模式 </div><div class="line">　　【使用指南】 </div><div class="line">　　当在接口应用的规则没有一个能够判断一个报文是否应该被允许还是禁止时,缺省的过滤属性将起作用;如果缺省过滤属性是“允许”,则报文可以通过,否则报文被丢弃. </div><div class="line">　　【举例】 </div><div class="line">　　设置缺省过滤属性为“允许”. </div><div class="line">　　Quidway(config)#firewall default permit</div></pre></td></tr></table></figure></p>
+<p>五、ip access-group 使用此命令将规则应用到接口上.使用此命令的no形式来删<br>　<br>　　除相应的设置.<br>　　<br>　　<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">　　ip access-group listnumber &#123; in | out &#125; </div><div class="line">　　[ no ] ip access-group listnumber &#123; in | out &#125; </div><div class="line">　　【参数说明】 </div><div class="line">　　listnumber 为规则序号,是1~199之间的一个数值. </div><div class="line">　　in 表示规则用于过滤从接口收上来的报文. </div><div class="line">　　out 表示规则用于过滤从接口转发的报文. </div><div class="line">　　【缺省情况】 </div><div class="line">　　没有规则应用于接口. </div><div class="line">　　【命令模式】 </div><div class="line">　　接口配置模式. </div><div class="line">　　【使用指南】 </div><div class="line">　　使用此命令来将规则应用到接口上;如果要过滤从接口收上来的报文,则使用 in 关键字;如果要过滤从接口转发的报文,使用out 关键字.一个接口的一个方向上最多可以应用20类不同的规则;这些规则之间按照规则序号的大小进行排列,序号大的排在前面,也就是优先级高.对报文进行过滤时,将采用发现符合的规则即得出过滤结果的方法来加快过滤速度.所以,建议在配置规则时,尽量将对同一个网络配置的规则放在同一个序号的访问列表中;在同一个序号的访问列表中,规则之间的排列和选择顺序可以用show access-list命令来查看. </div><div class="line">　　【举例】 </div><div class="line">　　将规则101应用于过滤从以太网口收上来的报文. </div><div class="line">　　Quidway(config-if-Ethernet0)#ip access-group 101 in </div><div class="line">　　【相关命令】 </div><div class="line">　　access-list</div></pre></td></tr></table></figure></p>
+<p>六、settr 设定或取消特殊时间段.</p>
+<p>　　settr begin-time end-time<br>　　<br>　　no settr<br>　　<br>　　<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">　　【参数说明】 </div><div class="line">　　begin-time 为一个时间段的开始时间. </div><div class="line">　　end-time 为一个时间段的结束时间,应该大于开始时间. </div><div class="line">　　【缺省情况】 </div><div class="line">　　系统缺省没有设置时间段,即认为全部为普通时间段. </div><div class="line">　　【命令模式】 </div><div class="line">　　全局配置模式 </div><div class="line">　　【使用指南】 </div><div class="line">　　使用此命令来设置时间段;可以最多同时设置6个时间段,通过show timerange 命令可以看到所设置的时间.如果在已经使用了一个时间段的情况下改变时间段,则此修改将在一分钟左右生效（系统查询时间段的时间间隔）.设置的时间应该是24小时制.如果要设置类似晚上9点到早上8点的时间段,可以设置成“settr 21:00 23:59 0:00 8:00”,因为所设置的时间段的两个端点属于时间段之内,故不会产生时间段内外的切换.另外这个设置也经过了2000问题的测试. </div><div class="line">　　【举例】 </div><div class="line">　　例1：设置时间段为8:30 ~ 12:00,14:00 ~ 17:00. </div><div class="line">　　Quidway(config)#settr 8:30 12:00 14:00 17:00 </div><div class="line">　　例2： 设置时间段为晚上9点到早上8点. </div><div class="line">　　Quidway(config)#settr 21:00 23:59 0:00 8:0 </div><div class="line">　　【相关命令】 </div><div class="line">　　timerange,show timerange</div></pre></td></tr></table></figure></p>
+<p>七、show access-list 显示包过滤规则及在接口上的应用. </p>
+<p>　　show access-list [ all | listnumber | interface interface-name ]<br>　　<br>　　<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">　　【参数说明】 </div><div class="line">　　all 表示所有的规则,包括普通时间段内及特殊时间段内的规则. </div><div class="line">　　listnumber 为显示当前所使用的规则中序号为listnumber的规则. </div><div class="line">　　interface 表示要显示在指定接口上应用的规则序号. </div><div class="line">　　interface-name 为接口的名称. </div><div class="line">　　【命令模式】 </div><div class="line">　　特权用户模式 </div><div class="line">　　【使用指南】 </div><div class="line">　　使用此命令来显示所指定的规则,同时查看规则过滤报文的情况.每个规则都有一个相应的计数器,如果用此规则过滤了一个报文,则计数器加1;通过对计数器的观察可以看出所配置的规则中,哪些规则是比较有效,而哪些基本无效.可以通过带interface关键字的show access-list命令来查看某个接口应用规则的情况. </div><div class="line">　　【举例】 </div><div class="line">　　例1：显示当前所使用的序号为100的规则. </div><div class="line">　　Quidway#show access-list 100 </div><div class="line">　　Using normal packet-filtering access rules now. </div><div class="line">　　100 deny icmp 10.1.0.0 0.0.255.255 any host-redirect (3 matches,252 bytes -- rule 1) </div><div class="line">　　100 permit icmp 10.1.0.0 0.0.255.255 any echo (no matches -- rule 2) </div><div class="line">　　100 deny udp any any eq rip (no matches -- rule 3) </div><div class="line">　　例2： 显示接口Serial0上应用规则的情况. </div><div class="line">　　Quidway#show access-list interface serial 0 </div><div class="line">　　Serial0: </div><div class="line">　　access-list filtering In-bound packets : 120 </div><div class="line">　　access-list filtering Out-bound packets: None </div><div class="line">　　【相关命令】 </div><div class="line">　　access-list</div></pre></td></tr></table></figure></p>
+<p>八、show firewall 显示防火墙状态. </p>
+<p>　　show firewall<br>　　<br>　　<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">　　【命令模式】 </div><div class="line">　　特权用户模式 </div><div class="line">　　【使用指南】 </div><div class="line">　　使用此命令来显示防火墙的状态,包括防火墙是否被启用,启用防火墙时是否采用了时间段包过滤及防火墙的一些统计信息. </div><div class="line">　　【举例】 </div><div class="line">　　显示防火墙状态. </div><div class="line">　　Quidway#show firewall </div><div class="line">　　Firewall is enable, default filtering method is &apos;permit&apos;. </div><div class="line">　　TimeRange packet-filtering enable. </div><div class="line">　　InBound packets: None; </div><div class="line">　　OutBound packets: 0 packets, 0 bytes, 0% permitted, </div><div class="line">　　0 packets, 0 bytes, 0% denied, </div><div class="line">　　2 packets, 104 bytes, 100% permitted defaultly, </div><div class="line">　　0 packets, 0 bytes, 100% denied defaultly. </div><div class="line">　　From 00:13:02 to 06:13:21: 0 packets, 0 bytes, permitted. </div><div class="line">　　【相关命令】 </div><div class="line">　　firewall</div></pre></td></tr></table></figure></p>
+<p>九、show isintr 显示当前时间是否在时间段之内.<br>　　<br>　　show isintr<br>　　<br>　　<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">　　【命令模式】 </div><div class="line">　　特权用户模式 </div><div class="line">　　【使用指南】 </div><div class="line">　　使用此命令来显示当前时间是否在时间段之内. </div><div class="line">　　【举例】 </div><div class="line">　　显示当前时间是否在时间段之内. </div><div class="line">　　Quidway#show isintr </div><div class="line">　　It is NOT in time ranges now. </div><div class="line">　　【相关命令】 </div><div class="line">　　timerange,settr</div></pre></td></tr></table></figure></p>
+<p>十、show timerange 显示时间段包过滤的信息.</p>
+<p>　　show timerange<br>　　<br>　　<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">　　【命令模式】 </div><div class="line">　　特权用户模式 </div><div class="line">　　【使用指南】 </div><div class="line">　　使用此命令来显示当前是否允许时间段包过滤及所设置的时间段. </div><div class="line">　　【举例】 </div><div class="line">　　显示时间段包过滤的信息. </div><div class="line">　　Quidway#show timerange </div><div class="line">　　TimeRange packet-filtering enable. </div><div class="line">　　beginning of time range: </div><div class="line">　　01:00 - 02:00 </div><div class="line">　　03:00 - 04:00 </div><div class="line">　　end of time range. </div><div class="line">　　【相关命令】 </div><div class="line">　　timerange,settr</div><div class="line">　　``` </div><div class="line">十一、timerange 启用或禁止时间段包过滤功能. </div><div class="line"></div><div class="line">　　timerange &#123; enable | disable &#125;</div></pre></td></tr></table></figure></p>
+<p>　　【参数说明】<br>　　enable 表示启用时间段包过滤.<br>　　disable 表示禁止采用时间段包过滤.<br>　　【缺省情况】<br>　　系统缺省为禁止时间段包过滤功能.<br>　　【命令模式】<br>　　全局配置模式<br>　　【使用指南】<br>　　使用此命令来启用或禁止时间段包过滤功能,可以通过show firewall命令看到,也可以通过show timerange命令看到配置结果.在时间段包过滤功能被启用后,系统将根据当前的时间和设置的时间段来确定使用时间段内（特殊）的规则还是时间段外（普通）的规则.系统查询时间段的精确度为1分钟.所设置的时间段的两个端点属于时间段之内.<br>　　【举例】<br>　　启用时间段包过滤功能.<br>　　Quidway(config)#timerange enable<br>　　【相关命令】<br>　　settr,show timerange<br>　　```</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Cisco-路由器防火墙配置命令/" rel="tag"># Cisco 路由器防火墙配置命令</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/30/Cisco路由器的安全配置/" rel="next" title="Cisco路由器的安全配置">
+                <i class="fa fa-chevron-left"></i> Cisco路由器的安全配置
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2017/07/30/Cisco-路由器防火墙配置命令/"
+     data-title="Cisco 路由器防火墙配置命令"
+     data-content=""
+     data-url="http://yoursite.com/2017/07/30/Cisco-路由器防火墙配置命令/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/07/30/Cisco-路由器防火墙配置命令/"
+           data-title="Cisco 路由器防火墙配置命令" data-url="http://yoursite.com/2017/07/30/Cisco-路由器防火墙配置命令/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="孤独泪" />
+          <p class="site-author-name" itemprop="name">孤独泪</p>
+           
+              <p class="site-description motion-element" itemprop="description">时间是一切财富中最宝贵的财富</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/yx5198" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/1459574045?refer_flag=1005055010_&is_all=1" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-微博"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情衔接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.djhull.com/" title="超哥" target="_blank">超哥</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://baiyibing123.github.io" title="小白" target="_blank">小白</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://taoyak.com/" title="亚可" target="_blank">亚可</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://mingmings.org/" title="明明" target="_blank">明明</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://successfuljian.github.io" title="小健" target="_blank">小健</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://lankors.github.io" title="大侠" target="_blank">大侠</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.heyyezi.com" title="强哥" target="_blank">强哥</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://obeyconquer.github.io" title="高洋" target="_blank">高洋</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">孤独泪</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"yx5198"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="编译安装LAMP," />
+  <meta name="keywords" content="Cisco 路由器防火墙配置命令," />
 
 
 
@@ -87,65 +87,19 @@
 
 
 
-<meta name="description" content="目前的web服务器多是用LAMP来搭建的。所谓的LAMP，指的是几款开源软件的组合构成的动态web网站系统。
-L=Linux   A=Apache   M=Mysql   P=PHP/Perl/Python。
-我们主要来说一下编译安装：
-1.安装apache
-先下载好相关的源码包：这里下载的是httpd-2.2.21.tar
-新建一个文件夹，取名software ：mkdir /root/soft">
+<meta name="description" content="一、access-list 用于创建访问规则.
+　　　　access-list [ normal | special ] listnumber1 &amp;#123; permit | deny &amp;#125; 　　　　source-addr [ source-mask ] 　　　　（2）创建扩展访问列表 　　　　access-list [ normal | special ] listnumber2 &amp;#">
 <meta property="og:type" content="article">
-<meta property="og:title" content="编译安装LAMP">
-<meta property="og:url" content="http://yoursite.com/2017/03/31/编译安装LAMP/index.html">
+<meta property="og:title" content="Cisco 路由器防火墙配置命令">
+<meta property="og:url" content="http://yoursite.com/2017/07/30/Cisco路由器防火墙配置命令/index.html">
 <meta property="og:site_name" content="孤独泪个人博客">
-<meta property="og:description" content="目前的web服务器多是用LAMP来搭建的。所谓的LAMP，指的是几款开源软件的组合构成的动态web网站系统。
-L=Linux   A=Apache   M=Mysql   P=PHP/Perl/Python。
-我们主要来说一下编译安装：
-1.安装apache
-先下载好相关的源码包：这里下载的是httpd-2.2.21.tar
-新建一个文件夹，取名software ：mkdir /root/soft">
-<meta property="og:image" content="http://yoursite.com/img/1.png">
-<meta property="og:image" content="http://yoursite.com/img/2.png">
-<meta property="og:image" content="http://yoursite.com/img/3.png">
-<meta property="og:image" content="http://yoursite.com/img/4.png">
-<meta property="og:image" content="http://yoursite.com/img/5.png">
-<meta property="og:image" content="http://yoursite.com/img/6.png">
-<meta property="og:image" content="http://yoursite.com/img/7.png">
-<meta property="og:image" content="http://yoursite.com/img/8.png">
-<meta property="og:image" content="http://yoursite.com/img/9.png">
-<meta property="og:image" content="http://yoursite.com/img/10.png">
-<meta property="og:image" content="http://yoursite.com/img/11.png">
-<meta property="og:image" content="http://yoursite.com/img/12.png">
-<meta property="og:image" content="http://yoursite.com/img/13.png">
-<meta property="og:image" content="http://yoursite.com/img/14.png">
-<meta property="og:image" content="http://yoursite.com/img/15.png">
-<meta property="og:image" content="http://yoursite.com/img/16.png">
-<meta property="og:image" content="http://yoursite.com/img/17.png">
-<meta property="og:image" content="http://yoursite.com/img/18.png">
-<meta property="og:image" content="http://yoursite.com/img/19.png">
-<meta property="og:image" content="http://yoursite.com/img/20.png">
-<meta property="og:image" content="http://yoursite.com/img/21.png">
-<meta property="og:image" content="http://yoursite.com/img/22.png">
-<meta property="og:image" content="http://yoursite.com/img/23.png">
-<meta property="og:image" content="http://yoursite.com/img/24.png">
-<meta property="og:image" content="http://yoursite.com/img/25.png">
-<meta property="og:image" content="http://yoursite.com/img/26.png">
-<meta property="og:image" content="http://yoursite.com/img/27.png">
-<meta property="og:image" content="http://yoursite.com/img/28.png">
-<meta property="og:image" content="http://yoursite.com/img/29.png">
-<meta property="og:image" content="http://yoursite.com/img/30.png">
-<meta property="og:image" content="http://yoursite.com/img/31.png">
-<meta property="og:image" content="http://yoursite.com/img/32.png">
-<meta property="og:image" content="http://yoursite.com/img/33.png">
-<meta property="og:updated_time" content="2017-03-31T16:31:46.000Z">
+<meta property="og:description" content="一、access-list 用于创建访问规则.
+　　　　access-list [ normal | special ] listnumber1 &amp;#123; permit | deny &amp;#125; 　　　　source-addr [ source-mask ] 　　　　（2）创建扩展访问列表 　　　　access-list [ normal | special ] listnumber2 &amp;#">
+<meta property="og:updated_time" content="2017-07-30T15:40:20.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="编译安装LAMP">
-<meta name="twitter:description" content="目前的web服务器多是用LAMP来搭建的。所谓的LAMP，指的是几款开源软件的组合构成的动态web网站系统。
-L=Linux   A=Apache   M=Mysql   P=PHP/Perl/Python。
-我们主要来说一下编译安装：
-1.安装apache
-先下载好相关的源码包：这里下载的是httpd-2.2.21.tar
-新建一个文件夹，取名software ：mkdir /root/soft">
-<meta name="twitter:image" content="http://yoursite.com/img/1.png">
+<meta name="twitter:title" content="Cisco 路由器防火墙配置命令">
+<meta name="twitter:description" content="一、access-list 用于创建访问规则.
+　　　　access-list [ normal | special ] listnumber1 &amp;#123; permit | deny &amp;#125; 　　　　source-addr [ source-mask ] 　　　　（2）创建扩展访问列表 　　　　access-list [ normal | special ] listnumber2 &amp;#">
 
 
 
@@ -173,13 +127,13 @@ L=Linux   A=Apache   M=Mysql   P=PHP/Perl/Python。
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/03/31/编译安装LAMP/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/07/30/Cisco路由器防火墙配置命令/"/>
 
 
 
 
 
-  <title> 编译安装LAMP | 孤独泪个人博客 </title>
+  <title> Cisco 路由器防火墙配置命令 | 孤独泪个人博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -372,7 +326,7 @@ L=Linux   A=Apache   M=Mysql   P=PHP/Perl/Python。
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/31/编译安装LAMP/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/30/Cisco路由器防火墙配置命令/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="孤独泪">
@@ -393,7 +347,7 @@ L=Linux   A=Apache   M=Mysql   P=PHP/Perl/Python。
             
             
               
-                编译安装LAMP
+                Cisco 路由器防火墙配置命令
               
             
           </h1>
@@ -408,8 +362,8 @@ L=Linux   A=Apache   M=Mysql   P=PHP/Perl/Python。
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-31T22:51:46+08:00">
-                2017-03-31
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-30T22:45:01+08:00">
+                2017-07-30
               </time>
             
 
@@ -431,8 +385,8 @@ L=Linux   A=Apache   M=Mysql   P=PHP/Perl/Python。
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux系统/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux系统</span>
+                  <a href="/categories/网络技术/" itemprop="url" rel="index">
+                    <span itemprop="name">网络技术</span>
                   </a>
                 </span>
 
@@ -449,8 +403,8 @@ L=Linux   A=Apache   M=Mysql   P=PHP/Perl/Python。
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/03/31/编译安装LAMP/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/31/编译安装LAMP/" itemprop="commentCount"></span>
+                <a href="/2017/07/30/Cisco路由器防火墙配置命令/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/07/30/Cisco路由器防火墙配置命令/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -476,123 +430,29 @@ L=Linux   A=Apache   M=Mysql   P=PHP/Perl/Python。
       
 
       
-        <p>目前的web服务器多是用LAMP来搭建的。所谓的LAMP，指的是几款开源软件的组合构成的动态web网站系统。</p>
-<p>L=Linux   A=Apache   M=Mysql   P=PHP/Perl/Python。</p>
-<p>我们主要来说一下编译安装：</p>
-<p>1.安装apache</p>
-<p>先下载好相关的源码包：这里下载的是httpd-2.2.21.tar</p>
-<p>新建一个文件夹，取名software ：mkdir /root/software</p>
-<p>把下载的httpd-2.2.21.tar放在该目录下</p>
-<font color="Crimson">注意，检查一下GCC开发工具]在安装软件之前要确保GCC等开发工具都已经安装妥当。</font>
-
-<p><img src="/img/1.png" alt=""></p>
-<p><img src="/img/2.png" alt=""></p>
-<font color="Crimson">再检查httpd是否已经停用，因为系统会安装自带的Apache，不管你是否选择安装它。</font>
-
-<p><img src="/img/3.png" alt=""></p>
-<p>一切ok，开始安装。</p>
-<p>[解压源代码]</p>
-<p><img src="/img/4.png" alt=""></p>
-<p>[进入源码目录]</p>
-<p><img src="/img/5.png" alt=""></p>
-<p>[编译配置]</p>
-<p><img src="/img/6.png" alt=""></p>
-<p>./configure –prefix=/usr/local/apache –enable-so –enable-rewrite</p>
-<p><img src="/img/7.png" alt=""></p>
-<p>[编译并安装]</p>
-<p><img src="/img/8.png" alt=""></p>
-<p>[启动Apache]</p>
-<p><img src="/img/9.png" alt=""></p>
-<p>[测试是否正常]</p>
-<p><img src="/img/10.png" alt=""></p>
-<p>添加开机自动启动httpd服务</p>
-<p>cp /usr/local/apache/bin/apachectl /etc/rc.d/init.d/httpd</p>
-<p>chkconfig –add httpd</p>
-<p>vim /etc/rc.d/init.d/httpd</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">添加上</div><div class="line">#chkconfig:345 85 15</div><div class="line">#description: Start and stops the Apache HTTP Server</div></pre></td></tr></table></figure>
-<p>然后</p>
-<p>chmod +x /etc/rc.d/init.d/httpd</p>
-<p>chkconfig –add httpd</p>
-<p>然后可以用setup命令进入服务设置，设置为开机启动</p>
-<p>2.安装mysql</p>
-<p>首先确保系统中没有安装过mysql</p>
-<p><img src="/img/11.png" alt=""></p>
-<p>下载源码包到/root/software/目录下 mysql-5.1.55.tar.gz</p>
-<p>[创建MySQL使用的系统用户与组]</p>
-<p>useradd –M –s /sbin/nologin mysql  #添加mysql这个用户,同时添加到mysql组里，不给登陆shell</p>
-<p>[解压源代码]</p>
-<p><img src="/img/12.png" alt=""></p>
-<p>[进入源码目录]</p>
-<p><img src="/img/13.png" alt=""></p>
-<p>[编译并安装]</p>
-<p><img src="/img/14.png" alt=""></p>
-<p>checking for termcap functions library… configure: error: No curses/termcap library found</p>
-<p>[root@localhost mysql-5.1.55]# make</p>
-<p>make: <em>*</em> 没有指明目标并且找不到 makefile。 停止。</p>
-<p>如果报这个错误，说明没有安装ncurses这个包</p>
-<p><img src="/img/15.png" alt=""></p>
-<p>拷贝my-medium.cnf文件到/etc/目录下并重命名为my.cnf</p>
-<p><img src="/img/16.png" alt=""></p>
-<p>修改字符集</p>
-<p>[client]</p>
-<p>default-character-set=utf8</p>
-<p>[mysqld]</p>
-<p>重启mysql</p>
-<p>查看字符集设置</p>
-<p>[初始化数据及调整权属]</p>
-<p><img src="/img/17.png" alt=""></p>
-<font color="Crimson">[注册MySQL数据库程序库路径] 可以暂时不设置</font>
-
-<font color="Crimson">echo “/usr/local/mysql/lib/mysql” &gt;&gt; /etc/ld.so.conf</font>
-
-<font color="Crimson">注：其它的一些应用程序在使用MySQL数据库的时候，需要用到MySQL提供接口程序库；因此要<br>把这个程序库的有效路径注册到Linux中，以便其它应用程序能够找到。</font>
-
-<p>[启动MySQL并设置数据库管理员密码]</p>
-<p><img src="/img/18.png" alt=""></p>
-<p>变量，这样可以不用进入到mysql的安装目录下进行mysql操作<br>或者做个软连接：</p>
-<font color="Crimson">ln -s /usr/local/mysql/bin/mysql /usr/bin/mysql</font>
-
-<p>添加mysql开机自动启动</p>
-<p>cp /root/soft/mysql-5.1.55/support-files/mysql.server /etc/init.d/<br>mysqld</p>
-<p>cd /etc/init.d/</p>
-<p>chkconfig –add mysqld </p>
-<p>chkconfig mysqld on</p>
-<p>[登录数据库测试]</p>
-<p><img src="/img/19.png" alt=""></p>
-<p>测试成功</p>
-<p>3.安装PHP</p>
-<p>1、检查各种库源文件</p>
-<p><img src="/img/20.png" alt=""></p>
-<p>如果发现没有相应的库，我们需要下载一个编译安装。</p>
-<p>例如：jpegsrc 这个库。我们下载的是jpegsrc.v8b.tar.gz包。安装后进入到该目录：</p>
-<p><img src="/img/21.png" alt=""></p>
-<font color="Crimson">–enable-shared 参数必须家，意思是创建共享库。</font>
-
-<p>然后编译安装 <img src="/img/22.png" alt=""></p>
-<p>注：GD库，是图形图像处理扩展库，提供了处理图片的API，有了它PHP才能正确处理GIF、JPEG、PNG等图形图像格式。如下：</p>
-<p><img src="/img/23.png" alt=""></p>
-<p>[解压源码包]</p>
-<p><img src="/img/24.png" alt=""></p>
-<p>[编译前配置]</p>
-<p><img src="/img/25.png" alt=""></p>
-<p><img src="/img/26.png" alt=""></p>
-<p><img src="/img/27.png" alt=""></p>
-<p>[编译并安装]</p>
-<p><img src="/img/28.png" alt=""></p>
-<p>[复制php.ini配置文件]</p>
-<p><img src="/img/29.png" alt=""></p>
-<p>[修改Apache主配置文件httpd.conf]添加支持PHP环境的相关配置。</p>
-<p><img src="/img/30.png" alt=""></p>
-<p>[进行测试]</p>
-<p>在/usr/local/apache/htdocs 目录下创建一个index.php文件</p>
-<p><img src="/img/31.png" alt=""></p>
-<p>编辑index.php文件</p>
-<p><img src="/img/32.png" alt=""></p>
-<p>保存退出。重启apache服务/usr/local/apache/bin/apachectl -k restart</p>
-<p>打开浏览器看是否支持php</p>
-<p>如果弹出的是下载该项，重启一下服务器</p>
-<p><img src="/img/33.png" alt=""></p>
-<p>弹出该画面，说明php安装编译成功。</p>
+        <p>一、access-list 用于创建访问规则.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">　　</div><div class="line">　　access-list [ normal | special ] listnumber1 &#123; permit | deny &#125; </div><div class="line">　　</div><div class="line">　　source-addr [ source-mask ] </div><div class="line">　　</div><div class="line">　　（2）创建扩展访问列表 </div><div class="line">　　</div><div class="line">　　access-list [ normal | special ] listnumber2 &#123; permit | deny &#125; protocol source-addr source-mask [ operator port1 [ port2 ] ] dest-addr dest-mask [ operator port1 [ port2 ] | icmp-type [ icmp-code ] ] [ log ]</div><div class="line">　　 </div><div class="line">　　（3）删除访问列表 </div><div class="line">　　</div><div class="line">　　no access-list &#123; normal | special &#125; &#123; all | listnumber [ subitem ] &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">　【参数说明】</div><div class="line">　　 </div><div class="line">　　normal 指定规则加入普通时间段.</div><div class="line">　　 </div><div class="line">　　special 指定规则加入特殊时间段.</div><div class="line">　　 </div><div class="line">　　listnumber1 是1到99之间的一个数值,表示规则是标准访问列表规则.</div><div class="line">　　 </div><div class="line">　　listnumber2 是100到199之间的一个数值,表示规则是扩展访问列表规则. </div><div class="line">　　</div><div class="line">　　permit 表明允许满足条件的报文通过. </div><div class="line">　　</div><div class="line">　　deny 表明禁止满足条件的报文通过.</div><div class="line">　　 </div><div class="line">　　protocol 为协议类型,支持ICMP、TCP、UDP等,其它的协议也支持,此时没有端口比较的概念;为IP时有特殊含义,代表所有的IP协议.</div><div class="line">　　 </div><div class="line">　　source-addr 为源地址. </div><div class="line">　　</div><div class="line">　　source-mask 为源地址通配位,在标准访问列表中是可选项,不输入则代表通配位为0.0.0.0. </div><div class="line">　　</div><div class="line">　　dest-addr 为目的地址.</div><div class="line">　　 </div><div class="line">　　dest-mask 为目的地址通配位.</div><div class="line">　　 </div><div class="line">　　operator[可选] 端口操作符,在协议类型为TCP或UDP时支持端口比较,支持的比较操作有：等于（eq）、大于（gt）、小于（lt）、不等于（neq）或介于（range）;如果操作符为range,则后面需要跟两个端口. </div><div class="line">　　</div><div class="line">　　port1 在协议类型为TCP或UDP时出现,可以为关键字所设定的预设值（如telnet）或0~65535之间的一个数值.</div><div class="line">　　 </div><div class="line">　　port2 在协议类型为TCP或UDP且操作类型为range时出现;可以为关键字所设定的预设值（如telnet）或0~65535之间的一个数值. </div><div class="line">　　</div><div class="line">　　icmp-type[可选] 在协议为ICMP时出现,代表ICMP报文类型;可以是关键字所设定的预设值（如echo-reply）或者是0~255之间的一个数值.</div><div class="line">　　 </div><div class="line">　　icmp-code在协议为ICMP且没有选择所设定的预设值时出现;代表ICMP码,是0~255之间的一个数值. </div><div class="line">　　</div><div class="line">　　log [可选] 表示如果报文符合条件,需要做日志.</div><div class="line">　　 </div><div class="line">　　listnumber 为删除的规则序号,是1~199之间的一个数值. </div><div class="line">　　</div><div class="line">　　subitem[可选] 指定删除序号为listnumber的访问列表中规则的序号.</div></pre></td></tr></table></figure>
+<p>　　<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">【缺省情况】</div><div class="line">　　 </div><div class="line">　　系统缺省不配置任何访问规则.</div><div class="line">```　　 </div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">```　</div><div class="line">　　【命令模式】</div><div class="line">　　 </div><div class="line">　　全局配置模式</div></pre></td></tr></table></figure></p>
+<p>　　　　
+　　　　</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">　　【使用指南】</div><div class="line">　　 </div><div class="line">　　同一个序号的规则可以看作一类规则;所定义的规则不仅可以用来在接口上过滤报文,也可以被如DDR等用来判断一个报文是否是感兴趣的报文,此时,permit与deny表示是感兴趣的还是不感兴趣的.</div><div class="line">　　 </div><div class="line">　　使用协议域为IP的扩展访问列表来表示所有的IP协议.</div><div class="line">　　 </div><div class="line">　　同一个序号之间的规则按照一定的原则进行排列和选择,这个顺序可以通过 show access-list 命令看到. </div><div class="line">　　</div><div class="line">　　【举例】 </div><div class="line">　　允许源地址为10.1.1.0 网络、目的地址为10.1.2.0网络的WWW访问,但不允许使用FTP. </div><div class="line">　　</div><div class="line">　　Quidway(config)#access-list 100 permit tcp 10.1.1.0 0.0.0.255 10.1.2.0 0.0.0.255 eq www </div><div class="line">　　</div><div class="line">　　Quidway(config)#access-list 100 deny tcp 10.1.1.0 0.0.0.255 10.1.2.0 0.0.0.255 eq ftp</div></pre></td></tr></table></figure>
+   <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">【相关命令】</div><div class="line"> </div><div class="line">　　ip access-group</div></pre></td></tr></table></figure>
+<p>二、clear access-list counters 清除访问列表规则的统计信息.</p>
+<p>　　clear access-list counters [ listnumber ]<br>　　<br>　　<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">　　【参数说明】 </div><div class="line">　　listnumber [可选] 要清除统计信息的规则的序号,如不指定,则清除所有的规则的</div><div class="line">　　统计信息.</div><div class="line">　　```</div></pre></td></tr></table></figure></p>
+<p>　　【缺省情况】<br>　　任何时候都不清除统计信息.<br>　　<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">　</div></pre></td></tr></table></figure></p>
+<p>　　【命令模式】<br>　　特权用户模式<br>　　 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">　</div></pre></td></tr></table></figure></p>
+<p>　　【使用指南】<br>　　使用此命令来清除当前所用规则的统计信息,不指定规则编号则清除所有规则的统计信息.<br>　　【举例】<br>　　<br>　　例1：清除当前所使用的序号为100的规则的统计信息.<br>　　<br>　　Quidway#clear access-list counters 100<br>　　<br>　　例2：清除当前所使用的所有规则的统计信息.<br>　　<br>　　Quidway#clear access-list counters<br>　　<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">　</div></pre></td></tr></table></figure></p>
+<p>　　【相关命令】<br>　　access-list<br>　　<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">　　</div><div class="line">　　</div><div class="line">　　</div><div class="line">　　</div><div class="line">　　</div><div class="line">　　</div><div class="line">　　三、firewall 启用或禁止防火墙.</div></pre></td></tr></table></figure></p>
+<p>　　firewall { enable | disable }<br>　　<br>　　<br>　　【参数说明】<br>　　<br>　　enable 表示启用防火墙.<br>　　disable 表示禁止防火墙.<br>　　<br>　　【缺省情况】<br>　　<br>　　系统缺省为禁止防火墙.<br>　　<br>　　【命令模式】<br>　　<br>　　全局配置模式<br>　　<br>　　【使用指南】<br>　　<br>　　使用此命令来启用或禁止防火墙,可以通过show firewall命令看到相应结果.如果采用了时间段包过滤,则在防火墙被关闭时也将被关闭;该命令控制防火墙的总开关.在使用 firewall disable 命令关闭防火墙时,防火墙本身的统计信息也将被清除.<br>　　【举例】<br>　　启用防火墙.<br>　　Quidway(config)#firewall enable<br>　　【相关命令】<br>　　access-list,ip access-group<br>　　<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"></div><div class="line">四、firewall default 配置防火墙在没有相应的访问规则匹配时,缺省的过滤方式. </div><div class="line"></div><div class="line">　　firewall default &#123; permit | deny &#125;</div></pre></td></tr></table></figure></p>
+<p>　　【参数说明】<br>　　permit 表示缺省过滤属性设置为“允许”.<br>　　deny 表示缺省过滤属性设置为“禁止”.<br>　　【缺省情况】<br>　　在防火墙开启的情况下,报文被缺省允许通过.<br>　　【命令模式】<br>　　全局配置模式<br>　　【使用指南】<br>　　当在接口应用的规则没有一个能够判断一个报文是否应该被允许还是禁止时,缺省的过滤属性将起作用;如果缺省过滤属性是“允许”,则报文可以通过,否则报文被丢弃.<br>　　【举例】<br>　　设置缺省过滤属性为“允许”.<br>　　Quidway(config)#firewall default permit<br>　　<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">五、ip access-group 使用此命令将规则应用到接口上.使用此命令的no形式来删</div><div class="line">　</div><div class="line">　　除相应的设置.</div></pre></td></tr></table></figure></p>
+<p>　　ip access-group listnumber { in | out }<br>　　[ no ] ip access-group listnumber { in | out }<br>　　【参数说明】<br>　　listnumber 为规则序号,是1~199之间的一个数值.<br>　　in 表示规则用于过滤从接口收上来的报文.<br>　　out 表示规则用于过滤从接口转发的报文.<br>　　【缺省情况】<br>　　没有规则应用于接口.<br>　　【命令模式】<br>　　接口配置模式.<br>　　【使用指南】<br>　　使用此命令来将规则应用到接口上;如果要过滤从接口收上来的报文,则使用 in 关键字;如果要过滤从接口转发的报文,使用out 关键字.一个接口的一个方向上最多可以应用20类不同的规则;这些规则之间按照规则序号的大小进行排列,序号大的排在前面,也就是优先级高.对报文进行过滤时,将采用发现符合的规则即得出过滤结果的方法来加快过滤速度.所以,建议在配置规则时,尽量将对同一个网络配置的规则放在同一个序号的访问列表中;在同一个序号的访问列表中,规则之间的排列和选择顺序可以用show access-list命令来查看.<br>　　【举例】<br>　　将规则101应用于过滤从以太网口收上来的报文.<br>　　Quidway(config-if-Ethernet0)#ip access-group 101 in<br>　　【相关命令】<br>　　access-list<br>　　<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">六、settr 设定或取消特殊时间段.</div><div class="line"> </div><div class="line">　　settr begin-time end-time </div><div class="line">　　</div><div class="line">　　no settr</div></pre></td></tr></table></figure></p>
+<p>　　【参数说明】<br>　　begin-time 为一个时间段的开始时间.<br>　　end-time 为一个时间段的结束时间,应该大于开始时间.<br>　　【缺省情况】<br>　　系统缺省没有设置时间段,即认为全部为普通时间段.<br>　　【命令模式】<br>　　全局配置模式<br>　　【使用指南】<br>　　使用此命令来设置时间段;可以最多同时设置6个时间段,通过show timerange 命令可以看到所设置的时间.如果在已经使用了一个时间段的情况下改变时间段,则此修改将在一分钟左右生效（系统查询时间段的时间间隔）.设置的时间应该是24小时制.如果要设置类似晚上9点到早上8点的时间段,可以设置成“settr 21:00 23:59 0:00 8:00”,因为所设置的时间段的两个端点属于时间段之内,故不会产生时间段内外的切换.另外这个设置也经过了2000问题的测试.<br>　　【举例】<br>　　例1：设置时间段为8:30 ~ 12:00,14:00 ~ 17:00.<br>　　Quidway(config)#settr 8:30 12:00 14:00 17:00<br>　　例2： 设置时间段为晚上9点到早上8点.<br>　　Quidway(config)#settr 21:00 23:59 0:00 8:0<br>　　【相关命令】<br>　　timerange,show timerange<br>　　<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">七、show access-list 显示包过滤规则及在接口上的应用. </div><div class="line"></div><div class="line">　　show access-list [ all | listnumber | interface interface-name ]</div></pre></td></tr></table></figure></p>
+<p>　　【参数说明】<br>　　all 表示所有的规则,包括普通时间段内及特殊时间段内的规则.<br>　　listnumber 为显示当前所使用的规则中序号为listnumber的规则.<br>　　interface 表示要显示在指定接口上应用的规则序号.<br>　　interface-name 为接口的名称.<br>　　【命令模式】<br>　　特权用户模式<br>　　【使用指南】<br>　　使用此命令来显示所指定的规则,同时查看规则过滤报文的情况.每个规则都有一个相应的计数器,如果用此规则过滤了一个报文,则计数器加1;通过对计数器的观察可以看出所配置的规则中,哪些规则是比较有效,而哪些基本无效.可以通过带interface关键字的show access-list命令来查看某个接口应用规则的情况.<br>　　【举例】<br>　　例1：显示当前所使用的序号为100的规则.<br>　　Quidway#show access-list 100<br>　　Using normal packet-filtering access rules now.<br>　　100 deny icmp 10.1.0.0 0.0.255.255 any host-redirect (3 matches,252 bytes – rule 1)<br>　　100 permit icmp 10.1.0.0 0.0.255.255 any echo (no matches – rule 2)<br>　　100 deny udp any any eq rip (no matches – rule 3)<br>　　例2： 显示接口Serial0上应用规则的情况.<br>　　Quidway#show access-list interface serial 0<br>　　Serial0:<br>　　access-list filtering In-bound packets : 120<br>　　access-list filtering Out-bound packets: None<br>　　【相关命令】<br>　　access-list<br>　　<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">八、show firewall 显示防火墙状态. </div><div class="line"></div><div class="line">　　show firewall</div></pre></td></tr></table></figure></p>
+<p>　　【命令模式】<br>　　特权用户模式<br>　　【使用指南】<br>　　使用此命令来显示防火墙的状态,包括防火墙是否被启用,启用防火墙时是否采用了时间段包过滤及防火墙的一些统计信息.<br>　　【举例】<br>　　显示防火墙状态.<br>　　Quidway#show firewall<br>　　Firewall is enable, default filtering method is ‘permit’.<br>　　TimeRange packet-filtering enable.<br>　　InBound packets: None;<br>　　OutBound packets: 0 packets, 0 bytes, 0% permitted,<br>　　0 packets, 0 bytes, 0% denied,<br>　　2 packets, 104 bytes, 100% permitted defaultly,<br>　　0 packets, 0 bytes, 100% denied defaultly.<br>　　From 00:13:02 to 06:13:21: 0 packets, 0 bytes, permitted.<br>　　【相关命令】<br>　　firewall<br>　　<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">九、show isintr 显示当前时间是否在时间段之内. </div><div class="line">　　</div><div class="line">　　show isintr</div></pre></td></tr></table></figure></p>
+<p>　　【命令模式】<br>　　特权用户模式<br>　　【使用指南】<br>　　使用此命令来显示当前时间是否在时间段之内.<br>　　【举例】<br>　　显示当前时间是否在时间段之内.<br>　　Quidway#show isintr<br>　　It is NOT in time ranges now.<br>　　【相关命令】<br>　　timerange,settr<br>　　<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">十、show timerange 显示时间段包过滤的信息.</div><div class="line"> </div><div class="line">　　show timerange</div></pre></td></tr></table></figure></p>
+<p>　　【命令模式】<br>　　特权用户模式<br>　　【使用指南】<br>　　使用此命令来显示当前是否允许时间段包过滤及所设置的时间段.<br>　　【举例】<br>　　显示时间段包过滤的信息.<br>　　Quidway#show timerange<br>　　TimeRange packet-filtering enable.<br>　　beginning of time range:<br>　　01:00 - 02:00<br>　　03:00 - 04:00<br>　　end of time range.<br>　　【相关命令】<br>　　timerange,settr<br>　　<br>　　<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">十一、timerange 启用或禁止时间段包过滤功能. </div><div class="line"></div><div class="line">　　timerange &#123; enable | disable &#125;</div></pre></td></tr></table></figure></p>
+<p>　　【参数说明】<br>　　enable 表示启用时间段包过滤.<br>　　disable 表示禁止采用时间段包过滤.<br>　　【缺省情况】<br>　　系统缺省为禁止时间段包过滤功能.<br>　　【命令模式】<br>　　全局配置模式<br>　　【使用指南】<br>　　使用此命令来启用或禁止时间段包过滤功能,可以通过show firewall命令看到,也可以通过show timerange命令看到配置结果.在时间段包过滤功能被启用后,系统将根据当前的时间和设置的时间段来确定使用时间段内（特殊）的规则还是时间段外（普通）的规则.系统查询时间段的精确度为1分钟.所设置的时间段的两个端点属于时间段之内.<br>　　【举例】<br>　　启用时间段包过滤功能.<br>　　Quidway(config)#timerange enable<br>　　【相关命令】<br>　　settr,show timerange<br>　　```</p>
 
       
     </div>
@@ -622,7 +482,7 @@ L=Linux   A=Apache   M=Mysql   P=PHP/Perl/Python。
       
         <div class="post-tags">
           
-            <a href="/tags/编译安装LAMP/" rel="tag"># 编译安装LAMP</a>
+            <a href="/tags/Cisco-路由器防火墙配置命令/" rel="tag"># Cisco 路由器防火墙配置命令</a>
           
         </div>
       
@@ -635,8 +495,8 @@ L=Linux   A=Apache   M=Mysql   P=PHP/Perl/Python。
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/28/华为S5700配置SSH和Raidus/" rel="next" title="华为S5700配置SSH和Raidus">
-                <i class="fa fa-chevron-left"></i> 华为S5700配置SSH和Raidus
+              <a href="/2017/07/30/Cisco路由器的安全配置/" rel="next" title="Cisco路由器的安全配置">
+                <i class="fa fa-chevron-left"></i> Cisco路由器的安全配置
               </a>
             
           </div>
@@ -644,10 +504,6 @@ L=Linux   A=Apache   M=Mysql   P=PHP/Perl/Python。
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/04/27/华为S7706配置/" rel="prev" title="华为S7706配置">
-                华为S7706配置 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -662,10 +518,10 @@ L=Linux   A=Apache   M=Mysql   P=PHP/Perl/Python。
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2017/03/31/编译安装LAMP/"
-     data-title="编译安装LAMP"
+        <div class="ds-share flat" data-thread-key="2017/07/30/Cisco路由器防火墙配置命令/"
+     data-title="Cisco 路由器防火墙配置命令"
      data-content=""
-     data-url="http://yoursite.com/2017/03/31/编译安装LAMP/">
+     data-url="http://yoursite.com/2017/07/30/Cisco路由器防火墙配置命令/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -692,8 +548,8 @@ L=Linux   A=Apache   M=Mysql   P=PHP/Perl/Python。
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/03/31/编译安装LAMP/"
-           data-title="编译安装LAMP" data-url="http://yoursite.com/2017/03/31/编译安装LAMP/">
+      <div class="ds-thread" data-thread-key="2017/07/30/Cisco路由器防火墙配置命令/"
+           data-title="Cisco 路由器防火墙配置命令" data-url="http://yoursite.com/2017/07/30/Cisco路由器防火墙配置命令/">
       </div>
     
   </div>

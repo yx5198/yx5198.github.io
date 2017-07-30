@@ -324,6 +324,181 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/30/Cisco路由器防火墙配置命令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="孤独泪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="孤独泪个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/07/30/Cisco路由器防火墙配置命令/" itemprop="url">
+                  Cisco 路由器防火墙配置命令
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-30T22:45:01+08:00">
+                2017-07-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络技术/" itemprop="url" rel="index">
+                    <span itemprop="name">网络技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/07/30/Cisco路由器防火墙配置命令/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/07/30/Cisco路由器防火墙配置命令/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>一、access-list 用于创建访问规则.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">　　</div><div class="line">　　access-list [ normal | special ] listnumber1 &#123; permit | deny &#125; </div><div class="line">　　</div><div class="line">　　source-addr [ source-mask ] </div><div class="line">　　</div><div class="line">　　（2）创建扩展访问列表 </div><div class="line">　　</div><div class="line">　　access-list [ normal | special ] listnumber2 &#123; permit | deny &#125; protocol source-addr source-mask [ operator port1 [ port2 ] ] dest-addr dest-mask [ operator port1 [ port2 ] | icmp-type [ icmp-code ] ] [ log ]</div><div class="line">　　 </div><div class="line">　　（3）删除访问列表 </div><div class="line">　　</div><div class="line">　　no access-list &#123; normal | special &#125; &#123; all | listnumber [ subitem ] &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">　【参数说明】</div><div class="line">　　 </div><div class="line">　　normal 指定规则加入普通时间段.</div><div class="line">　　 </div><div class="line">　　special 指定规则加入特殊时间段.</div><div class="line">　　 </div><div class="line">　　listnumber1 是1到99之间的一个数值,表示规则是标准访问列表规则.</div><div class="line">　　 </div><div class="line">　　listnumber2 是100到199之间的一个数值,表示规则是扩展访问列表规则. </div><div class="line">　　</div><div class="line">　　permit 表明允许满足条件的报文通过. </div><div class="line">　　</div><div class="line">　　deny 表明禁止满足条件的报文通过.</div><div class="line">　　 </div><div class="line">　　protocol 为协议类型,支持ICMP、TCP、UDP等,其它的协议也支持,此时没有端口比较的概念;为IP时有特殊含义,代表所有的IP协议.</div><div class="line">　　 </div><div class="line">　　source-addr 为源地址. </div><div class="line">　　</div><div class="line">　　source-mask 为源地址通配位,在标准访问列表中是可选项,不输入则代表通配位为0.0.0.0. </div><div class="line">　　</div><div class="line">　　dest-addr 为目的地址.</div><div class="line">　　 </div><div class="line">　　dest-mask 为目的地址通配位.</div><div class="line">　　 </div><div class="line">　　operator[可选] 端口操作符,在协议类型为TCP或UDP时支持端口比较,支持的比较操作有：等于（eq）、大于（gt）、小于（lt）、不等于（neq）或介于（range）;如果操作符为range,则后面需要跟两个端口. </div><div class="line">　　</div><div class="line">　　port1 在协议类型为TCP或UDP时出现,可以为关键字所设定的预设值（如telnet）或0~65535之间的一个数值.</div><div class="line">　　 </div><div class="line">　　port2 在协议类型为TCP或UDP且操作类型为range时出现;可以为关键字所设定的预设值（如telnet）或0~65535之间的一个数值. </div><div class="line">　　</div><div class="line">　　icmp-type[可选] 在协议为ICMP时出现,代表ICMP报文类型;可以是关键字所设定的预设值（如echo-reply）或者是0~255之间的一个数值.</div><div class="line">　　 </div><div class="line">　　icmp-code在协议为ICMP且没有选择所设定的预设值时出现;代表ICMP码,是0~255之间的一个数值. </div><div class="line">　　</div><div class="line">　　log [可选] 表示如果报文符合条件,需要做日志.</div><div class="line">　　 </div><div class="line">　　listnumber 为删除的规则序号,是1~199之间的一个数值. </div><div class="line">　　</div><div class="line">　　subitem[可选] 指定删除序号为listnumber的访问列表中规则的序号.</div></pre></td></tr></table></figure>
+<p>　　<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">【缺省情况】</div><div class="line">　　 </div><div class="line">　　系统缺省不配置任何访问规则.</div><div class="line">```　　 </div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">```　</div><div class="line">　　【命令模式】</div><div class="line">　　 </div><div class="line">　　全局配置模式</div></pre></td></tr></table></figure></p>
+<p>　　　　
+　　　　</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">　　【使用指南】</div><div class="line">　　 </div><div class="line">　　同一个序号的规则可以看作一类规则;所定义的规则不仅可以用来在接口上过滤报文,也可以被如DDR等用来判断一个报文是否是感兴趣的报文,此时,permit与deny表示是感兴趣的还是不感兴趣的.</div><div class="line">　　 </div><div class="line">　　使用协议域为IP的扩展访问列表来表示所有的IP协议.</div><div class="line">　　 </div><div class="line">　　同一个序号之间的规则按照一定的原则进行排列和选择,这个顺序可以通过 show access-list 命令看到. </div><div class="line">　　</div><div class="line">　　【举例】 </div><div class="line">　　允许源地址为10.1.1.0 网络、目的地址为10.1.2.0网络的WWW访问,但不允许使用FTP. </div><div class="line">　　</div><div class="line">　　Quidway(config)#access-list 100 permit tcp 10.1.1.0 0.0.0.255 10.1.2.0 0.0.0.255 eq www </div><div class="line">　　</div><div class="line">　　Quidway(config)#access-list 100 deny tcp 10.1.1.0 0.0.0.255 10.1.2.0 0.0.0.255 eq ftp</div></pre></td></tr></table></figure>
+   <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">【相关命令】</div><div class="line"> </div><div class="line">　　ip access-group</div></pre></td></tr></table></figure>
+<p>二、clear access-list counters 清除访问列表规则的统计信息.</p>
+<p>　　clear access-list counters [ listnumber ]<br>　　<br>　　<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">　　【参数说明】 </div><div class="line">　　listnumber [可选] 要清除统计信息的规则的序号,如不指定,则清除所有的规则的</div><div class="line">　　统计信息.</div><div class="line">　　```</div></pre></td></tr></table></figure></p>
+<p>　　【缺省情况】<br>　　任何时候都不清除统计信息.<br>　　<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">　</div></pre></td></tr></table></figure></p>
+<p>　　【命令模式】<br>　　特权用户模式<br>　　 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">　</div></pre></td></tr></table></figure></p>
+<p>　　【使用指南】<br>　　使用此命令来清除当前所用规则的统计信息,不指定规则编号则清除所有规则的统计信息.<br>　　【举例】<br>　　<br>　　例1：清除当前所使用的序号为100的规则的统计信息.<br>　　<br>　　Quidway#clear access-list counters 100<br>　　<br>　　例2：清除当前所使用的所有规则的统计信息.<br>　　<br>　　Quidway#clear access-list counters<br>　　<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">　</div></pre></td></tr></table></figure></p>
+<p>　　【相关命令】<br>　　access-list<br>　　<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">　　</div><div class="line">　　</div><div class="line">　　</div><div class="line">　　</div><div class="line">　　</div><div class="line">　　</div><div class="line">　　三、firewall 启用或禁止防火墙.</div></pre></td></tr></table></figure></p>
+<p>　　firewall { enable | disable }<br>　　<br>　　<br>　　【参数说明】<br>　　<br>　　enable 表示启用防火墙.<br>　　disable 表示禁止防火墙.<br>　　<br>　　【缺省情况】<br>　　<br>　　系统缺省为禁止防火墙.<br>　　<br>　　【命令模式】<br>　　<br>　　全局配置模式<br>　　<br>　　【使用指南】<br>　　<br>　　使用此命令来启用或禁止防火墙,可以通过show firewall命令看到相应结果.如果采用了时间段包过滤,则在防火墙被关闭时也将被关闭;该命令控制防火墙的总开关.在使用 firewall disable 命令关闭防火墙时,防火墙本身的统计信息也将被清除.<br>　　【举例】<br>　　启用防火墙.<br>　　Quidway(config)#firewall enable<br>　　【相关命令】<br>　　access-list,ip access-group<br>　　<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"></div><div class="line">四、firewall default 配置防火墙在没有相应的访问规则匹配时,缺省的过滤方式. </div><div class="line"></div><div class="line">　　firewall default &#123; permit | deny &#125;</div></pre></td></tr></table></figure></p>
+<p>　　【参数说明】<br>　　permit 表示缺省过滤属性设置为“允许”.<br>　　deny 表示缺省过滤属性设置为“禁止”.<br>　　【缺省情况】<br>　　在防火墙开启的情况下,报文被缺省允许通过.<br>　　【命令模式】<br>　　全局配置模式<br>　　【使用指南】<br>　　当在接口应用的规则没有一个能够判断一个报文是否应该被允许还是禁止时,缺省的过滤属性将起作用;如果缺省过滤属性是“允许”,则报文可以通过,否则报文被丢弃.<br>　　【举例】<br>　　设置缺省过滤属性为“允许”.<br>　　Quidway(config)#firewall default permit<br>　　<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">五、ip access-group 使用此命令将规则应用到接口上.使用此命令的no形式来删</div><div class="line">　</div><div class="line">　　除相应的设置.</div></pre></td></tr></table></figure></p>
+<p>　　ip access-group listnumber { in | out }<br>　　[ no ] ip access-group listnumber { in | out }<br>　　【参数说明】<br>　　listnumber 为规则序号,是1~199之间的一个数值.<br>　　in 表示规则用于过滤从接口收上来的报文.<br>　　out 表示规则用于过滤从接口转发的报文.<br>　　【缺省情况】<br>　　没有规则应用于接口.<br>　　【命令模式】<br>　　接口配置模式.<br>　　【使用指南】<br>　　使用此命令来将规则应用到接口上;如果要过滤从接口收上来的报文,则使用 in 关键字;如果要过滤从接口转发的报文,使用out 关键字.一个接口的一个方向上最多可以应用20类不同的规则;这些规则之间按照规则序号的大小进行排列,序号大的排在前面,也就是优先级高.对报文进行过滤时,将采用发现符合的规则即得出过滤结果的方法来加快过滤速度.所以,建议在配置规则时,尽量将对同一个网络配置的规则放在同一个序号的访问列表中;在同一个序号的访问列表中,规则之间的排列和选择顺序可以用show access-list命令来查看.<br>　　【举例】<br>　　将规则101应用于过滤从以太网口收上来的报文.<br>　　Quidway(config-if-Ethernet0)#ip access-group 101 in<br>　　【相关命令】<br>　　access-list<br>　　<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">六、settr 设定或取消特殊时间段.</div><div class="line"> </div><div class="line">　　settr begin-time end-time </div><div class="line">　　</div><div class="line">　　no settr</div></pre></td></tr></table></figure></p>
+<p>　　【参数说明】<br>　　begin-time 为一个时间段的开始时间.<br>　　end-time 为一个时间段的结束时间,应该大于开始时间.<br>　　【缺省情况】<br>　　系统缺省没有设置时间段,即认为全部为普通时间段.<br>　　【命令模式】<br>　　全局配置模式<br>　　【使用指南】<br>　　使用此命令来设置时间段;可以最多同时设置6个时间段,通过show timerange 命令可以看到所设置的时间.如果在已经使用了一个时间段的情况下改变时间段,则此修改将在一分钟左右生效（系统查询时间段的时间间隔）.设置的时间应该是24小时制.如果要设置类似晚上9点到早上8点的时间段,可以设置成“settr 21:00 23:59 0:00 8:00”,因为所设置的时间段的两个端点属于时间段之内,故不会产生时间段内外的切换.另外这个设置也经过了2000问题的测试.<br>　　【举例】<br>　　例1：设置时间段为8:30 ~ 12:00,14:00 ~ 17:00.<br>　　Quidway(config)#settr 8:30 12:00 14:00 17:00<br>　　例2： 设置时间段为晚上9点到早上8点.<br>　　Quidway(config)#settr 21:00 23:59 0:00 8:0<br>　　【相关命令】<br>　　timerange,show timerange<br>　　<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">七、show access-list 显示包过滤规则及在接口上的应用. </div><div class="line"></div><div class="line">　　show access-list [ all | listnumber | interface interface-name ]</div></pre></td></tr></table></figure></p>
+<p>　　【参数说明】<br>　　all 表示所有的规则,包括普通时间段内及特殊时间段内的规则.<br>　　listnumber 为显示当前所使用的规则中序号为listnumber的规则.<br>　　interface 表示要显示在指定接口上应用的规则序号.<br>　　interface-name 为接口的名称.<br>　　【命令模式】<br>　　特权用户模式<br>　　【使用指南】<br>　　使用此命令来显示所指定的规则,同时查看规则过滤报文的情况.每个规则都有一个相应的计数器,如果用此规则过滤了一个报文,则计数器加1;通过对计数器的观察可以看出所配置的规则中,哪些规则是比较有效,而哪些基本无效.可以通过带interface关键字的show access-list命令来查看某个接口应用规则的情况.<br>　　【举例】<br>　　例1：显示当前所使用的序号为100的规则.<br>　　Quidway#show access-list 100<br>　　Using normal packet-filtering access rules now.<br>　　100 deny icmp 10.1.0.0 0.0.255.255 any host-redirect (3 matches,252 bytes – rule 1)<br>　　100 permit icmp 10.1.0.0 0.0.255.255 any echo (no matches – rule 2)<br>　　100 deny udp any any eq rip (no matches – rule 3)<br>　　例2： 显示接口Serial0上应用规则的情况.<br>　　Quidway#show access-list interface serial 0<br>　　Serial0:<br>　　access-list filtering In-bound packets : 120<br>　　access-list filtering Out-bound packets: None<br>　　【相关命令】<br>　　access-list<br>　　<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">八、show firewall 显示防火墙状态. </div><div class="line"></div><div class="line">　　show firewall</div></pre></td></tr></table></figure></p>
+<p>　　【命令模式】<br>　　特权用户模式<br>　　【使用指南】<br>　　使用此命令来显示防火墙的状态,包括防火墙是否被启用,启用防火墙时是否采用了时间段包过滤及防火墙的一些统计信息.<br>　　【举例】<br>　　显示防火墙状态.<br>　　Quidway#show firewall<br>　　Firewall is enable, default filtering method is ‘permit’.<br>　　TimeRange packet-filtering enable.<br>　　InBound packets: None;<br>　　OutBound packets: 0 packets, 0 bytes, 0% permitted,<br>　　0 packets, 0 bytes, 0% denied,<br>　　2 packets, 104 bytes, 100% permitted defaultly,<br>　　0 packets, 0 bytes, 100% denied defaultly.<br>　　From 00:13:02 to 06:13:21: 0 packets, 0 bytes, permitted.<br>　　【相关命令】<br>　　firewall<br>　　<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">九、show isintr 显示当前时间是否在时间段之内. </div><div class="line">　　</div><div class="line">　　show isintr</div></pre></td></tr></table></figure></p>
+<p>　　【命令模式】<br>　　特权用户模式<br>　　【使用指南】<br>　　使用此命令来显示当前时间是否在时间段之内.<br>　　【举例】<br>　　显示当前时间是否在时间段之内.<br>　　Quidway#show isintr<br>　　It is NOT in time ranges now.<br>　　【相关命令】<br>　　timerange,settr<br>　　<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">十、show timerange 显示时间段包过滤的信息.</div><div class="line"> </div><div class="line">　　show timerange</div></pre></td></tr></table></figure></p>
+<p>　　【命令模式】<br>　　特权用户模式<br>　　【使用指南】<br>　　使用此命令来显示当前是否允许时间段包过滤及所设置的时间段.<br>　　【举例】<br>　　显示时间段包过滤的信息.<br>　　Quidway#show timerange<br>　　TimeRange packet-filtering enable.<br>　　beginning of time range:<br>　　01:00 - 02:00<br>　　03:00 - 04:00<br>　　end of time range.<br>　　【相关命令】<br>　　timerange,settr<br>　　<br>　　<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">十一、timerange 启用或禁止时间段包过滤功能. </div><div class="line"></div><div class="line">　　timerange &#123; enable | disable &#125;</div></pre></td></tr></table></figure></p>
+<p>　　【参数说明】<br>　　enable 表示启用时间段包过滤.<br>　　disable 表示禁止采用时间段包过滤.<br>　　【缺省情况】<br>　　系统缺省为禁止时间段包过滤功能.<br>　　【命令模式】<br>　　全局配置模式<br>　　【使用指南】<br>　　使用此命令来启用或禁止时间段包过滤功能,可以通过show firewall命令看到,也可以通过show timerange命令看到配置结果.在时间段包过滤功能被启用后,系统将根据当前的时间和设置的时间段来确定使用时间段内（特殊）的规则还是时间段外（普通）的规则.系统查询时间段的精确度为1分钟.所设置的时间段的两个端点属于时间段之内.<br>　　【举例】<br>　　启用时间段包过滤功能.<br>　　Quidway(config)#timerange enable<br>　　【相关命令】<br>　　settr,show timerange<br>　　```</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/30/Cisco路由器的安全配置/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -504,197 +679,6 @@
 <p>Router(Config-if)# no ip mask-reply</p>
 <p>11,建议禁止SNMP协议服务。在禁止时必须删除一些SNMP服务的默认配置。或者需要访问列表来过滤。如：</p>
 <p>Router(Config)# no snmp-server community</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/30/cisco路由器配置ipsecvpn/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="孤独泪">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="孤独泪个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/30/cisco路由器配置ipsecvpn/" itemprop="url">
-                  cisco路由器配置ipsecvpn
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-30T00:00:00+08:00">
-                2017-06-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/网络技术/" itemprop="url" rel="index">
-                    <span itemprop="name">网络技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/06/30/cisco路由器配置ipsecvpn/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/06/30/cisco路由器配置ipsecvpn/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="/img/cisco.png" alt=""></p>
-<p>步骤1：基本配置保证在没有做vpn之前网络连通</p>
-<p>步骤2：创建IKE加密策略</p>
-<p>r1(config)#crypto isakmp policy 1</p>
-<p>r1(config-isakmp)#encryption des    &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;           （加密消息算法）</p>
-<p>r1(config-isakmp)#authentication pre-share       &emsp; &emsp; &emsp;（对等体验证方法）</p>
-<p>r1(config-isakmp)#hash md5  &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;（消息完整性算法）</p>
-<p>r1(config-isakmp)#group 1 &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;&emsp;&emsp;&emsp;&emsp;（密钥交换参数）</p>
-<p>r1#show  crypto isakmp policy&emsp; &emsp; &emsp; &emsp; &emsp; &emsp;&emsp;&emsp;&emsp; &emsp;显示策略配置结果</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Protection suite of priority 1</div><div class="line">        encryption algorithm:   DES - Data Encryption Standard (56 bit keys).</div><div class="line">        hash algorithm:         Message Digest 5</div><div class="line">        authentication method:  Pre-Shared Key</div><div class="line">        Diffie-Hellman group:   #1 (768 bit)</div><div class="line">        lifetime:               86400 seconds, no volume limit</div><div class="line">Default protection suite</div><div class="line">        encryption algorithm:   DES - Data Encryption Standard (56 bit keys).</div><div class="line">        hash algorithm:         Secure Hash Standard</div><div class="line">        authentication method:  Rivest-Shamir-Adleman Signature</div><div class="line">        Diffie-Hellman group:   #1 (768 bit)</div><div class="line">        lifetime:               86400 seconds, no volume limit</div></pre></td></tr></table></figure>
-<p>B路由器配置同理，注意两端使用的各种方法要相同</p>
-<p>步骤3：由于使用了共享密钥验证对等体，定义密钥。注意密钥和对等体要一起定义</p>
-<p>r1(config)#crypto isakmp key cisco address 135.25.1.2</p>
-<p>r2(config)#crypto isakmp key cisco address 135.25.1.1</p>
-<p>步骤4：定义IPSEC变换集</p>
-<p>r1(config)#crypto ipsec transform-set future esp-des</p>
-<p>r2(config)#crypto ipsec transform-set future esp-des</p>
-<p>注意两端的参数要相同</p>
-<p>r1#show crypto ipsec transform-set</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Transform set future: &#123; esp-des  &#125;</div><div class="line">   will negotiate = &#123; Tunnel,  &#125;</div></pre></td></tr></table></figure>
-<p>步骤5：定义将要保护的数据流</p>
-<p>r1(config)#access-list 101 permit ip 135.25.3.0 0.0.0.255 135.25.4.0 0.0.0.255</p>
-<p>r2(config)# access-list 101 permit ip 135.25.4.0 0.0.0.255 135.25.3.0 0.0.0.255</p>
-<p>步骤6：配置加密映射：将加密策略和流量联系起来</p>
-<p>r1(config)#crypto map zhangyu 10 ipsec-isakmp</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">% NOTE: This new crypto map will remain disabled until a peer</div><div class="line">        and a valid access list have been configured.</div></pre></td></tr></table></figure>
-<p>r1(config-crypto-map)#set peer 135.25.1.2</p>
-<p>r1(config-crypto-map)#set transform-set future</p>
-<p>r1(config-crypto-map)#match address 101</p>
-<p>B路由器同理</p>
-<p>步骤7：将加密映射应用到接口</p>
-<p>r1(config)#int s 0</p>
-<p>r1(config-if)#crypto map zhangyu</p>
-<p>步骤8：测试显示A路由器上IPSEC连接</p>
-<p>r1#show crypto engine connections active</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"></div><div class="line">ID Interface       IP-Address      State  Algorithm         Encrypt  Decrypt</div></pre></td></tr></table></figure>
-<p>在PC1上ping 135.25.4.1</p>
-<p>r1#show crypto engine connections active</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"></div><div class="line">  ID Interface       IP-Address      State  Algorithm          Encrypt  Decrypt</div><div class="line">2000 Serial0         135.25.1.1      set    DES_56_CBC               0        5</div><div class="line">2001 Serial0         135.25.1.1      set    DES_56_CBC</div></pre></td></tr></table></figure>
 
           
         
@@ -936,7 +920,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/30/交换机VTP配置/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/30/cisco路由器配置ipsecvpn/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="孤独泪">
@@ -958,8 +942,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/05/30/交换机VTP配置/" itemprop="url">
-                  交换机VTP配置
+                <a class="post-title-link" href="/2017/06/30/cisco路由器配置ipsecvpn/" itemprop="url">
+                  cisco路由器配置ipsecvpn
                 </a>
               
             
@@ -975,8 +959,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-30T00:00:00+08:00">
-                2017-05-30
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-30T00:00:00+08:00">
+                2017-06-30
               </time>
             
 
@@ -1016,8 +1000,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/05/30/交换机VTP配置/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/30/交换机VTP配置/" itemprop="commentCount"></span>
+                <a href="/2017/06/30/cisco路由器配置ipsecvpn/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/06/30/cisco路由器配置ipsecvpn/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1045,11 +1029,45 @@
       
         
           
-            <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">switch&gt;                  进入用户模式 </div><div class="line">  </div><div class="line">switch&gt;enable              进入特权模式</div><div class="line"></div><div class="line"> </div><div class="line">switch#configure  terminal            进入全局配置模式 </div><div class="line"></div><div class="line"></div><div class="line">switch(config)# hostname  s1          设置交换机的主机名 </div><div class="line"></div><div class="line"></div><div class="line">s1(config)#enable passwd cisco               使能口令</div><div class="line"></div><div class="line">            </div><div class="line">s1(config)#enable secret cisco使能密码(加密的特权密码)</div><div class="line"></div><div class="line">s1(config)#service password-encryption         所有的密码全变成密文 </div><div class="line"></div><div class="line"></div><div class="line">S1(config)# no ip domain-lookup    关闭寻找域名服务</div><div class="line"></div><div class="line"></div><div class="line">S1(config)#alias exec a show running-configure    别名 </div><div class="line"> </div><div class="line">S1(config)# line console 0 </div><div class="line"></div><div class="line"></div><div class="line">S1(config-line)# password cisco</div><div class="line"></div><div class="line"></div><div class="line">S1(config-line)#login </div><div class="line"></div><div class="line"></div><div class="line">S1(config-line)#exec-timeout 0 0 (防止系统超时退出特权模式) 零代表无限制    0分0秒</div><div class="line"></div><div class="line"></div><div class="line">S1(config-line)#logging synchronous(避免被系统出现的控制信息打断命令) </div><div class="line"> </div><div class="line"></div><div class="line">s1(config)#interface  vlan 1   </div><div class="line"></div><div class="line">    </div><div class="line">s1(config-if)#ip address 192.168.10.1 255.255.255.0   配置管理IP</div><div class="line"></div><div class="line"></div><div class="line">s1(config-if)#speed 100 配置端口速度为100M  </div><div class="line"></div><div class="line"> </div><div class="line">s1(config-if)#duplex auto     自动</div><div class="line"></div><div class="line"></div><div class="line">                              full     全双工</div><div class="line">                              </div><div class="line">                              half     半双工 </div><div class="line"></div><div class="line">                              </div><div class="line">s1(config-if)#no shutdown   开启端口使配置生效</div><div class="line"></div><div class="line"></div><div class="line">s1(config)#ip default-gateway 192.168.10.254   配置交换机默认网关 </div><div class="line"></div><div class="line"></div><div class="line">S1#show running-configure   检查配置(保存在内存RAM中)</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">中继模式</div><div class="line"></div><div class="line"></div><div class="line">S1(config-if)# switchport mode access      接入链路(swich--PC)</div><div class="line"></div><div class="line"></div><div class="line">S1(config-if)# switchport mode trunk  中继模式(swich--swich)</div><div class="line"></div><div class="line"></div><div class="line">S1(config-if)#switchport trunk allowed vlan remove 10</div><div class="line"></div><div class="line"></div><div class="line">将vlan 10从该中继链路删除                      add 增加</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">VLAN</div><div class="line"></div><div class="line"></div><div class="line">s1#vlan database </div><div class="line"></div><div class="line"></div><div class="line">s1(vlan)#vlan 10 name vlan10 </div><div class="line"></div><div class="line"></div><div class="line">s1(config)#vlan 10  建立vlan</div><div class="line"></div><div class="line"></div><div class="line">s1(config-vlan)#name caiwu  vlan命名</div><div class="line"></div><div class="line"></div><div class="line">s1(config)#no vlan  10  删除vlan 10</div><div class="line"></div><div class="line">s1#show vlan brief   验证</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">VTP</div><div class="line">s1(config)#vtp version 2 启用版本2</div><div class="line">s1(config)#vtp domain test  加入管理域</div><div class="line">s1(config)#vtp mode  server  配置成VTP服务器</div><div class="line">                                client         配置成VTP客户端</div><div class="line">                                transparent     配置成VTP透明模式</div><div class="line">s1(config)#vtp password cisco     vtp口令</div><div class="line">s1(config)#vtp pruning                   启用vtp修剪</div><div class="line">switch(config)#no vtp pruning     关闭VTP修剪</div><div class="line">S1(config-if)#switchport trunk pruning vlan remove  vlan-id </div><div class="line">                             从可修剪列表中去除某VLAN</div><div class="line">s1(config)#vtp domain test-a   脱离vtp域</div><div class="line">s1#show vtp status   检查配置</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">配置远程登陆</div><div class="line">S1(config)#line vty 0 15</div><div class="line">S1(config-line)#password cisco</div><div class="line">S1(config-line)#exec-timeout 0 0</div><div class="line">S1(config-line)#logging synchronous</div><div class="line">S1(config-line)#login</div><div class="line"> </div><div class="line"> </div><div class="line">S1#erase startup-config  清除配置</div><div class="line">S1#copy running-config startup-config 保存配置到（NVRAM中）</div><div class="line">S1#write  写入配置</div><div class="line">S1#show startup-config 检查保存的配置信息</div><div class="line">S1#reload  重启</div></pre></td></tr></table></figure>
+            <p><img src="/img/cisco.png" alt=""></p>
+<p>步骤1：基本配置保证在没有做vpn之前网络连通</p>
+<p>步骤2：创建IKE加密策略</p>
+<p>r1(config)#crypto isakmp policy 1</p>
+<p>r1(config-isakmp)#encryption des    &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;           （加密消息算法）</p>
+<p>r1(config-isakmp)#authentication pre-share       &emsp; &emsp; &emsp;（对等体验证方法）</p>
+<p>r1(config-isakmp)#hash md5  &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;（消息完整性算法）</p>
+<p>r1(config-isakmp)#group 1 &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;&emsp;&emsp;&emsp;&emsp;（密钥交换参数）</p>
+<p>r1#show  crypto isakmp policy&emsp; &emsp; &emsp; &emsp; &emsp; &emsp;&emsp;&emsp;&emsp; &emsp;显示策略配置结果</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Protection suite of priority 1</div><div class="line">        encryption algorithm:   DES - Data Encryption Standard (56 bit keys).</div><div class="line">        hash algorithm:         Message Digest 5</div><div class="line">        authentication method:  Pre-Shared Key</div><div class="line">        Diffie-Hellman group:   #1 (768 bit)</div><div class="line">        lifetime:               86400 seconds, no volume limit</div><div class="line">Default protection suite</div><div class="line">        encryption algorithm:   DES - Data Encryption Standard (56 bit keys).</div><div class="line">        hash algorithm:         Secure Hash Standard</div><div class="line">        authentication method:  Rivest-Shamir-Adleman Signature</div><div class="line">        Diffie-Hellman group:   #1 (768 bit)</div><div class="line">        lifetime:               86400 seconds, no volume limit</div></pre></td></tr></table></figure>
+<p>B路由器配置同理，注意两端使用的各种方法要相同</p>
+<p>步骤3：由于使用了共享密钥验证对等体，定义密钥。注意密钥和对等体要一起定义</p>
+<p>r1(config)#crypto isakmp key cisco address 135.25.1.2</p>
+<p>r2(config)#crypto isakmp key cisco address 135.25.1.1</p>
+<p>步骤4：定义IPSEC变换集</p>
+<p>r1(config)#crypto ipsec transform-set future esp-des</p>
+<p>r2(config)#crypto ipsec transform-set future esp-des</p>
+<p>注意两端的参数要相同</p>
+<p>r1#show crypto ipsec transform-set</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Transform set future: &#123; esp-des  &#125;</div><div class="line">   will negotiate = &#123; Tunnel,  &#125;</div></pre></td></tr></table></figure>
+<p>步骤5：定义将要保护的数据流</p>
+<p>r1(config)#access-list 101 permit ip 135.25.3.0 0.0.0.255 135.25.4.0 0.0.0.255</p>
+<p>r2(config)# access-list 101 permit ip 135.25.4.0 0.0.0.255 135.25.3.0 0.0.0.255</p>
+<p>步骤6：配置加密映射：将加密策略和流量联系起来</p>
+<p>r1(config)#crypto map zhangyu 10 ipsec-isakmp</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">% NOTE: This new crypto map will remain disabled until a peer</div><div class="line">        and a valid access list have been configured.</div></pre></td></tr></table></figure>
+<p>r1(config-crypto-map)#set peer 135.25.1.2</p>
+<p>r1(config-crypto-map)#set transform-set future</p>
+<p>r1(config-crypto-map)#match address 101</p>
+<p>B路由器同理</p>
+<p>步骤7：将加密映射应用到接口</p>
+<p>r1(config)#int s 0</p>
+<p>r1(config-if)#crypto map zhangyu</p>
+<p>步骤8：测试显示A路由器上IPSEC连接</p>
+<p>r1#show crypto engine connections active</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"></div><div class="line">ID Interface       IP-Address      State  Algorithm         Encrypt  Decrypt</div></pre></td></tr></table></figure>
+<p>在PC1上ping 135.25.4.1</p>
+<p>r1#show crypto engine connections active</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"></div><div class="line">  ID Interface       IP-Address      State  Algorithm          Encrypt  Decrypt</div><div class="line">2000 Serial0         135.25.1.1      set    DES_56_CBC               0        5</div><div class="line">2001 Serial0         135.25.1.1      set    DES_56_CBC</div></pre></td></tr></table></figure>
 
           
         
@@ -1325,7 +1343,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1347,7 +1365,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
