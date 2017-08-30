@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="shadowsocks流量监控脚本," />
 
 
 
@@ -87,15 +87,19 @@
 
 
 
-<meta name="description" content="时间是一切财富中最宝贵的财富">
-<meta property="og:type" content="website">
-<meta property="og:title" content="孤独泪个人博客">
-<meta property="og:url" content="http://yoursite.com/archives/2017/index.html">
+<meta name="description" content="#!/usr/bin/env python
+#coding=utf8import jsonimport osdef run_cmd(port):    cmd = “iptables-save | grep -w %s | grep -v grep | wc -l” % port    num = os.popen(cmd).read()    if int(num) == 0:        c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="shadowsocks流量监控脚本">
+<meta property="og:url" content="http://yoursite.com/2017/08/30/shadowsocks流量监控脚本/index.html">
 <meta property="og:site_name" content="孤独泪个人博客">
-<meta property="og:description" content="时间是一切财富中最宝贵的财富">
+<meta property="og:description" content="#!/usr/bin/env python
+#coding=utf8import jsonimport osdef run_cmd(port):    cmd = “iptables-save | grep -w %s | grep -v grep | wc -l” % port    num = os.popen(cmd).read()    if int(num) == 0:        c">
+<meta property="og:updated_time" content="2017-08-30T15:06:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="孤独泪个人博客">
-<meta name="twitter:description" content="时间是一切财富中最宝贵的财富">
+<meta name="twitter:title" content="shadowsocks流量监控脚本">
+<meta name="twitter:description" content="#!/usr/bin/env python
+#coding=utf8import jsonimport osdef run_cmd(port):    cmd = “iptables-save | grep -w %s | grep -v grep | wc -l” % port    num = os.popen(cmd).read()    if int(num) == 0:        c">
 
 
 
@@ -123,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2017/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/08/30/shadowsocks流量监控脚本/"/>
 
 
 
 
 
-  <title> 归档 | 孤独泪个人博客 </title>
+  <title> shadowsocks流量监控脚本 | 孤独泪个人博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -164,7 +168,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  page-archive  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -312,584 +316,217 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      嗯..! 目前共计 15 篇日志。 继续努力。
-    </span>
-
+  <div id="posts" class="posts-expand">
     
-
-      
-      
-      
-
-      
-        
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2017">2017</h2>
-        </div>
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/08/30/shadowsocks流量监控脚本/" itemprop="url">
-              
-                <span itemprop="name">shadowsocks流量监控脚本</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-08-30T22:56:44+08:00"
-              content="2017-08-30" >
-          08-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/08/30/shadowsocks管理脚本/" itemprop="url">
-              
-                <span itemprop="name">shadowsocks管理脚本</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-08-30T22:48:31+08:00"
-              content="2017-08-30" >
-          08-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/07/30/Cisco路由器防火墙配置命令/" itemprop="url">
-              
-                <span itemprop="name">Cisco 路由器防火墙配置命令</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-07-30T22:45:01+08:00"
-              content="2017-07-30" >
-          07-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/07/30/Cisco路由器的安全配置/" itemprop="url">
-              
-                <span itemprop="name">Cisco路由器的安全配置</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-07-30T22:16:18+08:00"
-              content="2017-07-30" >
-          07-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/06/30/cisco路由器恢复enable密码/" itemprop="url">
-              
-                <span itemprop="name">cisco路由器恢复enable密码</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-06-30T00:00:00+08:00"
-              content="2017-06-30" >
-          06-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/06/30/cisco路由器配置ipsecvpn/" itemprop="url">
-              
-                <span itemprop="name">cisco路由器配置ipsecvpn</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-06-30T00:00:00+08:00"
-              content="2017-06-30" >
-          06-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/05/30/cisco3550端口速率限制/" itemprop="url">
-              
-                <span itemprop="name">cisco3550 端口速率限制实现方法</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-05-30T00:00:00+08:00"
-              content="2017-05-30" >
-          05-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/05/30/交换机VTP配置/" itemprop="url">
-              
-                <span itemprop="name">交换机VTP配置</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-05-30T00:00:00+08:00"
-              content="2017-05-30" >
-          05-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/04/28/利用squid代理-stunnel加密翻墙/" itemprop="url">
-              
-                <span itemprop="name">利用squid代理+stunnel加密翻墙</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-04-28T00:00:00+08:00"
-              content="2017-04-28" >
-          04-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/04/27/华为S7706配置/" itemprop="url">
-              
-                <span itemprop="name">华为S7706配置</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-04-27T23:18:09+08:00"
-              content="2017-04-27" >
-          04-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/31/编译安装LAMP/" itemprop="url">
-              
-                <span itemprop="name">编译安装LAMP</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-31T22:51:46+08:00"
-              content="2017-03-31" >
-          03-31
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/28/华为S5700配置SSH和Raidus/" itemprop="url">
-              
-                <span itemprop="name">华为S5700配置SSH和Raidus</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-28T23:10:49+08:00"
-              content="2017-03-28" >
-          03-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/26/Extmail/" itemprop="url">
-              
-                <span itemprop="name">Extmail</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-26T03:49:44+08:00"
-              content="2017-03-26" >
-          03-26
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/23/renleiyuhuanjing/" itemprop="url">
-              
-                <span itemprop="name">人类与环境</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-23T23:35:44+08:00"
-              content="2017-03-23" >
-          03-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/20/hello-world/" itemprop="url">
-              
-                <span itemprop="name">Hello World</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-20T00:08:59+08:00"
-              content="2017-03-20" >
-          03-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-  </section>
 
   
 
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/30/shadowsocks流量监控脚本/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="孤独泪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="孤独泪个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                shadowsocks流量监控脚本
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-30T22:56:44+08:00">
+                2017-08-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux系统/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/30/shadowsocks流量监控脚本/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/08/30/shadowsocks流量监控脚本/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>#!/usr/bin/env python</p>
+<p>#coding=utf8<br>import json<br>import os<br>def run_cmd(port):<br>    cmd = “iptables-save | grep -w %s | grep -v grep | wc -l” % port<br>    num = os.popen(cmd).read()<br>    if int(num) == 0:<br>        cmd = “iptables -A INPUT -p tcp –dport %s;” % port<br>        cmd += “iptables -A OUTPUT -p tcp –sport %s;” % port<br>        os.popen(cmd).read()<br>def get_network():<br>    cmd = “iptables -vnL| awk ‘{print $2,$11 }’”</p>
+<pre><code>#cmd = &quot;iptables -vnL&quot;
+data = os.popen(cmd).read()
+data += &quot;\n&quot;
+print data
+file_name = &quot;/root/network.txt&quot;
+f = open(file_name, &quot;a+&quot;)
+f.write(data)
+f.close()
+</code></pre><p>def get_port():<br>    file_path = “/etc/shadowsocks/config.json”<br>    f = open(file_path, ‘r’)<br>    data = json.load(f)<br>    for port in (data[“port_password”]).keys():<br>        run_cmd(port)<br>    get_network()<br>if <strong>name</strong> == “<strong>main</strong>“:<br>    get_port()</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/shadowsocks流量监控脚本/" rel="tag"># shadowsocks流量监控脚本</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/30/shadowsocks管理脚本/" rel="next" title="shadowsocks管理脚本">
+                <i class="fa fa-chevron-left"></i> shadowsocks管理脚本
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2017/08/30/shadowsocks流量监控脚本/"
+     data-title="shadowsocks流量监控脚本"
+     data-content=""
+     data-url="http://yoursite.com/2017/08/30/shadowsocks流量监控脚本/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
 
           
           </div>
@@ -897,6 +534,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/08/30/shadowsocks流量监控脚本/"
+           data-title="shadowsocks流量监控脚本" data-url="http://yoursite.com/2017/08/30/shadowsocks流量监控脚本/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -1153,11 +798,9 @@
 
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
 
 
   

@@ -324,6 +324,452 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/30/shadowsocks流量监控脚本/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="孤独泪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="孤独泪个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/08/30/shadowsocks流量监控脚本/" itemprop="url">
+                  shadowsocks流量监控脚本
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-30T22:56:44+08:00">
+                2017-08-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux系统/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/30/shadowsocks流量监控脚本/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/08/30/shadowsocks流量监控脚本/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>#!/usr/bin/env python</p>
+<p>#coding=utf8<br>import json<br>import os<br>def run_cmd(port):<br>    cmd = “iptables-save | grep -w %s | grep -v grep | wc -l” % port<br>    num = os.popen(cmd).read()<br>    if int(num) == 0:<br>        cmd = “iptables -A INPUT -p tcp –dport %s;” % port<br>        cmd += “iptables -A OUTPUT -p tcp –sport %s;” % port<br>        os.popen(cmd).read()<br>def get_network():<br>    cmd = “iptables -vnL| awk ‘{print $2,$11 }’”</p>
+<pre><code>#cmd = &quot;iptables -vnL&quot;
+data = os.popen(cmd).read()
+data += &quot;\n&quot;
+print data
+file_name = &quot;/root/network.txt&quot;
+f = open(file_name, &quot;a+&quot;)
+f.write(data)
+f.close()
+</code></pre><p>def get_port():<br>    file_path = “/etc/shadowsocks/config.json”<br>    f = open(file_path, ‘r’)<br>    data = json.load(f)<br>    for port in (data[“port_password”]).keys():<br>        run_cmd(port)<br>    get_network()<br>if <strong>name</strong> == “<strong>main</strong>“:<br>    get_port()</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/30/shadowsocks管理脚本/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="孤独泪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="孤独泪个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/08/30/shadowsocks管理脚本/" itemprop="url">
+                  shadowsocks管理脚本
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-30T22:48:31+08:00">
+                2017-08-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux系统/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/30/shadowsocks管理脚本/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/08/30/shadowsocks管理脚本/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>#!/usr/bin/python</p>
+<p>#coding=utf-8</p>
+<p>import os<br>import json<br>import datetime<br>import string<br>from random import choice<br>from pprint import pprint<br>from optparse import OptionParser</p>
+<p>“””</p>
+<p>操作前备份 /etc/shadowsocks/config.json</p>
+<p>新加用户操用</p>
+<ol>
+<li>修改 /etc/shadowsocks/config.json</li>
+<li>重启 /etc/init.d/shadowsocks restart</li>
+<li>加防火墙规则</li>
+</ol>
+<p>删除用户操用</p>
+<ol>
+<li>修改 /etc/shadowsocks/config.json</li>
+<li>重启 /etc/init.d/shadowsocks restart</li>
+<li>删防火墙规则</li>
+</ol>
+<p>“””</p>
+<p>shadowsocks_cnf = “/etc/shadowsocks/config.json”<br>passwd_len = 8</p>
+<p>def create_new_passwd(length=8, chars=string.ascii_letters + string.digits):</p>
+<pre><code>return &apos;&apos;.join([choice(chars) for i in range(length)])
+</code></pre><p>def store(data):<br>    with open(shadowsocks_cnf, ‘w’) as json_file:<br>        json_file.write(json.dumps(data))</p>
+<p>def load():<br>    with open(shadowsocks_cnf) as json_file:<br>        data = json.load(json_file)<br>        return data</p>
+<p>def store_new_user(port,passwd):</p>
+<pre><code>data = load()
+data[&apos;port_password&apos;][port]=passwd
+store(data)
+</code></pre><p>def remove_old_user(port):</p>
+<pre><code>try:
+    data = load()
+
+    old_passwd = data[&apos;port_password&apos;].pop(port)
+
+    store(data)
+
+    return   {&quot;port&quot;:port,&quot;passwd&quot;:old_passwd}
+except:
+    return  False
+</code></pre><p>def get_next_port():</p>
+<pre><code>data = load()
+ports = data[&apos;port_password&apos;].keys()
+return  int(max(ports))+1
+</code></pre><p>def user_list():<br>    data = load()<br>    users =  data[‘port_password’]<br>    return  users</p>
+<p>def add_user():</p>
+<pre><code>next_port = get_next_port()
+next_passwd = create_new_passwd(length=passwd_len)
+store_new_user(next_port, next_passwd)
+
+
+return  {&quot;port&quot;:next_port,&quot;passwd&quot;:next_passwd}
+</code></pre><p>def del_user(port):</p>
+<pre><code>return  remove_old_user(port)
+</code></pre><p>def reload_ss():</p>
+<pre><code>cmd = &quot;/etc/init.d/shadowsocks restart&quot;
+os.popen(cmd)
+</code></pre><p>def iptables_add_new_port(port):</p>
+<pre><code>cmd = &quot;iptables -A  INPUT -p tcp --dport %s -j ACCEPT &amp;&amp; iptables -A OUTPUT -p tcp --sport %s -j ACCEPT &amp;&amp; service iptables save&quot;%(port,port)
+os.popen(cmd)
+</code></pre><p>def iptables_del_old_port(port):</p>
+<pre><code>cmd = &quot;iptables -D  INPUT -p tcp --dport %s -j ACCEPT &amp;&amp; iptables -D OUTPUT -p tcp --sport %s -j ACCEPT &amp;&amp; service iptables save&quot;%(port,port)
+os.popen(cmd)
+</code></pre><p>def bak_cnf():</p>
+<pre><code>bak_time =  datetime.datetime.now().strftime(&apos;%Y%m%d%H%M%S&apos;)
+cmd = &quot;cp /etc/shadowsocks/config.json /etc/shadowsocks/config.json.bak_%s&quot; % bak_time
+os.popen(cmd)
+</code></pre><p>if <strong>name</strong> == “<strong>main</strong>“:</p>
+<pre><code>from optparse import OptionParser
+
+parser = OptionParser()
+parser.add_option(&quot;-p&quot;, &quot;--userlist&quot;, action=&quot;store_true&quot;,
+                  dest=&quot;userlist&quot;,
+                  default=False,
+                  help=&quot;python ss_manage.py --userlist&quot;)
+parser.add_option(&quot;-z&quot;, &quot;--adduser&quot;, action=&quot;store_true&quot;,
+                  dest=&quot;adduser&quot;,
+                  default=False,
+                  help=&quot;python ss_manage.py --adduser&quot;)
+
+parser.add_option(&quot;-d&quot;, &quot;--deluser&quot;, action=&quot;store&quot;,
+                  dest=&quot;deluser&quot;,
+                  default=False,
+                  help=&quot;python ss_manage.py --deluser port&quot;)
+
+(options, args) = parser.parse_args()
+
+
+if options.userlist == True:
+
+    users = user_list()
+
+
+    print &quot;用户列表 :&quot; ,len(users)
+    print &quot;-&quot;*30
+
+    for k,v in users.items():
+        print &quot;port:&quot;,k,&quot;passwd:&quot;,v
+
+elif options.adduser == True:
+
+    bak_cnf()
+    new_user = add_user()
+    reload_ss()
+    iptables_add_new_port(new_user[&quot;port&quot;])
+
+    print &quot;添加用户:&quot;
+    print &quot;-&quot; * 30
+    print &quot;port:&quot;, new_user[&quot;port&quot;], &quot;passwd:&quot;, new_user[&quot;passwd&quot;]
+
+
+elif options.deluser:
+
+    bak_cnf()
+    old_user = del_user(options.deluser)
+    reload_ss()
+
+
+    if old_user == False:
+        print &quot;删除用户:&quot;
+        print &quot;-&quot; * 30
+        print(&quot;端口%s不在列表中&quot;%options.deluser)
+    else:
+
+        print &quot;删除用户:&quot;
+        print &quot;-&quot; * 30
+        print &quot;port:&quot;, old_user[&quot;port&quot;], &quot;passwd:&quot;, old_user[&quot;passwd&quot;]
+
+        iptables_del_old_port(old_user[&quot;port&quot;])
+
+
+else:
+    parser.print_help()
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/30/Cisco路由器防火墙配置命令/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -911,389 +1357,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/30/cisco路由器配置ipsecvpn/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="孤独泪">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="孤独泪个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/30/cisco路由器配置ipsecvpn/" itemprop="url">
-                  cisco路由器配置ipsecvpn
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-30T00:00:00+08:00">
-                2017-06-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/网络技术/" itemprop="url" rel="index">
-                    <span itemprop="name">网络技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/06/30/cisco路由器配置ipsecvpn/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/06/30/cisco路由器配置ipsecvpn/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="/img/cisco.png" alt=""></p>
-<p>步骤1：基本配置保证在没有做vpn之前网络连通</p>
-<p>步骤2：创建IKE加密策略</p>
-<p>r1(config)#crypto isakmp policy 1</p>
-<p>r1(config-isakmp)#encryption des    &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;           （加密消息算法）</p>
-<p>r1(config-isakmp)#authentication pre-share       &emsp; &emsp; &emsp;（对等体验证方法）</p>
-<p>r1(config-isakmp)#hash md5  &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;（消息完整性算法）</p>
-<p>r1(config-isakmp)#group 1 &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;&emsp;&emsp;&emsp;&emsp;（密钥交换参数）</p>
-<p>r1#show  crypto isakmp policy&emsp; &emsp; &emsp; &emsp; &emsp; &emsp;&emsp;&emsp;&emsp; &emsp;显示策略配置结果</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Protection suite of priority 1</div><div class="line">        encryption algorithm:   DES - Data Encryption Standard (56 bit keys).</div><div class="line">        hash algorithm:         Message Digest 5</div><div class="line">        authentication method:  Pre-Shared Key</div><div class="line">        Diffie-Hellman group:   #1 (768 bit)</div><div class="line">        lifetime:               86400 seconds, no volume limit</div><div class="line">Default protection suite</div><div class="line">        encryption algorithm:   DES - Data Encryption Standard (56 bit keys).</div><div class="line">        hash algorithm:         Secure Hash Standard</div><div class="line">        authentication method:  Rivest-Shamir-Adleman Signature</div><div class="line">        Diffie-Hellman group:   #1 (768 bit)</div><div class="line">        lifetime:               86400 seconds, no volume limit</div></pre></td></tr></table></figure>
-<p>B路由器配置同理，注意两端使用的各种方法要相同</p>
-<p>步骤3：由于使用了共享密钥验证对等体，定义密钥。注意密钥和对等体要一起定义</p>
-<p>r1(config)#crypto isakmp key cisco address 135.25.1.2</p>
-<p>r2(config)#crypto isakmp key cisco address 135.25.1.1</p>
-<p>步骤4：定义IPSEC变换集</p>
-<p>r1(config)#crypto ipsec transform-set future esp-des</p>
-<p>r2(config)#crypto ipsec transform-set future esp-des</p>
-<p>注意两端的参数要相同</p>
-<p>r1#show crypto ipsec transform-set</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Transform set future: &#123; esp-des  &#125;</div><div class="line">   will negotiate = &#123; Tunnel,  &#125;</div></pre></td></tr></table></figure>
-<p>步骤5：定义将要保护的数据流</p>
-<p>r1(config)#access-list 101 permit ip 135.25.3.0 0.0.0.255 135.25.4.0 0.0.0.255</p>
-<p>r2(config)# access-list 101 permit ip 135.25.4.0 0.0.0.255 135.25.3.0 0.0.0.255</p>
-<p>步骤6：配置加密映射：将加密策略和流量联系起来</p>
-<p>r1(config)#crypto map zhangyu 10 ipsec-isakmp</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">% NOTE: This new crypto map will remain disabled until a peer</div><div class="line">        and a valid access list have been configured.</div></pre></td></tr></table></figure>
-<p>r1(config-crypto-map)#set peer 135.25.1.2</p>
-<p>r1(config-crypto-map)#set transform-set future</p>
-<p>r1(config-crypto-map)#match address 101</p>
-<p>B路由器同理</p>
-<p>步骤7：将加密映射应用到接口</p>
-<p>r1(config)#int s 0</p>
-<p>r1(config-if)#crypto map zhangyu</p>
-<p>步骤8：测试显示A路由器上IPSEC连接</p>
-<p>r1#show crypto engine connections active</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"></div><div class="line">ID Interface       IP-Address      State  Algorithm         Encrypt  Decrypt</div></pre></td></tr></table></figure>
-<p>在PC1上ping 135.25.4.1</p>
-<p>r1#show crypto engine connections active</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"></div><div class="line">  ID Interface       IP-Address      State  Algorithm          Encrypt  Decrypt</div><div class="line">2000 Serial0         135.25.1.1      set    DES_56_CBC               0        5</div><div class="line">2001 Serial0         135.25.1.1      set    DES_56_CBC</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/30/cisco3550端口速率限制/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="孤独泪">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="孤独泪个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/05/30/cisco3550端口速率限制/" itemprop="url">
-                  cisco3550 端口速率限制实现方法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-30T00:00:00+08:00">
-                2017-05-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/网络技术/" itemprop="url" rel="index">
-                    <span itemprop="name">网络技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/05/30/cisco3550端口速率限制/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/30/cisco3550端口速率限制/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>一、网络说明</p>
-<p>PC1接在Cisco3550 F0/1上，速率为1Ｍ</p>
-<p>PC2接在Cisco3550 F0/2上，速率为2Ｍ</p>
-<p>Cisco3550的G0/1为出口</p>
-<p>二、详细配置过程 </p>
-<p>注：每个接口每个方向只支持一个策略；一个策略可以用于多个接口。因此所有PC的下载速率的限制都应该定义在同一个策略(在本例子当中为policy-map user-down)，而PC不同速率的区分是在Class-map分别定义。<br><br><br><br><br>1、在交换机上启动QOS</p>
-<p>&emsp;&emsp;Switch(config)#mls qos //在交换机上启动QOS<br><br><br><br><br>２、分别定义PC1(10.10.1.1)和PC2(10.10.2.1)访问控制列表</p>
-<p>&emsp;&emsp;Switch(config)#access-list 10 permit 10.10.1.0 0.0.0.255 //控制pc1上行流量</p>
-<p>&emsp;&emsp;Switch(config)#access-list 100 permit any 10.10.1.0 0.0.0.255 //控制pc1下行流量</p>
-<p>&emsp;&emsp;Switch(config)#access-list 11 permit 10.10.2.0 0.0.0.255 //控制pc2上行流量</p>
-<p>&emsp;&emsp;Switch(config)#access-list 111 permit any 10.10.2.0 0.0.0.255 //控制pc2下行流量<br><br><br><br><br>３、定义类，并和上面定义的访问控制列表绑定</p>
-<p>&emsp;&emsp;Switch(config)# class-map user1-up //定义PC１上行的类，并绑定访问列表10</p>
-<p>&emsp;&emsp;Switch(config-cmap)# match access-group 10</p>
-<p>&emsp;&emsp;Switch(config-cmap)# exit<br><br><br><br><br>&emsp;&emsp;Switch(config)# class-map user2-up</p>
-<p>&emsp;&emsp;Switch(config-cmap)# match access-group 11 //定义PC2上行的类，并绑定访问列表10</p>
-<p>&emsp;&emsp;Switch(config-cmap)# exit<br><br><br><br></p>
-<p>&emsp;&emsp;Switch(config)# class-map user1-down</p>
-<p>&emsp;&emsp;Switch(config-cmap)# match access-group 100 //定义PC1下行的类，并绑定访问列表100</p>
-<p>&emsp;&emsp;Switch(config-cmap)# exit<br><br><br><br><br>&emsp;&emsp;Switch(config)# class-map user2-down</p>
-<p>&emsp;&emsp;Switch(config-cmap)# match access-group 111 //定义PC2下行的类，并绑定访问列表111</p>
-<p>&emsp;&emsp;Switch(config-cmap)# exit<br><br><br><br><br>4、定义策略，把上面定义的类绑定到该策略</p>
-<p>&emsp;&emsp;Switch(config)# policy-map user1-up //定义PC１上行的速率为1M</p>
-<p>&emsp;&emsp;Switch(config-pmap)# class user1-up</p>
-<p>&emsp;&emsp;Switch(config-pmap-c)# trust dscp    信任差分服务代码点,用来对每一类流量实施各<br>种QOS策略，用户进来的数据包的DSCP缺省都为0</p>
-<p>&emsp;&emsp;Switch(config-pmap-c)# police 1024000 1024000 exceed-action drop  任何超过策略限制速率的通信流将会被丢弃（bits、bytes）</p>
-<p>&emsp;&emsp;Switch(config)# policy-map user2-up //定义PC２上行的速率为2M</p>
-<p>&emsp;&emsp;Switch(config-pmap)# class user2-up<br><br><br><br><br>&emsp;&emsp;Switch(config-pmap-c)# trust dscp</p>
-<p>&emsp;&emsp;Switch(config-pmap-c)# police 2048000 1024000 exceed-action drop<br><br><br><br><br>&emsp;&emsp;Switch(config)# policy-map user-down</p>
-<p>&emsp;&emsp;Switch(config-pmap)# class user1-down<br><br><br><br><br>&emsp;&emsp;Switch(config-pmap-c)# trust dscp</p>
-<p>&emsp;&emsp;Switch(config-pmap-c)# police 1024000 1024000 exceed-action drop</p>
-<p>&emsp;&emsp;Switch(config-pmap-c)# exit</p>
-<p>&emsp;&emsp;Switch(config-pmap)# class user2-down</p>
-<p>&emsp;&emsp;Switch(config-pmap-c)# trust dscp</p>
-<p>&emsp;&emsp;Switch(config-pmap-c)# police 2048000 1024000 exceed-action dro</p>
-<p>&emsp;&emsp;Switch(config-pmap-c)# exit<br><br><br><br><br>５、在接口上运用策略<br>&emsp;&emsp;Switch(config)# interface f0/1</p>
-<p>&emsp;&emsp;Switch(config-if)# service-policy input user1-up</p>
-<p>&emsp;&emsp;Switch(config)# interface f0/2</p>
-<p>&emsp;&emsp;Switch(config-if)# service-policy input user2-up</p>
-<p>&emsp;&emsp;Switch(config)# interface g0/1</p>
-<p>&emsp;&emsp;Switch(config-if)# service-policy input user-down</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1343,7 +1406,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1365,7 +1428,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

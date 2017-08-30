@@ -324,6 +324,515 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/31/编译安装LAMP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="孤独泪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="孤独泪个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/31/编译安装LAMP/" itemprop="url">
+                  编译安装LAMP
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-31T22:51:46+08:00">
+                2017-03-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux系统/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/31/编译安装LAMP/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/31/编译安装LAMP/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>目前的web服务器多是用LAMP来搭建的。所谓的LAMP，指的是几款开源软件的组合构成的动态web网站系统。</p>
+<p>L=Linux   A=Apache   M=Mysql   P=PHP/Perl/Python。</p>
+<p>我们主要来说一下编译安装：</p>
+<p>1.安装apache</p>
+<p>先下载好相关的源码包：这里下载的是httpd-2.2.21.tar</p>
+<p>新建一个文件夹，取名software ：mkdir /root/software</p>
+<p>把下载的httpd-2.2.21.tar放在该目录下</p>
+<font color="Crimson">注意，检查一下GCC开发工具]在安装软件之前要确保GCC等开发工具都已经安装妥当。</font>
+
+<p><img src="/img/1.png" alt=""></p>
+<p><img src="/img/2.png" alt=""></p>
+<font color="Crimson">再检查httpd是否已经停用，因为系统会安装自带的Apache，不管你是否选择安装它。</font>
+
+<p><img src="/img/3.png" alt=""></p>
+<p>一切ok，开始安装。</p>
+<p>[解压源代码]</p>
+<p><img src="/img/4.png" alt=""></p>
+<p>[进入源码目录]</p>
+<p><img src="/img/5.png" alt=""></p>
+<p>[编译配置]</p>
+<p><img src="/img/6.png" alt=""></p>
+<p>./configure –prefix=/usr/local/apache –enable-so –enable-rewrite</p>
+<p><img src="/img/7.png" alt=""></p>
+<p>[编译并安装]</p>
+<p><img src="/img/8.png" alt=""></p>
+<p>[启动Apache]</p>
+<p><img src="/img/9.png" alt=""></p>
+<p>[测试是否正常]</p>
+<p><img src="/img/10.png" alt=""></p>
+<p>添加开机自动启动httpd服务</p>
+<p>cp /usr/local/apache/bin/apachectl /etc/rc.d/init.d/httpd</p>
+<p>chkconfig –add httpd</p>
+<p>vim /etc/rc.d/init.d/httpd</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">添加上</div><div class="line">#chkconfig:345 85 15</div><div class="line">#description: Start and stops the Apache HTTP Server</div></pre></td></tr></table></figure>
+<p>然后</p>
+<p>chmod +x /etc/rc.d/init.d/httpd</p>
+<p>chkconfig –add httpd</p>
+<p>然后可以用setup命令进入服务设置，设置为开机启动</p>
+<p>2.安装mysql</p>
+<p>首先确保系统中没有安装过mysql</p>
+<p><img src="/img/11.png" alt=""></p>
+<p>下载源码包到/root/software/目录下 mysql-5.1.55.tar.gz</p>
+<p>[创建MySQL使用的系统用户与组]</p>
+<p>useradd –M –s /sbin/nologin mysql  #添加mysql这个用户,同时添加到mysql组里，不给登陆shell</p>
+<p>[解压源代码]</p>
+<p><img src="/img/12.png" alt=""></p>
+<p>[进入源码目录]</p>
+<p><img src="/img/13.png" alt=""></p>
+<p>[编译并安装]</p>
+<p><img src="/img/14.png" alt=""></p>
+<p>checking for termcap functions library… configure: error: No curses/termcap library found</p>
+<p>[root@localhost mysql-5.1.55]# make</p>
+<p>make: <em>*</em> 没有指明目标并且找不到 makefile。 停止。</p>
+<p>如果报这个错误，说明没有安装ncurses这个包</p>
+<p><img src="/img/15.png" alt=""></p>
+<p>拷贝my-medium.cnf文件到/etc/目录下并重命名为my.cnf</p>
+<p><img src="/img/16.png" alt=""></p>
+<p>修改字符集</p>
+<p>[client]</p>
+<p>default-character-set=utf8</p>
+<p>[mysqld]</p>
+<p>重启mysql</p>
+<p>查看字符集设置</p>
+<p>[初始化数据及调整权属]</p>
+<p><img src="/img/17.png" alt=""></p>
+<font color="Crimson">[注册MySQL数据库程序库路径] 可以暂时不设置</font>
+
+<font color="Crimson">echo “/usr/local/mysql/lib/mysql” &gt;&gt; /etc/ld.so.conf</font>
+
+<font color="Crimson">注：其它的一些应用程序在使用MySQL数据库的时候，需要用到MySQL提供接口程序库；因此要<br>把这个程序库的有效路径注册到Linux中，以便其它应用程序能够找到。</font>
+
+<p>[启动MySQL并设置数据库管理员密码]</p>
+<p><img src="/img/18.png" alt=""></p>
+<p>变量，这样可以不用进入到mysql的安装目录下进行mysql操作<br>或者做个软连接：</p>
+<font color="Crimson">ln -s /usr/local/mysql/bin/mysql /usr/bin/mysql</font>
+
+<p>添加mysql开机自动启动</p>
+<p>cp /root/soft/mysql-5.1.55/support-files/mysql.server /etc/init.d/<br>mysqld</p>
+<p>cd /etc/init.d/</p>
+<p>chkconfig –add mysqld </p>
+<p>chkconfig mysqld on</p>
+<p>[登录数据库测试]</p>
+<p><img src="/img/19.png" alt=""></p>
+<p>测试成功</p>
+<p>3.安装PHP</p>
+<p>1、检查各种库源文件</p>
+<p><img src="/img/20.png" alt=""></p>
+<p>如果发现没有相应的库，我们需要下载一个编译安装。</p>
+<p>例如：jpegsrc 这个库。我们下载的是jpegsrc.v8b.tar.gz包。安装后进入到该目录：</p>
+<p><img src="/img/21.png" alt=""></p>
+<font color="Crimson">–enable-shared 参数必须家，意思是创建共享库。</font>
+
+<p>然后编译安装 <img src="/img/22.png" alt=""></p>
+<p>注：GD库，是图形图像处理扩展库，提供了处理图片的API，有了它PHP才能正确处理GIF、JPEG、PNG等图形图像格式。如下：</p>
+<p><img src="/img/23.png" alt=""></p>
+<p>[解压源码包]</p>
+<p><img src="/img/24.png" alt=""></p>
+<p>[编译前配置]</p>
+<p><img src="/img/25.png" alt=""></p>
+<p><img src="/img/26.png" alt=""></p>
+<p><img src="/img/27.png" alt=""></p>
+<p>[编译并安装]</p>
+<p><img src="/img/28.png" alt=""></p>
+<p>[复制php.ini配置文件]</p>
+<p><img src="/img/29.png" alt=""></p>
+<p>[修改Apache主配置文件httpd.conf]添加支持PHP环境的相关配置。</p>
+<p><img src="/img/30.png" alt=""></p>
+<p>[进行测试]</p>
+<p>在/usr/local/apache/htdocs 目录下创建一个index.php文件</p>
+<p><img src="/img/31.png" alt=""></p>
+<p>编辑index.php文件</p>
+<p><img src="/img/32.png" alt=""></p>
+<p>保存退出。重启apache服务/usr/local/apache/bin/apachectl -k restart</p>
+<p>打开浏览器看是否支持php</p>
+<p>如果弹出的是下载该项，重启一下服务器</p>
+<p><img src="/img/33.png" alt=""></p>
+<p>弹出该画面，说明php安装编译成功。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/28/华为S5700配置SSH和Raidus/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="孤独泪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="孤独泪个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/28/华为S5700配置SSH和Raidus/" itemprop="url">
+                  华为S5700配置SSH和Raidus
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T23:10:49+08:00">
+                2017-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络技术/" itemprop="url" rel="index">
+                    <span itemprop="name">网络技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/28/华为S5700配置SSH和Raidus/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/28/华为S5700配置SSH和Raidus/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>clock timezone beijing add 8               &emsp; &emsp; 配置交换机时区</p>
+<p>sys</p>
+<p>undo cluster enable</p>
+<p>rsa local-key-pair create                  &emsp; &emsp; 创建交换机密钥</p>
+<p>y</p>
+<p>1024                                       &emsp; &emsp; 密钥长度默认512</p>
+<p>sysname C02                                &emsp; &emsp; 修改交换机名</p>
+<p>vlan batch 10 20 30 40 50 60 70 72 76 78   &emsp; &emsp; 批量创建vlan</p>
+<p>vlan batch 80 84 90 100 110 255</p>
+<p>interface vlan 255                         &emsp; &emsp; 创建并进入vlan 虚拟接口</p>
+<p>ip add 172.16.xx.xx 24                     &emsp; &emsp; 配置ip地址</p>
+<p>quit                                       &emsp; &emsp; 退出当前视图</p>
+<p>radius-server template xx.com              &emsp; &emsp; 配置radius模版</p>
+<p>radius-server authentication 172.16.xx.xx 1812&emsp; &emsp; &emsp; radius认证服务器地址及端口</p>
+<p>radius-server shared-key cipher xx         &emsp; &emsp; radius共享密钥 </p>
+<p>radius-server retransmit 2</p>
+<p>undo radius-server user-name domain-included  &emsp; &emsp; raius认证不加域名</p>
+<p>quit</p>
+<p>aaa                                           &emsp; &emsp; 配置aaa模版    </p>
+<p>authentication-scheme xx.com                  &emsp; &emsp; 配置aaa认证域模版</p>
+<p>authentication-mode radius local              &emsp; &emsp; 配置使用radius认证</p>
+<p>quit</p>
+<p>domain xx.com                                 &emsp; &emsp; 创建aaa认证域</p>
+<p>authentication-scheme xx.com                  &emsp; &emsp; 应用认证域</p>
+<p>radius-server xx.com                          &emsp; &emsp; 应用radius认证模版</p>
+<p>quit</p>
+<p>local-user admin password cipher xxxx         &emsp; &emsp; 配置admin密码  </p>
+<p>local-user admin service-type ssh telnet      &emsp; &emsp; 授权admin用户登录方式</p>
+<p>quit</p>
+<p>user-interface vty 0 4                        &emsp; &emsp; 创建vty虚拟终端</p>
+<p>authentication-mode aaa                       &emsp; &emsp; 使用aaa认证方式</p>
+<p>protocol inbound ssh                          &emsp; &emsp; 接入类型使用ssh</p>
+<p>undo user privilege level                     &emsp; &emsp; 取消本地用户等级授权</p>
+<p>undo set authentication password</p>
+<p>quit</p>
+<p>stelnet server enable                         &emsp; &emsp; 开启ssh服务</p>
+<p>ssh authentication-type default password      &emsp; &emsp; ssh使用密码认证</p>
+<p>ip route-static 0.0.0.0 0.0.0.0 172.16.xx.xx  &emsp; &emsp; 配置默认路由</p>
+<p>snmp-agent                                    &emsp; &emsp; 开启snmp</p>
+<p>snmp-agent sys-info version all               &emsp; &emsp; snmp兼容多版本</p>
+<p>snmp-agent community read cipher xxxx         &emsp; &emsp; 输入snmp团体名称</p>
+<p>info-center loghost 172.16.xx.xx facility local5 &emsp; &emsp; 指向syslog日志服务器</p>
+<p>user-interface console 0                      &emsp; &emsp; 进入console接口 </p>
+<p>authentication-mode password                  &emsp; &emsp; 使用本地密码认证</p>
+<p>set authentication password cipher xxxx       &emsp; &emsp; 设置密码为密文</p>
+<p>quit</p>
+<p>super password cipher xxxx                    &emsp; &emsp; 设置超级密码认证</p>
+<p>undo mac-authen timer reauthenticate-period</p>
+<p>interface Vlanif1                             &emsp; &emsp; 进入vlan1虚拟接口</p>
+<p>shutdown                                      &emsp; &emsp; 停用vlan 1接口</p>
+<p>undo ip address dhcp-alloc                    &emsp; &emsp; 停用dhcp</p>
+<p>quit</p>
+<p>undo telnet server enable                     &emsp; &emsp; 停用telnet服务 </p>
+<p>y</p>
+<p>lldp en                                    &emsp; &emsp; 开启链路发现协议</p>
+<p>dhcp en                                    &emsp; &emsp; 启用dhcp服务</p>
+<p>dhcp snooping enable                       &emsp; &emsp; 启用dhcp窥探</p>
+<p>interface Eth-Trunk1                       &emsp; &emsp; 创建聚合端口1</p>
+<p> port link-type trunk                      &emsp; &emsp; 配置端口类型为trunk</p>
+<p> port trunk pvid vlan 255                  &emsp; &emsp; 将trunk打标记为255</p>
+<p> port trunk allow-pass vlan all            &emsp; &emsp; 放行所有vlan通过</p>
+<p> undo port trunk allow-pass vlan 1         &emsp; &emsp; 禁止vlan 1通过</p>
+<p> dhcp snooping trusted                     &emsp; &emsp; 信任dhcp窥探</p>
+<p>quit</p>
+<p>port-group 1                               &emsp; &emsp; 创建端口组</p>
+<p> group-member GigabitEthernet 0/0/1 to GigabitEthernet 0/0/24&emsp; &emsp; 将1到24端口加入该组</p>
+<p> shutdown                                  &emsp; &emsp; 关闭该组下所有端口</p>
+<p> port link-type acces                      &emsp; &emsp; 配置端口类型为access</p>
+<p> ntdp enable                               &emsp; &emsp;开启邻居拓扑发现协议</p>
+<p> ndp enable                                &emsp; &emsp; 开启发现直连设备信息协议</p>
+<p> bpdu enable             &emsp; &emsp; 开启BPDU桥协议数据单元，防止环路产生，一般配合stp使用 </p>
+<p> loopback-detect enable                    &emsp; &emsp; 开启环路检测协议</p>
+<p> loopback-detect action shutdown           &emsp; &emsp; 发现环路进行关闭端口操作</p>
+<p> dhcp snooping enable                      &emsp; &emsp; 开启dhcp窥探功能</p>
+<p> ip source check user-bind enable          &emsp;&emsp;将dhcp窥探信息进行绑定</p>
+<p> br 40                &emsp; &emsp; 限制广播数据包为40%完整命令（broadcast-suppression）</p>
+<p> port de v 10                               &emsp; &emsp; 配置端口所属vlan</p>
+<p> un sh                                      &emsp; &emsp; 启用端口</p>
+<p> quit</p>
+<p> undo port-group 1                          &emsp; &emsp; 删除端口组</p>
+<p> interface GigabitEthernet 0/1/1            &emsp; &emsp; 进入光端口</p>
+<p> e 1                                  &emsp; &emsp; 加入到聚合端口Eth-Trunk1</p>
+<p> interface GigabitEthernet 0/1/2</p>
+<p> e 1</p>
+<p> quit</p>
+<p>quit</p>
+<p>sa                                   &emsp; &emsp; &emsp; 保存配置 </p>
+<p>y                                    </p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/26/Extmail/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1094,7 +1603,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1116,7 +1625,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
