@@ -1,0 +1,1209 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="利用fuel安装openstack," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="1.fuel是什么
+&amp;emsp; &amp;emsp;Fuel 是一个为openstack 端到端”一键部署“设计的工具，其功能含盖自动的PXE方式的操作系统安装，DHCP服务，Orchestration服务 和puppet 配置管理相关服务等，此外还有openstack 关键业务健康检查和log 实时查看等非常好用的服务。
+2.fuel架构
+
+&amp;emsp; &amp;emsp;Fuel 主节点：用于提供PXE方">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用fuel安装openstack">
+<meta property="og:url" content="http://yoursite.com/2017/09/29/利用fuel安装openstack/index.html">
+<meta property="og:site_name" content="孤独泪个人博客">
+<meta property="og:description" content="1.fuel是什么
+&amp;emsp; &amp;emsp;Fuel 是一个为openstack 端到端”一键部署“设计的工具，其功能含盖自动的PXE方式的操作系统安装，DHCP服务，Orchestration服务 和puppet 配置管理相关服务等，此外还有openstack 关键业务健康检查和log 实时查看等非常好用的服务。
+2.fuel架构
+
+&amp;emsp; &amp;emsp;Fuel 主节点：用于提供PXE方">
+<meta property="og:image" content="http://yoursite.com/img/openstack1.png">
+<meta property="og:image" content="http://yoursite.com/img/openstack2.png">
+<meta property="og:image" content="http://yoursite.com/img/openstack3.png">
+<meta property="og:image" content="http://yoursite.com/img/openstack4.png">
+<meta property="og:image" content="http://yoursite.com/img/openstack5.png">
+<meta property="og:image" content="http://yoursite.com/img/openstack6.png">
+<meta property="og:image" content="http://yoursite.com/img/openstack7.png">
+<meta property="og:image" content="http://yoursite.com/img/openstack8.png">
+<meta property="og:image" content="http://yoursite.com/img/openstack9.png">
+<meta property="og:image" content="http://yoursite.com/img/openstack10.png">
+<meta property="og:image" content="http://yoursite.com/img/openstack11.png">
+<meta property="og:image" content="http://yoursite.com/img/openstack12.png">
+<meta property="og:image" content="http://yoursite.com/img/openstack13.png">
+<meta property="og:image" content="http://yoursite.com/img/openstack14.png">
+<meta property="og:image" content="http://yoursite.com/img/openstack15.png">
+<meta property="og:image" content="http://yoursite.com/img/openstack16.png">
+<meta property="og:image" content="http://yoursite.com/img/openstack17.png">
+<meta property="og:image" content="http://yoursite.com/img/openstack18.png">
+<meta property="og:updated_time" content="2017-09-29T16:14:59.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="利用fuel安装openstack">
+<meta name="twitter:description" content="1.fuel是什么
+&amp;emsp; &amp;emsp;Fuel 是一个为openstack 端到端”一键部署“设计的工具，其功能含盖自动的PXE方式的操作系统安装，DHCP服务，Orchestration服务 和puppet 配置管理相关服务等，此外还有openstack 关键业务健康检查和log 实时查看等非常好用的服务。
+2.fuel架构
+
+&amp;emsp; &amp;emsp;Fuel 主节点：用于提供PXE方">
+<meta name="twitter:image" content="http://yoursite.com/img/openstack1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/09/29/利用fuel安装openstack/"/>
+
+
+
+
+
+  <title> 利用fuel安装openstack | 孤独泪个人博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a5b7aee50ce83e2bd927723d65971e59";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">孤独泪个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/29/利用fuel安装openstack/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="孤独泪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="孤独泪个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                利用fuel安装openstack
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-29T23:56:22+08:00">
+                2017-09-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux系统/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/29/利用fuel安装openstack/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/09/29/利用fuel安装openstack/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>1.fuel是什么</p>
+<p>&emsp; &emsp;Fuel 是一个为openstack 端到端”一键部署“设计的工具，其功能含盖自动的PXE方式的操作系统安装，DHCP服务，Orchestration服务 和puppet 配置管理相关服务等，此外还有openstack 关键业务健康检查和log 实时查看等非常好用的服务。</p>
+<p>2.fuel架构</p>
+<p><img src="/img/openstack1.png" alt=""></p>
+<p>&emsp; &emsp;Fuel 主节点：用于提供PXE方式操作系统安装服务由开源软件Cobbler 提供，另外由Mcollective和puppet 分别提供orchestration服务和配置管理服务。Fuel iso 包发部的时候已经一同打包了Centos6.4 和ubuntu 12.04 安装包</p>
+<p>3.fuel安装</p>
+<p>  （1）网络拓扑</p>
+<p> <img src="/img/openstack2.png" alt=""></p>
+<p>   &emsp; &emsp;<1>10.20.0.X  master节点通过pxe网络部署openstack的专用网络</1></p>
+<p>   &emsp; &emsp;<2>172.16.170.x openstack公共网络，给实例提供浮动IP并提供外部网络</2></p>
+<p>   &emsp; &emsp;<3>192.168.4.x openstack的内部，管理，存储网络</3></p>
+<p>   注意：三个网段分别属于vlan160、vlan170、vlan180，其中所属vlan180的端口，要开启</p>
+<p>   trunk模式</p>
+<p>  （2）启动服务器，选择用光盘启动</p>
+<p>  <img src="/img/openstack3.png" alt=""></p>
+<p>  <img src="/img/openstack4.png" alt=""></p>
+<p>  （3）检查fuel安装是否完成，登录<a href="http://10.20.0.x:8000/" target="_blank" rel="external">http://10.20.0.x:8000/</a> 显示如下页面，就表示安装成功</p>
+<p>  <img src="/img/openstack5.png" alt=""></p>
+   <font color="#DC143C"><br><br>   <strong>可能存在的问题：</strong><br><br>   <em> 如果web页面不能正常访问，可能是你本机的防火墙把本地的网络拒掉，请先禁用防火墙再试。
+
+   </em> 如果使用了浏览器http代理，请关闭代理直接访问<br><br></font>
+
+
+<p>  （4）安装openstack 环境</p>
+<p>&emsp; &emsp; &emsp;首先在Fuel web 上创建一个openstack 环境，名字为”openstack1“，这个<br>环境是可以创多个的，可见fuel可以同时管理多个openstack 环境。这里选择的os 有三种，这里默认选择<br>centos，当然你也可以选择ubuntu 和rhle ，不过rhle 需要手动上传镜像或者提供红帽子官网用户名和<br>密码，fuel 为你自动下载，不过时间比较长，不推荐。</p>
+<p><img src="/img/openstack6.png" alt=""></p>
+<p>名称随你填写，openstack版本这里我选择默认的centos,ubuntu也可以</p>
+<p><img src="/img/openstack7.png" alt=""></p>
+<p>部署模式选择多节点，HA环境需要更高的硬件条件，要完整发挥HA的话推荐12个节点，5+3+3+1的组合</p>
+<p><img src="/img/openstack8.png" alt=""></p>
+<p>选择KVM</p>
+<p><img src="/img/openstack9.png" alt=""></p>
+<p>选择Neutron GRE</p>
+<p><img src="/img/openstack10.png" alt=""></p>
+<p>存储是默认，使用ceph要满足部署条件</p>
+<p><img src="/img/openstack11.png" alt=""></p>
+<p>新建完成后，服务器pxe方式启动，等待master节点发现controller,compute节点</p>
+<p><img src="/img/openstack12.png" alt=""></p>
+<p>每个节点部署之前都需要配置网络</p>
+<p><img src="/img/openstack13.png" alt=""></p>
+<p><img src="/img/openstack14.png" alt=""></p>
+<p>修改网络地址，并验证网络,网络验证成功后，点击部署</p>
+<p>4.openstack架构图</p>
+<p><img src="/img/openstack15.png" alt=""></p>
+<p><img src="/img/openstack16.png" alt=""></p>
+<p>5.openstack各个服务名称对应表</p>
+<p><img src="/img/openstack17.png" alt=""></p>
+<p>6.openstack控制节点</p>
+<ul>
+<li>控制节点服务</li>
+</ul>
+<p><img src="/img/openstack18.png" alt=""></p>
+<ul>
+<li><p>控制节点所要启动的服务</p>
+<p><1> httpd</1></p>
+<p><2> tgtd</2></p>
+<p><3> memcached</3></p>
+<p><4> rabbitmq-server</4></p>
+<p><5> openstack-cinder-api</5></p>
+<p><6> openstack-cinder-scheduler</6></p>
+<p><7> openstack-cinder-volume</7></p>
+<p><8> openstack-keystone</8></p>
+<p><9> openstack-glance-api</9></p>
+<p><10> openstack-glance-registry</10></p>
+<p><11> openstack-nova-conductor</11></p>
+<p><12> openstack-nova-scheduler</12></p>
+<p><13> openstack-nova-cert</13></p>
+<p><14> openstack-nova-api</14></p>
+<p><15> mysql</15></p>
+</li>
+</ul>
+<ul>
+<li><p>控制节点mysql用户名和密码</p>
+<p>/etc/mysql/conf.d/password.cnf</p>
+</li>
+<li><p>mysql配置文件</p>
+<p>/etc/my.cnf</p>
+</li>
+<li><p>mysql数据目录</p>
+<p>/var/lib/mysql</p>
+</li>
+<li><p>mysql日志文件</p>
+<p>/var/log/mysqld.log</p>
+</li>
+<li><p>rabbitmqp配置文件</p>
+<p>/etc/rabbitmq/rabbitmq.config</p>
+</li>
+<li><p>rabbitmqp日志文件</p>
+<p>/var/log/rabbitmq</p>
+</li>
+<li><p>Keystone配置文件</p>
+<p>/etc/keystone/keystone.conf</p>
+</li>
+<li><p>Keystone日志文件</p>
+<p>/var/log/keystone/keystone-all.log</p>
+<p>/var/log/keystone/keystone-manage.log</p>
+<p>/var/log/keystone/keystone-startup.log</p>
+</li>
+<li><p>memcached配置文件</p>
+<p>/etc/sysconfig/memcached</p>
+</li>
+<li><p>memcached日志文件</p>
+<p>/var/log/memcached.log</p>
+</li>
+<li><p>apache配置文件</p>
+<p>/etc/httpd/conf/httpd.conf</p>
+<p>/etc/httpd/conf.d/openstack-dashboard.conf</p>
+</li>
+<li><p>apache日志文件</p>
+<p>/var/log/httpd/access_log</p>
+<p>/var/log/httpd/error_log</p>
+</li>
+<li><p>glance配置文件</p>
+<p>/etc/glance/glance-api.conf</p>
+<p>/etc/glance/glance-registry.conf</p>
+</li>
+<li><p>glance日志文件</p>
+<p>/var/log/glance/api.log</p>
+<p>/var/log/glance/registry.log</p>
+</li>
+<li><p>cinder配置文件</p>
+<p>/etc/cinder/cinder.conf</p>
+</li>
+<li><p>cinder日志文件</p>
+<p>/var/log/cinder/api.log</p>
+<p>/var/log/cinder/scheduler.log</p>
+<p>/var/log/cinder/volume.log</p>
+</li>
+</ul>
+<ul>
+<li><p>nova配置文件</p>
+<p>/etc/nova/nova.conf</p>
+</li>
+<li><p>nova日志文件</p>
+<p>/var/log/nova/api.log</p>
+<p>/var/log/nova/cert.log</p>
+<p>/var/log/nova/scheduler.log</p>
+<p>/var/log/nova/conductor.log</p>
+</li>
+<li><p>Horizon配置文件</p>
+<p>/etc/heat/heat.conf</p>
+</li>
+<li><p>Horizon日志文件</p>
+<p>/var/log/heat/heat-api-cfn.log</p>
+<p>/var/log/heat/heat-api-cloudwatch.log</p>
+<p>/var/log/heat/heat-api.log</p>
+<p>/var/log/heat/heat-engine.log</p>
+<p>/var/log/heat/heat-manage.log</p>
+</li>
+<li><p>共享存储target配置文件</p>
+<p>/etc/tgt/targets.conf</p>
+</li>
+</ul>
+<p>7.openstack计算节点</p>
+<ul>
+<li><p>计算节点所要启动的服务</p>
+<p><1> openstack-nova-compute</1></p>
+<p><2> openstack-cinder-scheduler</2></p>
+<p><3> openstack-cinder-volume</3></p>
+<p><4> libvirtd</4></p>
+<p><5> tgtd</5></p>
+<font style="color:red"><br>注意：纯计算节点只包含openstack-nova-compute和libvirtd服务<br></font>
+</li>
+<li><p>nova配置文件</p>
+<p>/etc/nova/nova.conf</p>
+</li>
+<li><p>nova日志文件</p>
+<p>/var/log/nova/compute.log</p>
+</li>
+<li><p>cinder配置文件</p>
+<p>/etc/cinder/cinder.conf</p>
+</li>
+<li><p>cinder日志文件</p>
+<p>/var/log/cinder/scheduler.log</p>
+<p>/var/log/cinder/volume.log</p>
+</li>
+<li><p>libvirt配置文件</p>
+<p>/etc/libvirt/libvirtd.conf</p>
+</li>
+<li><p>共享存储target配置文件</p>
+<p>/etc/tgt/targets.conf</p>
+</li>
+</ul>
+<p>8.openstack常见问题</p>
+<ul>
+<li>openstack中使用vnc无法连接虚拟机</li>
+</ul>
+<p>&emsp; &emsp;原因是Mirantis的Master节点没有连接到公网的地址，而默认在这个节点上会使用8.8.8.8的DNS服务器地址来做地址解析，所以如果该节点访问不了这个地址（就算连接到Internet也可能访问不了这个地址，因为8.8.8.8是Google的服务器，会被和谐掉，你懂的），就会出现DNS解析超时的情况，因此会出现如题所示的错误。解决方法有2个，一个是将8.8.8.8地址改为一个内网或者公网可以访问到DNS服务器，二是将这个地址改为127.0.0.1</p>
+<ul>
+<li><p>openstck 计算节点关机，虚拟机无法启动</p>
+<p><1> 检查服务正常化</1></p>
+<p>nova-manage service list</p>
+<p><2> 重置状态（控制节点上操作）</2></p>
+<p>source openrc</p>
+<p>nova list –all-tenants</p>
+<p>nova reset-state instance-id</p>
+<p>nova stop instance-id</p>
+<p>nova start instance-id</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/利用fuel安装openstack/" rel="tag"># 利用fuel安装openstack</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/30/shadowsocks流量监控脚本/" rel="next" title="shadowsocks流量监控脚本">
+                <i class="fa fa-chevron-left"></i> shadowsocks流量监控脚本
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2017/09/29/利用fuel安装openstack/"
+     data-title="利用fuel安装openstack"
+     data-content=""
+     data-url="http://yoursite.com/2017/09/29/利用fuel安装openstack/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/09/29/利用fuel安装openstack/"
+           data-title="利用fuel安装openstack" data-url="http://yoursite.com/2017/09/29/利用fuel安装openstack/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="孤独泪" />
+          <p class="site-author-name" itemprop="name">孤独泪</p>
+           
+              <p class="site-description motion-element" itemprop="description">时间是一切财富中最宝贵的财富</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/yx5198" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/1459574045?refer_flag=1005055010_&is_all=1" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-微博"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情衔接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.djhull.com/" title="超哥" target="_blank">超哥</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://baiyibing123.github.io" title="小白" target="_blank">小白</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://taoyak.com/" title="亚可" target="_blank">亚可</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://mingmings.org/" title="明明" target="_blank">明明</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://successfuljian.github.io" title="小健" target="_blank">小健</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://lankors.github.io" title="大侠" target="_blank">大侠</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.heyyezi.com" title="强哥" target="_blank">强哥</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://obeyconquer.github.io" title="高洋" target="_blank">高洋</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">孤独泪</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"yx5198"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

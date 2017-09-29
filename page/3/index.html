@@ -324,6 +324,213 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/27/华为S7706配置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="孤独泪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="孤独泪个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/27/华为S7706配置/" itemprop="url">
+                  华为S7706配置
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-27T23:18:09+08:00">
+                2017-04-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络技术/" itemprop="url" rel="index">
+                    <span itemprop="name">网络技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/27/华为S7706配置/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/27/华为S7706配置/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><br></p>
+<p>sysname Playcrab-Core &emsp; &emsp; &emsp; &emsp; &emsp;修改交换机默认名字</p>
+<p>super password level 3 cipher XXX &emsp; &emsp; &emsp; &emsp; &emsp;增加交换机超级密码</p>
+<p>vlan batch 10 20 30 40 50 52 60 70 72 76 &emsp; &emsp; &emsp; &emsp; &emsp;批量新建vlan</p>
+<p>undo telnet server enable &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 关闭交换机telnet访问</p>
+<p>observe-port 1 interface GigabitEthernet4/0/44 &emsp; &emsp; &emsp; &emsp;配置高速以太口4/0/44口为镜像口</p>
+<p>undo http server enable &emsp; &emsp; &emsp; &emsp;关闭web页面访问交换机</p>
+<p>radius-server template XXX &emsp; &emsp; &emsp;配置radius模版</p>
+<p>radius-server shared-key cipher XXX &emsp; &emsp; &emsp;&emsp; 配置radius共享密钥</p>
+<p>radius-server authentication 172.16.XX.XX 1812 &emsp; &emsp; &emsp;radius认证服务器地址及端口</p>
+<p>radius-server retransmit 2  &emsp; &emsp; &emsp; 配置Radius实时记帐包发送间隔时间为2分钟</p>
+<p>undo radius-server user-name domain-included radius &emsp; &emsp;认证不加域名</p>
+<p>acl number 3000             &emsp; &emsp; &emsp; &emsp; &emsp;&emsp; 创建访问控制列表</p>
+<p>description meeting &emsp; &emsp; &emsp; &emsp; 控制列表描述是会议</p>
+<p>rule 1000 deny ip source 172.16.X.X &emsp;0.0.0.X destination 172.16.X.X &emsp;</p>
+<p>0.0.X.X &emsp; &emsp; &emsp; &emsp; &emsp;拒绝源176.16.X.X，访问目标172.16.X.X</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">定义流策略</div><div class="line"></div><div class="line">traffic classifier c_meeting operator or precedence 5</div><div class="line"></div><div class="line">if-match acl 3000</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">定义流动作</div><div class="line"></div><div class="line">traffic behavior b_permit </div><div class="line"></div><div class="line">permit</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">引用流策略和流动作</div><div class="line"></div><div class="line">traffic policy p_meeting</div><div class="line"></div><div class="line">classifier c_meeting behavior b_permit</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">访问控制列表在虚拟接口vlan76，进的方向策略生效</div><div class="line"></div><div class="line">vlan 76</div><div class="line"></div><div class="line">traffic-policy p_meeting inbound</div></pre></td></tr></table></figure>
+<p>#<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">创建dhcp中继服务组,并指定服务组的IP地址</div><div class="line"></div><div class="line">dhcp server group 1</div><div class="line"></div><div class="line">dhcp-server 172.16.X.X 0</div><div class="line">#</div><div class="line">dhcp server group 2</div><div class="line"></div><div class="line">dhcp-server 172.16.X.X 1</div></pre></td></tr></table></figure></p>
+<p>#<br>aaa&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 开启AAA服务</p>
+<p>authentication-scheme default&emsp; &emsp; &emsp; 默认使用本地认证</p>
+<p>authentication-scheme XX.com&emsp; &emsp; &emsp; 配置aaa认证域模版</p>
+<p>authentication-mode radius local&emsp; &emsp;&emsp; 配置使用radius认证</p>
+<p>authorization-scheme default&emsp; &emsp; &emsp; 默认授权方式</p>
+<p>accounting-scheme default &emsp; &emsp; &emsp; 默认计费方式</p>
+<p>domain default&emsp; &emsp; &emsp; 默认域</p>
+<p>domain XXX &emsp; &emsp; &emsp; 创建AAA默认域</p>
+<p>authentication-scheme XXX.com&emsp; &emsp; &emsp; 应用认证域</p>
+<p>radius-server  XXX.com&emsp; &emsp; &emsp; &emsp; radius认证模版</p>
+<p>local-user admin password cipher XXX&emsp; &emsp; &emsp; 配置admin密码</p>
+<p> local-user admin service-type telnet terminal ssh web 8021x http&emsp; 授权admin用登陆方式<br>#<br>ntp-service unicast-server 172.16.X.X &emsp; &emsp; 指向时间同步服务器<br>#<br>interface Vlanif10 &emsp; &emsp; &emsp; &emsp; 进入vlan10虚拟接口</p>
+<p> description to_chanpinfuwu&emsp; &emsp; &emsp; &emsp; 描述vlan10是产品服务</p>
+<p> ip address 172.16.X.X 255.255.X.0&emsp; &emsp; &emsp; &emsp; 配置IP地址及其掩码</p>
+<p> dhcp select relay&emsp; &emsp; &emsp; &emsp; 开启dhcp中继</p>
+<p> dhcp relay server-select 1 &emsp; &emsp; &emsp; &emsp; dhcp中继指向中继组1</p>
+<p>interface Eth-Trunk1 &emsp; &emsp; &emsp; &emsp; 创建聚合组Eth-Trunk1</p>
+<p> description To Playcrab-FireWall&emsp; &emsp; &emsp; &emsp; 描述Eth-Trunk1连接Playcrab-FireWall</p>
+<p> port link-type trunk&emsp; &emsp; &emsp; &emsp; 端口链路类型为中继链路</p>
+<p> port trunk pvid vlan 255&emsp; &emsp; &emsp; &emsp; 设置端口的默认vlan标签</p>
+<p> undo port trunk allow-pass vlan 1&emsp; &emsp; &emsp; &emsp; 禁止vlan1通过中继链路端口</p>
+<p> port trunk allow-pass vlan 255&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 允许vlan255通过中继链路端口</p>
+<p>#<br>interface GigabitEthernet4/0/47&emsp; &emsp; &emsp; &emsp; &emsp; &emsp;进入高速以太口</p>
+<p> description To Playcrab-FrieWall-G0/0/1&emsp; &emsp; &emsp; &emsp; &emsp; 描述连接防火墙的G0/0/1口</p>
+<p> eth-trunk 1 &emsp; &emsp; &emsp; &emsp; 加入聚合组1</p>
+<p>ip route-static 0.0.0.0 0.0.0.0 172.16.X.X&emsp; &emsp; &emsp; &emsp; 配置默认路由</p>
+<p>#<br>snmp-agent&emsp; &emsp; &emsp; &emsp;开启交换机snmp服务</p>
+<p>snmp-agent community read cipher XXX &emsp; &emsp; &emsp; &emsp; 配置snmp的团体名为XXX</p>
+<p>snmp-agent sys-info version all&emsp; &emsp; &emsp; &emsp; 设置系统启用的snmp的版本号<br>#<br>ssh authentication-type default password&emsp; &emsp; &emsp; &emsp; SSH认证类型，默认密码认证</p>
+<p>#<br>user-interface con 0&emsp; &emsp; &emsp; &emsp; 进入交换机console口</p>
+<p>authentication-mode password&emsp; &emsp; &emsp; &emsp; 密码认证模式</p>
+<p>set authentication password cipher XXX&emsp; &emsp; &emsp; &emsp;设置密码XXX为密文<br>#<br>user-interface vty 0 4 &emsp; &emsp; &emsp; &emsp; 创建vty虚拟终端</p>
+<p>authentication-mode aaa &emsp; &emsp; &emsp; &emsp; 认证模式为AAA</p>
+<p>protocol inbound ssh &emsp; &emsp; &emsp; &emsp; 接入类型使用ssh</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/31/编译安装LAMP/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1393,172 +1600,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/20/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="孤独泪">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="孤独泪个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/20/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-20T00:08:59+08:00">
-                2017-03-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hello-World/" itemprop="url" rel="index">
-                    <span itemprop="name">Hello World</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/03/20/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/20/hello-world/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1603,7 +1649,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
