@@ -324,7 +324,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/30/cisco路由器恢复enable密码/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/30/Cisco路由器的安全配置/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="孤独泪">
@@ -346,8 +346,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/06/30/cisco路由器恢复enable密码/" itemprop="url">
-                  cisco路由器恢复enable密码
+                <a class="post-title-link" href="/2017/07/30/Cisco路由器的安全配置/" itemprop="url">
+                  Cisco路由器的安全配置
                 </a>
               
             
@@ -363,8 +363,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-30T00:00:00+08:00">
-                2017-06-30
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-30T22:16:18+08:00">
+                2017-07-30
               </time>
             
 
@@ -404,8 +404,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/06/30/cisco路由器恢复enable密码/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/06/30/cisco路由器恢复enable密码/" itemprop="commentCount"></span>
+                <a href="/2017/07/30/Cisco路由器的安全配置/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/07/30/Cisco路由器的安全配置/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -433,52 +433,77 @@
       
         
           
-            <p>&emsp; &emsp; 在Cisco路由器忘记或丢失enable密码的情况时，一共有两种方法恢复，<br>取决于你使用的路由器是哪一系列产品。</p>
-<p>第一种方法：</p>
-<p>&emsp; &emsp;使用这种方法可恢复下列路由器：Cisco 2000系列、2500系列、3000系列、使用680x0<br>Motorol a CPU的Cisco 4000系列、运行10.0版本以上Cisco IOS系统的7000系列路由器。</p>
-<p><br><br>实现步骤： </p>
-<p>1.&emsp; &emsp;在路由器的console口接上一个终端或用安装仿真终端软件的PC机。</p>
-<p><br><br>2.&emsp; &emsp;输入show version命令，然后记下寄存器值，通常是0x2102 or 0x102。这个值显示在最后一行，注意寄存器的配置是否把Break设为enable或disable。 缺省配置寄存器值是0x2102。这个值从左数第三个数字如果是1，则是disable Break；如果为零，则Break为enabled。</p>
-<p>3.&emsp; &emsp;切断电源后再重启。</p>
-<p><br><br>4.&emsp; &emsp;在路由器启动的60秒内在终端机上按Break键。将显示rommon&gt; 提示符。如果提示符不是这样，则终端没有发出正确的中断信号，检查Break键是否正确或是否被设为disable。</p>
-<p><br><br>5.&emsp; &emsp;在提示符下输入o/r0x42或o/r0x41，o/r0x42意思是从Flash memory引导，o/r0x41意思是从ROMs引导(注意，第一个字符是字母o，不是数字0)。最好用0x42，在Flash memory没有装或erase的情况下，才用0x41，如果有0x41则只能view或erase配置，不能直接更改密码。</p>
-<p>6.&emsp; &emsp;在rommon&gt;提示符下输入初始化命令。 </p>
-<p><br></p>
-<p>7.&emsp; &emsp;输入系统配置对话提示符敲no,一直等提示信息显示：Press RETURN to get started! </p>
-<p><br></p>
-<p>8.&emsp; &emsp;敲回车，出现Router&gt;提示符。</p>
-<p><br></p>
-<p>9.&emsp; &emsp;输入enable命令，出现Router#提示符。</p>
-<p><br></p>
-<p>10.&emsp; &emsp;选择下面选项中的一项：</p>
-<p>&emsp; &emsp;如果password没有加密，直接用more nvram:startup-config命令可以看密码；在password加密的情况下，无法看，只能修改，输入命令如下：</p>
-<p>Router # configure memory</p>
-<p>Router # configure terminal</p>
-<p>Router(config)# enable secret 1234abcd </p>
-<p>Router(config)# ctrl-z</p>
-<p>Router # write memory</p>
-<p><br></p>
-<p>11.&emsp; &emsp;在EXEC提示符输入configure terminal进入配置模式。输入config-register命令，把在第二步中记录的寄存器值复原。</p>
-<p><br></p>
-<p>12.&emsp; &emsp;敲Ctrl-Z，退出配置状态。</p>
-<p><br></p>
-<p>13.&emsp;&emsp;在特权模式下用write memory命令保存配置，然后reboot重启。</p>
-<p><br></p>
-<p>第二种方法</p>
-<p><br></p>
-<p>&emsp; &emsp;使用这种方法可恢复下列路由器：Cisco 1003、1600系列、3600系列、4500系列、7200系列、7500系列和IDT Orion-Based路由器。</p>
-<p>实现步骤： </p>
-<p><br></p>
-<p>前四步与上一种方法一样。</p>
-<p><br></p>
-<p>5.&emsp; &emsp;在rommon&gt;提示符下输入confreg命令，显示如下：</p>
-<p>&emsp; &emsp; &emsp; &emsp;Do you wish to change configuration[y/n]?</p>
-<p>&emsp; &emsp;输入yes，然后回车。在回答后面的问题时一直选择no，直到出现“ignore system config info[y/n]?”时输入yes。</p>
-<p>&emsp; &emsp;接着继续敲no回答，一直到看到“change boot characteristics[y/n]?”时输入yes<br>显示如下：<br>enter to boot: </p>
-<p>&emsp; &emsp;在这个提示符下可以有1和2两种选择。如果Flash memory is<br>erased选择1，这样只能view or erase配置，不能直接修改password。最好选择2。出现如下提示：<br>Do you wish to change configuration[y/n]?</p>
-<p>回答no，然后回车，显示“rommon&gt;”。</p>
-<p>6.在特权EXEC下输入reload命令。</p>
-<p>  &emsp; &emsp;后面操作同第一种方法。</p>
+            <p>一,路由器访问控制的安全配置</p>
+<p>1,严格控制可以访问路由器的管理员。任何一次维护都需要记录备案。</p>
+<p>2,建议不要远程访问路由器。即使需要远程访问路由器，建议使用访问控制列表和高强度的密码控制。</p>
+<p>3,严格控制CON端口的访问。具体的措施有：</p>
+<p>A,如果可以开机箱的，则可以切断与CON口互联的物理线路。</p>
+<p>B,可以改变默认的连接属性，例如修改波特率(默认是96000，可以改为其他的)。</p>
+<p>C,配合使用访问控制列表控制对CON口的访问。</p>
+<p>如：Router(Config)#Access-list 1 permit 192.168.0.1</p>
+<p>Router(Config)#line con 0</p>
+<p>Router(Config-line)#Transport input none</p>
+<p>Router(Config-line)#Login local</p>
+<p>Router(Config-line)#Exec-timeoute 5 0</p>
+<p>Router(Config-line)#access-class 1 in</p>
+<p>Router(Config-line)#end</p>
+<p>D,给CON口设置高强度的密码。</p>
+<p>4,如果不使用AUX端口，则禁止这个端口。默认是未被启用。禁止如：</p>
+<p>Router(Config)#line aux 0</p>
+<p>Router(Config-line)#transport input none</p>
+<p>Router(Config-line)#no exec</p>
+<p>5,建议采用权限分级策略。如：</p>
+<p>Router(Config)#username BluShin privilege 10 XXX</p>
+<p>Router(Config)#privilege EXEC level 10 telnet</p>
+<p>Router(Config)#privilege EXEC level 10 show ip access-list</p>
+<p>6,为特权模式的进入设置强壮的密码。不要采用enable password设置密码。而要采用enable secret命令设置。并且要启用Service password-encryption。</p>
+<p>7,控制对VTY的访问。如果不需要远程访问则禁止它。如果需要则一定要设置强壮的密码。由于VTY在网络的传输过程中为加密，所以需要对其进行严格的控制。如：设置强壮的密码；控制连接的并发数目；采用访问列表严格控制访问的地址；可以采用AAA设置用户的访问控制等。</p>
+<p>8,IOS的升级和备份，以及配置文件的备份建议使用FTP代替TFTP。如：</p>
+<p>Router(Config)#ip ftp username BluShin</p>
+<p>Router(Config)#ip ftp password XXX</p>
+<p>Router#copy startup-config ftp:</p>
+<p>9,及时的升级和修补IOS软件。</p>
+<p>二,路由器网络服务安全配置</p>
+<p>1,禁止CDP(Cisco Discovery Protocol)。如：</p>
+<p>Router(Config)#no cdp run</p>
+<p>Router(Config-if)# no cdp enable</p>
+<p>2,禁止其他的TCP、UDP Small服务。</p>
+<p>Router(Config)# no service tcp-small-servers</p>
+<p>Router(Config)# no service udp-samll-servers</p>
+<p>3,禁止Finger服务。</p>
+<p>Router(Config)# no ip finger</p>
+<p>Router(Config)# no service finger</p>
+<p>4,建议禁止HTTP服务。</p>
+<p>Router(Config)# no ip http server</p>
+<p>如果启用了HTTP服务则需要对其进行安全配置：设置用户名和密码；采用访问列表进行控制。如：</p>
+<p>Router(Config)# username BluShin privilege 10 XXX</p>
+<p>Router(Config)# ip http auth local</p>
+<p>Router(Config)# no access-list 10</p>
+<p>Router(Config)# access-list 10 permit 192.168.0.1</p>
+<p>Router(Config)# access-list 10 deny any</p>
+<p>Router(Config)# ip http access-class 10</p>
+<p>Router(Config)# ip http server</p>
+<p>Router(Config)# exit</p>
+<p>5,禁止BOOTp服务。</p>
+<p>Router(Config)# no ip bootp server</p>
+<p>禁止从网络启动和自动从网络下载初始配置文件。</p>
+<p>Router(Config)# no boot network</p>
+<p>Router(Config)# no servic config</p>
+<p>6,禁止IP Source Routing。</p>
+<p>Router(Config)# no ip source-route</p>
+<p>7,建议如果不需要ARP-Proxy服务则禁止它，路由器默认识开启的。</p>
+<p>Router(Config)# no ip proxy-arp</p>
+<p>Router(Config-if)# no ip proxy-arp</p>
+<p>8,明确的禁止IP Directed Broadcast。</p>
+<p>Router(Config)# no ip directed-broadcast</p>
+<p>9,禁止IP Classless。</p>
+<p>Router(Config)# no ip classless</p>
+<p>10,禁止ICMP协议的IP Unreachables,Redirects,Mask Replies。</p>
+<p>Router(Config-if)# no ip unreacheables</p>
+<p>Router(Config-if)# no ip redirects</p>
+<p>Router(Config-if)# no ip mask-reply</p>
+<p>11,建议禁止SNMP协议服务。在禁止时必须删除一些SNMP服务的默认配置。或者需要访问列表来过滤。如：</p>
+<p>Router(Config)# no snmp-server community</p>
 
           
         
@@ -713,7 +738,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/30/交换机VTP配置/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/30/cisco路由器恢复enable密码/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="孤独泪">
@@ -735,8 +760,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/05/30/交换机VTP配置/" itemprop="url">
-                  交换机VTP配置
+                <a class="post-title-link" href="/2017/06/30/cisco路由器恢复enable密码/" itemprop="url">
+                  cisco路由器恢复enable密码
                 </a>
               
             
@@ -752,8 +777,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-30T00:00:00+08:00">
-                2017-05-30
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-30T00:00:00+08:00">
+                2017-06-30
               </time>
             
 
@@ -793,8 +818,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/05/30/交换机VTP配置/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/30/交换机VTP配置/" itemprop="commentCount"></span>
+                <a href="/2017/06/30/cisco路由器恢复enable密码/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/06/30/cisco路由器恢复enable密码/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -822,11 +847,52 @@
       
         
           
-            <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">switch&gt;                  进入用户模式 </div><div class="line">  </div><div class="line">switch&gt;enable              进入特权模式</div><div class="line"></div><div class="line"> </div><div class="line">switch#configure  terminal            进入全局配置模式 </div><div class="line"></div><div class="line"></div><div class="line">switch(config)# hostname  s1          设置交换机的主机名 </div><div class="line"></div><div class="line"></div><div class="line">s1(config)#enable passwd cisco               使能口令</div><div class="line"></div><div class="line">            </div><div class="line">s1(config)#enable secret cisco使能密码(加密的特权密码)</div><div class="line"></div><div class="line">s1(config)#service password-encryption         所有的密码全变成密文 </div><div class="line"></div><div class="line"></div><div class="line">S1(config)# no ip domain-lookup    关闭寻找域名服务</div><div class="line"></div><div class="line"></div><div class="line">S1(config)#alias exec a show running-configure    别名 </div><div class="line"> </div><div class="line">S1(config)# line console 0 </div><div class="line"></div><div class="line"></div><div class="line">S1(config-line)# password cisco</div><div class="line"></div><div class="line"></div><div class="line">S1(config-line)#login </div><div class="line"></div><div class="line"></div><div class="line">S1(config-line)#exec-timeout 0 0 (防止系统超时退出特权模式) 零代表无限制    0分0秒</div><div class="line"></div><div class="line"></div><div class="line">S1(config-line)#logging synchronous(避免被系统出现的控制信息打断命令) </div><div class="line"> </div><div class="line"></div><div class="line">s1(config)#interface  vlan 1   </div><div class="line"></div><div class="line">    </div><div class="line">s1(config-if)#ip address 192.168.10.1 255.255.255.0   配置管理IP</div><div class="line"></div><div class="line"></div><div class="line">s1(config-if)#speed 100 配置端口速度为100M  </div><div class="line"></div><div class="line"> </div><div class="line">s1(config-if)#duplex auto     自动</div><div class="line"></div><div class="line"></div><div class="line">                              full     全双工</div><div class="line">                              </div><div class="line">                              half     半双工 </div><div class="line"></div><div class="line">                              </div><div class="line">s1(config-if)#no shutdown   开启端口使配置生效</div><div class="line"></div><div class="line"></div><div class="line">s1(config)#ip default-gateway 192.168.10.254   配置交换机默认网关 </div><div class="line"></div><div class="line"></div><div class="line">S1#show running-configure   检查配置(保存在内存RAM中)</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">中继模式</div><div class="line"></div><div class="line"></div><div class="line">S1(config-if)# switchport mode access      接入链路(swich--PC)</div><div class="line"></div><div class="line"></div><div class="line">S1(config-if)# switchport mode trunk  中继模式(swich--swich)</div><div class="line"></div><div class="line"></div><div class="line">S1(config-if)#switchport trunk allowed vlan remove 10</div><div class="line"></div><div class="line"></div><div class="line">将vlan 10从该中继链路删除                      add 增加</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">VLAN</div><div class="line"></div><div class="line"></div><div class="line">s1#vlan database </div><div class="line"></div><div class="line"></div><div class="line">s1(vlan)#vlan 10 name vlan10 </div><div class="line"></div><div class="line"></div><div class="line">s1(config)#vlan 10  建立vlan</div><div class="line"></div><div class="line"></div><div class="line">s1(config-vlan)#name caiwu  vlan命名</div><div class="line"></div><div class="line"></div><div class="line">s1(config)#no vlan  10  删除vlan 10</div><div class="line"></div><div class="line">s1#show vlan brief   验证</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">VTP</div><div class="line">s1(config)#vtp version 2 启用版本2</div><div class="line">s1(config)#vtp domain test  加入管理域</div><div class="line">s1(config)#vtp mode  server  配置成VTP服务器</div><div class="line">                                client         配置成VTP客户端</div><div class="line">                                transparent     配置成VTP透明模式</div><div class="line">s1(config)#vtp password cisco     vtp口令</div><div class="line">s1(config)#vtp pruning                   启用vtp修剪</div><div class="line">switch(config)#no vtp pruning     关闭VTP修剪</div><div class="line">S1(config-if)#switchport trunk pruning vlan remove  vlan-id </div><div class="line">                             从可修剪列表中去除某VLAN</div><div class="line">s1(config)#vtp domain test-a   脱离vtp域</div><div class="line">s1#show vtp status   检查配置</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">配置远程登陆</div><div class="line">S1(config)#line vty 0 15</div><div class="line">S1(config-line)#password cisco</div><div class="line">S1(config-line)#exec-timeout 0 0</div><div class="line">S1(config-line)#logging synchronous</div><div class="line">S1(config-line)#login</div><div class="line"> </div><div class="line"> </div><div class="line">S1#erase startup-config  清除配置</div><div class="line">S1#copy running-config startup-config 保存配置到（NVRAM中）</div><div class="line">S1#write  写入配置</div><div class="line">S1#show startup-config 检查保存的配置信息</div><div class="line">S1#reload  重启</div></pre></td></tr></table></figure>
+            <p>&emsp; &emsp; 在Cisco路由器忘记或丢失enable密码的情况时，一共有两种方法恢复，<br>取决于你使用的路由器是哪一系列产品。</p>
+<p>第一种方法：</p>
+<p>&emsp; &emsp;使用这种方法可恢复下列路由器：Cisco 2000系列、2500系列、3000系列、使用680x0<br>Motorol a CPU的Cisco 4000系列、运行10.0版本以上Cisco IOS系统的7000系列路由器。</p>
+<p><br><br>实现步骤： </p>
+<p>1.&emsp; &emsp;在路由器的console口接上一个终端或用安装仿真终端软件的PC机。</p>
+<p><br><br>2.&emsp; &emsp;输入show version命令，然后记下寄存器值，通常是0x2102 or 0x102。这个值显示在最后一行，注意寄存器的配置是否把Break设为enable或disable。 缺省配置寄存器值是0x2102。这个值从左数第三个数字如果是1，则是disable Break；如果为零，则Break为enabled。</p>
+<p>3.&emsp; &emsp;切断电源后再重启。</p>
+<p><br><br>4.&emsp; &emsp;在路由器启动的60秒内在终端机上按Break键。将显示rommon&gt; 提示符。如果提示符不是这样，则终端没有发出正确的中断信号，检查Break键是否正确或是否被设为disable。</p>
+<p><br><br>5.&emsp; &emsp;在提示符下输入o/r0x42或o/r0x41，o/r0x42意思是从Flash memory引导，o/r0x41意思是从ROMs引导(注意，第一个字符是字母o，不是数字0)。最好用0x42，在Flash memory没有装或erase的情况下，才用0x41，如果有0x41则只能view或erase配置，不能直接更改密码。</p>
+<p>6.&emsp; &emsp;在rommon&gt;提示符下输入初始化命令。 </p>
+<p><br></p>
+<p>7.&emsp; &emsp;输入系统配置对话提示符敲no,一直等提示信息显示：Press RETURN to get started! </p>
+<p><br></p>
+<p>8.&emsp; &emsp;敲回车，出现Router&gt;提示符。</p>
+<p><br></p>
+<p>9.&emsp; &emsp;输入enable命令，出现Router#提示符。</p>
+<p><br></p>
+<p>10.&emsp; &emsp;选择下面选项中的一项：</p>
+<p>&emsp; &emsp;如果password没有加密，直接用more nvram:startup-config命令可以看密码；在password加密的情况下，无法看，只能修改，输入命令如下：</p>
+<p>Router # configure memory</p>
+<p>Router # configure terminal</p>
+<p>Router(config)# enable secret 1234abcd </p>
+<p>Router(config)# ctrl-z</p>
+<p>Router # write memory</p>
+<p><br></p>
+<p>11.&emsp; &emsp;在EXEC提示符输入configure terminal进入配置模式。输入config-register命令，把在第二步中记录的寄存器值复原。</p>
+<p><br></p>
+<p>12.&emsp; &emsp;敲Ctrl-Z，退出配置状态。</p>
+<p><br></p>
+<p>13.&emsp;&emsp;在特权模式下用write memory命令保存配置，然后reboot重启。</p>
+<p><br></p>
+<p>第二种方法</p>
+<p><br></p>
+<p>&emsp; &emsp;使用这种方法可恢复下列路由器：Cisco 1003、1600系列、3600系列、4500系列、7200系列、7500系列和IDT Orion-Based路由器。</p>
+<p>实现步骤： </p>
+<p><br></p>
+<p>前四步与上一种方法一样。</p>
+<p><br></p>
+<p>5.&emsp; &emsp;在rommon&gt;提示符下输入confreg命令，显示如下：</p>
+<p>&emsp; &emsp; &emsp; &emsp;Do you wish to change configuration[y/n]?</p>
+<p>&emsp; &emsp;输入yes，然后回车。在回答后面的问题时一直选择no，直到出现“ignore system config info[y/n]?”时输入yes。</p>
+<p>&emsp; &emsp;接着继续敲no回答，一直到看到“change boot characteristics[y/n]?”时输入yes<br>显示如下：<br>enter to boot: </p>
+<p>&emsp; &emsp;在这个提示符下可以有1和2两种选择。如果Flash memory is<br>erased选择1，这样只能view or erase配置，不能直接修改password。最好选择2。出现如下提示：<br>Do you wish to change configuration[y/n]?</p>
+<p>回答no，然后回车，显示“rommon&gt;”。</p>
+<p>6.在特权EXEC下输入reload命令。</p>
+<p>  &emsp; &emsp;后面操作同第一种方法。</p>
 
           
         
@@ -1062,7 +1128,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/28/利用squid代理-stunnel加密翻墙/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/30/交换机VTP配置/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="孤独泪">
@@ -1084,8 +1150,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/04/28/利用squid代理-stunnel加密翻墙/" itemprop="url">
-                  利用squid代理+stunnel加密翻墙
+                <a class="post-title-link" href="/2017/05/30/交换机VTP配置/" itemprop="url">
+                  交换机VTP配置
                 </a>
               
             
@@ -1101,8 +1167,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-28T00:00:00+08:00">
-                2017-04-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-30T00:00:00+08:00">
+                2017-05-30
               </time>
             
 
@@ -1142,8 +1208,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/04/28/利用squid代理-stunnel加密翻墙/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/28/利用squid代理-stunnel加密翻墙/" itemprop="commentCount"></span>
+                <a href="/2017/05/30/交换机VTP配置/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/30/交换机VTP配置/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1171,46 +1237,11 @@
       
         
           
-            <p>一.准备工作：</p>
-<p>操作系统：Centos6.5，</p>
-<p>香港机器：安装Squid与stunnel服务器端，IP：1.1.1.1</p>
-<p>国内机器：安装stunnel客户端，IP：172.16.1.1</p>
-<p>二.开始安装</p>
-<p>1.&emsp;yum–y install squid</p>
-<p>   &emsp;vi /etc/squid/squid.conf   &emsp; &emsp; &emsp; &emsp; 编辑配置文件</p>
-   <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">将  http_access deny all改为http_access allow all</div><div class="line">将  http_port 3128改为http_port 1.1.1.1:3128</div></pre></td></tr></table></figure>
-<p>2.&emsp;squid -k parse    &emsp; &emsp; &emsp; &emsp; 检查配置参数是否有错</p>
-<p>   squid –z&emsp; &emsp; &emsp; &emsp;&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 生成缓存</p>
-<p>  service squid restart&emsp; &emsp; &emsp; &emsp;&emsp; &emsp; &emsp; &emsp;启动服务</p>
-<p>3.&emsp;yum–y install stunnel                   安装stunnel<br><br><br>4.&emsp;cd /etc/stunnel</p>
-<p> opensslreq -new -x509 -days 365 -nodes -out stunnel.pem -keyout stunnel.pem&emsp; &emsp; &emsp; &emsp;生成一个密钥文件</p>
-<p> opensslgendh 512&gt;&gt; stunnel.pem&emsp; &emsp; &emsp; &emsp;生成Diffie-Hellman部分</p>
-<p>5.&emsp;默认配置文件在/usr/share/doc/stunnel-4.29/stunnel.conf-sample下，这里我手动创建一个<br><br><br>vi stunnel.conf</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">cert= /etc/stunnel/stunnel.pem</div><div class="line"></div><div class="line">CAfile= /etc/stunnel/stunnel.pem</div><div class="line"></div><div class="line">socket= l:TCP_NODELAY=1</div><div class="line"></div><div class="line">socket= r:TCP_NODELAY=1</div><div class="line"> </div><div class="line">;;;chroot= /var/run/stunnel</div><div class="line"></div><div class="line">pid= /tmp/stunnel.pid</div><div class="line"></div><div class="line">verify= 3</div><div class="line"> </div><div class="line">;;;CApath = certs</div><div class="line">;;;CRLpath = crls</div><div class="line">;;;CRLfile = crls.pem</div><div class="line"> </div><div class="line">setuid= stunnel                       stunnel用户</div><div class="line"></div><div class="line">setgid= stunnel                       stunnel组</div><div class="line"> </div><div class="line">;;;client=yes</div><div class="line"></div><div class="line">compression= zlib</div><div class="line"></div><div class="line">;;;taskbar = no</div><div class="line"></div><div class="line">delay= no</div><div class="line"></div><div class="line">;;;failover = rr</div><div class="line"></div><div class="line">;;;failover = prio</div><div class="line"></div><div class="line">sslVersion= SSLv3</div><div class="line"></div><div class="line">debug= 4</div><div class="line"></div><div class="line">syslog= no</div><div class="line"></div><div class="line">output= stunnel.log</div><div class="line"> </div><div class="line">[sproxy]</div><div class="line"></div><div class="line">accept= 8888                   stunnel监听的端口，需要客户端指向</div><div class="line"></div><div class="line">connect= 1.1.1.1:3128          本地squid监听端口</div></pre></td></tr></table></figure>
-<p>6.&emsp;groupadd -g 122 stunnel &emsp; &emsp; &emsp; &emsp;&emsp; &emsp;创建组<br><br></p>
-<p>  &emsp; &emsp;&emsp; &emsp; useradd -c stunnel -d /nonexistent -m -g 122 -u 122 stunnel&emsp; &emsp; &emsp; &emsp;&emsp; &emsp;创建用户</p>
-<p>7.&emsp;stunnel                                         启动服务<br><br></p>
-<p>8.&emsp;防火墙添加信任端口</p>
-<p> iptables -A INPUT -m state –state NEW -mtcp -p tcp –dport 8888 -j ACCEPT</p>
-<p> iptables -A INPUT -m state –state NEW -m tcp-p tcp –dport 3128 -j ACCEPT</p>
-<p> /etc/init.d/iptables save</p>
-<p> service iptables restart</p>
-<p>9.&emsp;chkconfigsquid on                  开机自动启动</p>
-<p>10.&emsp;vi /etc/rc.local                    配置开机允许stunnel</p>
-<pre><code>stunnel
-</code></pre><p>11.&emsp;国内stunnelclient配置</p>
-<p> yum –y install stunnnel</p>
-<p> scp –r root@1.1.1.1:/etc/stunnel/stunnel.pem/etc/stunnel拷贝国外主服务器生成的密钥文件</p>
-<p> vi /etc/stunnel/stunnel.conf               编辑配置文件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">cert= /etc/stunnel/stunnel.pem</div><div class="line">socket= l:TCP_NODELAY=1</div><div class="line">socket= r:TCP_NODELAY=1</div><div class="line">verify= 2</div><div class="line">CAfile= /etc/stunnel/stunnel.pem</div><div class="line">client=yes</div><div class="line">compression= zlib</div><div class="line">ciphers= AES256-SHA</div><div class="line">delay= no</div><div class="line">failover= prio</div><div class="line">sslVersion= SSLv3</div><div class="line">[sproxy]</div><div class="line">accept= 172.16.1.1:8080     用户代理的端口</div><div class="line">connect= 1.1.1.1:8888        国外服务器的IP及所监听的端口</div></pre></td></tr></table></figure>
-<p>12.&emsp;stunnel                   启动stunnel<br><br></p>
-<p>13.&emsp;防火墙添加信任端口<br><br></p>
-<p>iptables-A INPUT -m state –state NEW -m tcp -p tcp –dport 8080 -j ACCEPT<br><br></p>
-<p>/etc/init.d/iptables save<br><br></p>
-<p>service iptables restart<br><br></p>
-<p>14.&emsp;vi /etc/rc.local </p>
-<pre><code>stunnel
-</code></pre><p>OK，所有配置完毕，可以在浏览器上挂代理了172.16.1.1:8080</p>
+            <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">switch&gt;                  进入用户模式 </div><div class="line">  </div><div class="line">switch&gt;enable              进入特权模式</div><div class="line"></div><div class="line"> </div><div class="line">switch#configure  terminal            进入全局配置模式 </div><div class="line"></div><div class="line"></div><div class="line">switch(config)# hostname  s1          设置交换机的主机名 </div><div class="line"></div><div class="line"></div><div class="line">s1(config)#enable passwd cisco               使能口令</div><div class="line"></div><div class="line">            </div><div class="line">s1(config)#enable secret cisco使能密码(加密的特权密码)</div><div class="line"></div><div class="line">s1(config)#service password-encryption         所有的密码全变成密文 </div><div class="line"></div><div class="line"></div><div class="line">S1(config)# no ip domain-lookup    关闭寻找域名服务</div><div class="line"></div><div class="line"></div><div class="line">S1(config)#alias exec a show running-configure    别名 </div><div class="line"> </div><div class="line">S1(config)# line console 0 </div><div class="line"></div><div class="line"></div><div class="line">S1(config-line)# password cisco</div><div class="line"></div><div class="line"></div><div class="line">S1(config-line)#login </div><div class="line"></div><div class="line"></div><div class="line">S1(config-line)#exec-timeout 0 0 (防止系统超时退出特权模式) 零代表无限制    0分0秒</div><div class="line"></div><div class="line"></div><div class="line">S1(config-line)#logging synchronous(避免被系统出现的控制信息打断命令) </div><div class="line"> </div><div class="line"></div><div class="line">s1(config)#interface  vlan 1   </div><div class="line"></div><div class="line">    </div><div class="line">s1(config-if)#ip address 192.168.10.1 255.255.255.0   配置管理IP</div><div class="line"></div><div class="line"></div><div class="line">s1(config-if)#speed 100 配置端口速度为100M  </div><div class="line"></div><div class="line"> </div><div class="line">s1(config-if)#duplex auto     自动</div><div class="line"></div><div class="line"></div><div class="line">                              full     全双工</div><div class="line">                              </div><div class="line">                              half     半双工 </div><div class="line"></div><div class="line">                              </div><div class="line">s1(config-if)#no shutdown   开启端口使配置生效</div><div class="line"></div><div class="line"></div><div class="line">s1(config)#ip default-gateway 192.168.10.254   配置交换机默认网关 </div><div class="line"></div><div class="line"></div><div class="line">S1#show running-configure   检查配置(保存在内存RAM中)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">中继模式</div><div class="line"></div><div class="line"></div><div class="line">S1(config-if)# switchport mode access      接入链路(swich--PC)</div><div class="line"></div><div class="line"></div><div class="line">S1(config-if)# switchport mode trunk  中继模式(swich--swich)</div><div class="line"></div><div class="line"></div><div class="line">S1(config-if)#switchport trunk allowed vlan remove 10</div><div class="line"></div><div class="line"></div><div class="line">将vlan 10从该中继链路删除                      add 增加</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">VLAN</div><div class="line"></div><div class="line"></div><div class="line">s1#vlan database </div><div class="line"></div><div class="line"></div><div class="line">s1(vlan)#vlan 10 name vlan10 </div><div class="line"></div><div class="line"></div><div class="line">s1(config)#vlan 10  建立vlan</div><div class="line"></div><div class="line"></div><div class="line">s1(config-vlan)#name caiwu  vlan命名</div><div class="line"></div><div class="line"></div><div class="line">s1(config)#no vlan  10  删除vlan 10</div><div class="line"></div><div class="line">s1#show vlan brief   验证</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">VTP</div><div class="line">s1(config)#vtp version 2 启用版本2</div><div class="line">s1(config)#vtp domain test  加入管理域</div><div class="line">s1(config)#vtp mode  server  配置成VTP服务器</div><div class="line">                                client         配置成VTP客户端</div><div class="line">                                transparent     配置成VTP透明模式</div><div class="line">s1(config)#vtp password cisco     vtp口令</div><div class="line">s1(config)#vtp pruning                   启用vtp修剪</div><div class="line">switch(config)#no vtp pruning     关闭VTP修剪</div><div class="line">S1(config-if)#switchport trunk pruning vlan remove  vlan-id </div><div class="line">                             从可修剪列表中去除某VLAN</div><div class="line">s1(config)#vtp domain test-a   脱离vtp域</div><div class="line">s1#show vtp status   检查配置</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">配置远程登陆</div><div class="line">S1(config)#line vty 0 15</div><div class="line">S1(config-line)#password cisco</div><div class="line">S1(config-line)#exec-timeout 0 0</div><div class="line">S1(config-line)#logging synchronous</div><div class="line">S1(config-line)#login</div><div class="line"> </div><div class="line"> </div><div class="line">S1#erase startup-config  清除配置</div><div class="line">S1#copy running-config startup-config 保存配置到（NVRAM中）</div><div class="line">S1#write  写入配置</div><div class="line">S1#show startup-config 检查保存的配置信息</div><div class="line">S1#reload  重启</div></pre></td></tr></table></figure>
 
           
         
@@ -1294,7 +1325,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1316,7 +1347,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

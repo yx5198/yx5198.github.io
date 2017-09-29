@@ -324,6 +324,199 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/30/ftp搭建/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="孤独泪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="孤独泪个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/09/30/ftp搭建/" itemprop="url">
+                  ftp搭建
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-30T00:30:54+08:00">
+                2017-09-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux系统/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/30/ftp搭建/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/09/30/ftp搭建/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>一。检查Linux中vsftpd的安装情况。</p>
+<p>  rpm -qa|grep vsftp</p>
+<p>二。将系统中的SELinux关闭，然后重新启动电脑</p>
+<p> 关闭SELinux的方法：</p>
+<p> 修改/etc/selinux/config文件中的SELINUX=”” 为 disabled ，然后重启。</p>
+<p> 如果不想重启系统，使用命令setenforce 0</p>
+<p> 注：</p>
+<p> setenforce 1 设置SELinux 成为enforcing模式</p>
+<p> setenforce 0 设置SELinux 成为permissive模式</p>
+<p> 在lilo或者grub的启动参数中增加：selinux=0,也可以关闭selinux</p>
+<p> setsebool ftpd_disable_trans 1</p>
+<p>三。建立用户和指定目录</p>
+<p> #useradd -d /var/www/html/ls syq</p>
+<p> #passwd syq</p>
+<p> 建立用户syq，并指定其ftp目录为ls</p>
+<p> 修改目录权限 chown –R syq /var/www/html/ls</p>
+<pre><code>chgrp –R syq /var/www/html/ls
+</code></pre><p>四。修改vsftpd.conf配置文件</p>
+<p> 将anonymous_enable改为NO，阻止匿名上传</p>
+<p> 将chroot_list_enable和chroot_list_file的注释去掉，阻止用户访问上级目录</p>
+<p>五。在/etc/vsftpd下建立chroot_list文件</p>
+<p> 建立完成后，在其中添加用户syq只允许访问指定目录。</p>
+<p>六。启动或是重启ftp服务。</p>
+<p> #service vsftpd restart(start)</p>
+<p>启动成功后，就可以访问ftp服务了。</p>
+<p>注：配置文件中的解释</p>
+<p>anonymous_enable=YES &emsp;&emsp; 开启匿名用户登录</p>
+<p>local_enable=YES &emsp;&emsp; 开启本地用户登录</p>
+<p>write_enable=YES &emsp;&emsp; 开启写权限以便上传</p>
+<p>local_umask=022设置上传后文件为user=rwx, group=, other=</p>
+<p>这样，用户上传文件后，是不能删除和修改了。因为用户属于group组。</p>
+<p>解决方法是，设置local_umask=002。</p>
+<p>最终文件权限是777-文件夹掩码-local_umask掩码</p>
+<p>anon_upload_enable=YES &emsp;&emsp; 开启匿名用户上传权限</p>
+<p>统一匿名上传用户上传的文件的属性 </p>
+<p>chown_uploads=YES</p>
+<p>chown_username=ftp</p>
+<p>设定chroot配置，禁止特定用户访问上一级目录</p>
+<p>chroot_list_enable=YES</p>
+<p>chroot_list_file=/etc/vsftpd/chroot_list </p>
+<p>userlist_enable=YES这个选项如果是YES，那/etc/vsftpd/user_list中的用户将被禁止访问ftp。如果是NO，则只有user_list里面的用户才能访问ftp</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/29/利用fuel安装openstack/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1288,229 +1481,6 @@ else:
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/30/Cisco路由器的安全配置/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="孤独泪">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="孤独泪个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/07/30/Cisco路由器的安全配置/" itemprop="url">
-                  Cisco路由器的安全配置
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-30T22:16:18+08:00">
-                2017-07-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/网络技术/" itemprop="url" rel="index">
-                    <span itemprop="name">网络技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/07/30/Cisco路由器的安全配置/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/07/30/Cisco路由器的安全配置/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>一,路由器访问控制的安全配置</p>
-<p>1,严格控制可以访问路由器的管理员。任何一次维护都需要记录备案。</p>
-<p>2,建议不要远程访问路由器。即使需要远程访问路由器，建议使用访问控制列表和高强度的密码控制。</p>
-<p>3,严格控制CON端口的访问。具体的措施有：</p>
-<p>A,如果可以开机箱的，则可以切断与CON口互联的物理线路。</p>
-<p>B,可以改变默认的连接属性，例如修改波特率(默认是96000，可以改为其他的)。</p>
-<p>C,配合使用访问控制列表控制对CON口的访问。</p>
-<p>如：Router(Config)#Access-list 1 permit 192.168.0.1</p>
-<p>Router(Config)#line con 0</p>
-<p>Router(Config-line)#Transport input none</p>
-<p>Router(Config-line)#Login local</p>
-<p>Router(Config-line)#Exec-timeoute 5 0</p>
-<p>Router(Config-line)#access-class 1 in</p>
-<p>Router(Config-line)#end</p>
-<p>D,给CON口设置高强度的密码。</p>
-<p>4,如果不使用AUX端口，则禁止这个端口。默认是未被启用。禁止如：</p>
-<p>Router(Config)#line aux 0</p>
-<p>Router(Config-line)#transport input none</p>
-<p>Router(Config-line)#no exec</p>
-<p>5,建议采用权限分级策略。如：</p>
-<p>Router(Config)#username BluShin privilege 10 XXX</p>
-<p>Router(Config)#privilege EXEC level 10 telnet</p>
-<p>Router(Config)#privilege EXEC level 10 show ip access-list</p>
-<p>6,为特权模式的进入设置强壮的密码。不要采用enable password设置密码。而要采用enable secret命令设置。并且要启用Service password-encryption。</p>
-<p>7,控制对VTY的访问。如果不需要远程访问则禁止它。如果需要则一定要设置强壮的密码。由于VTY在网络的传输过程中为加密，所以需要对其进行严格的控制。如：设置强壮的密码；控制连接的并发数目；采用访问列表严格控制访问的地址；可以采用AAA设置用户的访问控制等。</p>
-<p>8,IOS的升级和备份，以及配置文件的备份建议使用FTP代替TFTP。如：</p>
-<p>Router(Config)#ip ftp username BluShin</p>
-<p>Router(Config)#ip ftp password XXX</p>
-<p>Router#copy startup-config ftp:</p>
-<p>9,及时的升级和修补IOS软件。</p>
-<p>二,路由器网络服务安全配置</p>
-<p>1,禁止CDP(Cisco Discovery Protocol)。如：</p>
-<p>Router(Config)#no cdp run</p>
-<p>Router(Config-if)# no cdp enable</p>
-<p>2,禁止其他的TCP、UDP Small服务。</p>
-<p>Router(Config)# no service tcp-small-servers</p>
-<p>Router(Config)# no service udp-samll-servers</p>
-<p>3,禁止Finger服务。</p>
-<p>Router(Config)# no ip finger</p>
-<p>Router(Config)# no service finger</p>
-<p>4,建议禁止HTTP服务。</p>
-<p>Router(Config)# no ip http server</p>
-<p>如果启用了HTTP服务则需要对其进行安全配置：设置用户名和密码；采用访问列表进行控制。如：</p>
-<p>Router(Config)# username BluShin privilege 10 XXX</p>
-<p>Router(Config)# ip http auth local</p>
-<p>Router(Config)# no access-list 10</p>
-<p>Router(Config)# access-list 10 permit 192.168.0.1</p>
-<p>Router(Config)# access-list 10 deny any</p>
-<p>Router(Config)# ip http access-class 10</p>
-<p>Router(Config)# ip http server</p>
-<p>Router(Config)# exit</p>
-<p>5,禁止BOOTp服务。</p>
-<p>Router(Config)# no ip bootp server</p>
-<p>禁止从网络启动和自动从网络下载初始配置文件。</p>
-<p>Router(Config)# no boot network</p>
-<p>Router(Config)# no servic config</p>
-<p>6,禁止IP Source Routing。</p>
-<p>Router(Config)# no ip source-route</p>
-<p>7,建议如果不需要ARP-Proxy服务则禁止它，路由器默认识开启的。</p>
-<p>Router(Config)# no ip proxy-arp</p>
-<p>Router(Config-if)# no ip proxy-arp</p>
-<p>8,明确的禁止IP Directed Broadcast。</p>
-<p>Router(Config)# no ip directed-broadcast</p>
-<p>9,禁止IP Classless。</p>
-<p>Router(Config)# no ip classless</p>
-<p>10,禁止ICMP协议的IP Unreachables,Redirects,Mask Replies。</p>
-<p>Router(Config-if)# no ip unreacheables</p>
-<p>Router(Config-if)# no ip redirects</p>
-<p>Router(Config-if)# no ip mask-reply</p>
-<p>11,建议禁止SNMP协议服务。在禁止时必须删除一些SNMP服务的默认配置。或者需要访问列表来过滤。如：</p>
-<p>Router(Config)# no snmp-server community</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1560,7 +1530,7 @@ else:
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1582,7 +1552,7 @@ else:
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
