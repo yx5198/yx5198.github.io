@@ -448,9 +448,10 @@
 <p> #useradd -d /var/www/html/ls syq</p>
 <p> #passwd syq</p>
 <p> 建立用户syq，并指定其ftp目录为ls</p>
-<p> 修改目录权限 chown –R syq /var/www/html/ls</p>
-<pre><code>chgrp –R syq /var/www/html/ls
-</code></pre><p>四。修改vsftpd.conf配置文件</p>
+<p>修改目录权限:</p>
+<p>chown –R syq /var/www/html/ls</p>
+<p>chgrp –R syq /var/www/html/ls</p>
+<p>四。修改vsftpd.conf配置文件</p>
 <p> 将anonymous_enable改为NO，阻止匿名上传</p>
 <p> 将chroot_list_enable和chroot_list_file的注释去掉，阻止用户访问上级目录</p>
 <p>五。在/etc/vsftpd下建立chroot_list文件</p>

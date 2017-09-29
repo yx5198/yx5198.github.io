@@ -547,197 +547,6 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/30/cisco路由器配置ipsecvpn/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="孤独泪">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="孤独泪个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/30/cisco路由器配置ipsecvpn/" itemprop="url">
-                  cisco路由器配置ipsecvpn
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-30T00:00:00+08:00">
-                2017-06-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/网络技术/" itemprop="url" rel="index">
-                    <span itemprop="name">网络技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/06/30/cisco路由器配置ipsecvpn/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/06/30/cisco路由器配置ipsecvpn/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="/img/cisco.png" alt=""></p>
-<p>步骤1：基本配置保证在没有做vpn之前网络连通</p>
-<p>步骤2：创建IKE加密策略</p>
-<p>r1(config)#crypto isakmp policy 1</p>
-<p>r1(config-isakmp)#encryption des    &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;           （加密消息算法）</p>
-<p>r1(config-isakmp)#authentication pre-share       &emsp; &emsp; &emsp;（对等体验证方法）</p>
-<p>r1(config-isakmp)#hash md5  &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;（消息完整性算法）</p>
-<p>r1(config-isakmp)#group 1 &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;&emsp;&emsp;&emsp;&emsp;（密钥交换参数）</p>
-<p>r1#show  crypto isakmp policy&emsp; &emsp; &emsp; &emsp; &emsp; &emsp;&emsp;&emsp;&emsp; &emsp;显示策略配置结果</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Protection suite of priority 1</div><div class="line">        encryption algorithm:   DES - Data Encryption Standard (56 bit keys).</div><div class="line">        hash algorithm:         Message Digest 5</div><div class="line">        authentication method:  Pre-Shared Key</div><div class="line">        Diffie-Hellman group:   #1 (768 bit)</div><div class="line">        lifetime:               86400 seconds, no volume limit</div><div class="line">Default protection suite</div><div class="line">        encryption algorithm:   DES - Data Encryption Standard (56 bit keys).</div><div class="line">        hash algorithm:         Secure Hash Standard</div><div class="line">        authentication method:  Rivest-Shamir-Adleman Signature</div><div class="line">        Diffie-Hellman group:   #1 (768 bit)</div><div class="line">        lifetime:               86400 seconds, no volume limit</div></pre></td></tr></table></figure>
-<p>B路由器配置同理，注意两端使用的各种方法要相同</p>
-<p>步骤3：由于使用了共享密钥验证对等体，定义密钥。注意密钥和对等体要一起定义</p>
-<p>r1(config)#crypto isakmp key cisco address 135.25.1.2</p>
-<p>r2(config)#crypto isakmp key cisco address 135.25.1.1</p>
-<p>步骤4：定义IPSEC变换集</p>
-<p>r1(config)#crypto ipsec transform-set future esp-des</p>
-<p>r2(config)#crypto ipsec transform-set future esp-des</p>
-<p>注意两端的参数要相同</p>
-<p>r1#show crypto ipsec transform-set</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Transform set future: &#123; esp-des  &#125;</div><div class="line">   will negotiate = &#123; Tunnel,  &#125;</div></pre></td></tr></table></figure>
-<p>步骤5：定义将要保护的数据流</p>
-<p>r1(config)#access-list 101 permit ip 135.25.3.0 0.0.0.255 135.25.4.0 0.0.0.255</p>
-<p>r2(config)# access-list 101 permit ip 135.25.4.0 0.0.0.255 135.25.3.0 0.0.0.255</p>
-<p>步骤6：配置加密映射：将加密策略和流量联系起来</p>
-<p>r1(config)#crypto map zhangyu 10 ipsec-isakmp</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">% NOTE: This new crypto map will remain disabled until a peer</div><div class="line">        and a valid access list have been configured.</div></pre></td></tr></table></figure>
-<p>r1(config-crypto-map)#set peer 135.25.1.2</p>
-<p>r1(config-crypto-map)#set transform-set future</p>
-<p>r1(config-crypto-map)#match address 101</p>
-<p>B路由器同理</p>
-<p>步骤7：将加密映射应用到接口</p>
-<p>r1(config)#int s 0</p>
-<p>r1(config-if)#crypto map zhangyu</p>
-<p>步骤8：测试显示A路由器上IPSEC连接</p>
-<p>r1#show crypto engine connections active</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"></div><div class="line">ID Interface       IP-Address      State  Algorithm         Encrypt  Decrypt</div></pre></td></tr></table></figure>
-<p>在PC1上ping 135.25.4.1</p>
-<p>r1#show crypto engine connections active</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"></div><div class="line">  ID Interface       IP-Address      State  Algorithm          Encrypt  Decrypt</div><div class="line">2000 Serial0         135.25.1.1      set    DES_56_CBC               0        5</div><div class="line">2001 Serial0         135.25.1.1      set    DES_56_CBC</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/30/cisco路由器恢复enable密码/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -893,6 +702,197 @@
 <p>回答no，然后回车，显示“rommon&gt;”。</p>
 <p>6.在特权EXEC下输入reload命令。</p>
 <p>  &emsp; &emsp;后面操作同第一种方法。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/30/cisco路由器配置ipsecvpn/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="孤独泪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="孤独泪个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/30/cisco路由器配置ipsecvpn/" itemprop="url">
+                  cisco路由器配置ipsecvpn
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-30T00:00:00+08:00">
+                2017-06-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络技术/" itemprop="url" rel="index">
+                    <span itemprop="name">网络技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/06/30/cisco路由器配置ipsecvpn/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/06/30/cisco路由器配置ipsecvpn/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="/img/cisco.png" alt=""></p>
+<p>步骤1：基本配置保证在没有做vpn之前网络连通</p>
+<p>步骤2：创建IKE加密策略</p>
+<p>r1(config)#crypto isakmp policy 1</p>
+<p>r1(config-isakmp)#encryption des    &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;           （加密消息算法）</p>
+<p>r1(config-isakmp)#authentication pre-share       &emsp; &emsp; &emsp;（对等体验证方法）</p>
+<p>r1(config-isakmp)#hash md5  &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;（消息完整性算法）</p>
+<p>r1(config-isakmp)#group 1 &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;&emsp;&emsp;&emsp;&emsp;（密钥交换参数）</p>
+<p>r1#show  crypto isakmp policy&emsp; &emsp; &emsp; &emsp; &emsp; &emsp;&emsp;&emsp;&emsp; &emsp;显示策略配置结果</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Protection suite of priority 1</div><div class="line">        encryption algorithm:   DES - Data Encryption Standard (56 bit keys).</div><div class="line">        hash algorithm:         Message Digest 5</div><div class="line">        authentication method:  Pre-Shared Key</div><div class="line">        Diffie-Hellman group:   #1 (768 bit)</div><div class="line">        lifetime:               86400 seconds, no volume limit</div><div class="line">Default protection suite</div><div class="line">        encryption algorithm:   DES - Data Encryption Standard (56 bit keys).</div><div class="line">        hash algorithm:         Secure Hash Standard</div><div class="line">        authentication method:  Rivest-Shamir-Adleman Signature</div><div class="line">        Diffie-Hellman group:   #1 (768 bit)</div><div class="line">        lifetime:               86400 seconds, no volume limit</div></pre></td></tr></table></figure>
+<p>B路由器配置同理，注意两端使用的各种方法要相同</p>
+<p>步骤3：由于使用了共享密钥验证对等体，定义密钥。注意密钥和对等体要一起定义</p>
+<p>r1(config)#crypto isakmp key cisco address 135.25.1.2</p>
+<p>r2(config)#crypto isakmp key cisco address 135.25.1.1</p>
+<p>步骤4：定义IPSEC变换集</p>
+<p>r1(config)#crypto ipsec transform-set future esp-des</p>
+<p>r2(config)#crypto ipsec transform-set future esp-des</p>
+<p>注意两端的参数要相同</p>
+<p>r1#show crypto ipsec transform-set</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Transform set future: &#123; esp-des  &#125;</div><div class="line">   will negotiate = &#123; Tunnel,  &#125;</div></pre></td></tr></table></figure>
+<p>步骤5：定义将要保护的数据流</p>
+<p>r1(config)#access-list 101 permit ip 135.25.3.0 0.0.0.255 135.25.4.0 0.0.0.255</p>
+<p>r2(config)# access-list 101 permit ip 135.25.4.0 0.0.0.255 135.25.3.0 0.0.0.255</p>
+<p>步骤6：配置加密映射：将加密策略和流量联系起来</p>
+<p>r1(config)#crypto map zhangyu 10 ipsec-isakmp</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">% NOTE: This new crypto map will remain disabled until a peer</div><div class="line">        and a valid access list have been configured.</div></pre></td></tr></table></figure>
+<p>r1(config-crypto-map)#set peer 135.25.1.2</p>
+<p>r1(config-crypto-map)#set transform-set future</p>
+<p>r1(config-crypto-map)#match address 101</p>
+<p>B路由器同理</p>
+<p>步骤7：将加密映射应用到接口</p>
+<p>r1(config)#int s 0</p>
+<p>r1(config-if)#crypto map zhangyu</p>
+<p>步骤8：测试显示A路由器上IPSEC连接</p>
+<p>r1#show crypto engine connections active</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"></div><div class="line">ID Interface       IP-Address      State  Algorithm         Encrypt  Decrypt</div></pre></td></tr></table></figure>
+<p>在PC1上ping 135.25.4.1</p>
+<p>r1#show crypto engine connections active</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"></div><div class="line">  ID Interface       IP-Address      State  Algorithm          Encrypt  Decrypt</div><div class="line">2000 Serial0         135.25.1.1      set    DES_56_CBC               0        5</div><div class="line">2001 Serial0         135.25.1.1      set    DES_56_CBC</div></pre></td></tr></table></figure>
 
           
         
